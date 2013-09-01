@@ -1,0 +1,15 @@
+#encoding: utf-8
+zh-CN:
+  activerecord:
+    models:
+      sms_tmp: 短信模板
+    attributes:
+      sms_tmp:
+        user: 拥有者
+        title: 标题
+        content: 内容
+        content_size: 内容字数
+    errors:
+      sms_tmp: 短信模板
+  helpers:
+    sms_tmp: 短信模板

@@ -1,0 +1,14 @@
+---
+en:
+  active_record:
+    models:
+      mail_tmp: Mail tmp
+    attributes:
+      mail_tmp:
+        user: User
+        title: Title
+        content: Content
+    errors:
+      mail_tmp: 
+  helpers:
+    mail_tmp: 

@@ -1,0 +1,20 @@
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="author" content="master@inruby.com" />
+    <!-- this enables responsive features in browser -->
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+    <title><%= content_for?(:title) ? yield(:title) : Rails.application.name %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : Rails.application.name %>">
+
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "application" %>
+    <!-- if you are going to support IE8 you must include html5shiv -->
+    <!--[if lt IE 9]>
+    <script src='assets/javascripts/html5shiv.js' type='text/javascript'></script>
+    <![endif]-->
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+</head>

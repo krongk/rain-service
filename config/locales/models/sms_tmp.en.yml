@@ -1,0 +1,15 @@
+---
+en:
+  active_record:
+    models:
+      sms_tmp: Sms tmp
+    attributes:
+      sms_tmp:
+        user: User
+        title: Title
+        content: Content
+        content_size: Content size
+    errors:
+      sms_tmp: 
+  helpers:
+    sms_tmp: 

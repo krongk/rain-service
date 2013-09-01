@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <%=render :partial => 'layouts/head' %>
+  
+  <body data-spy='scroll' style='padding-top:60px;padding-bottom:60px' target='.flatty-sidebar'>
+    <!--header start-->
+		<div class="navbar navbar-inverse navbar-fixed-top orange-background">
+			<div class="navbar-inner">
+		  <div class="container">
+		      <button class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse" type="button">
+		          <span class="icon-bar"></span>
+		          <span class="icon-bar"></span>
+		          <span class="icon-bar"></span>
+		      </button>
+		      <a class="brand" href="/page/about"><i class='icon-heart'></i> 65960</a>
+		      <div class="nav-collapse collapse">
+		          <ul class="nav">
+		              <li class="">
+		                  <a href="/page/about">关于</a>
+		              </li>
+		              <li class="">
+		                  <a href="/">开始使用</a>
+		              </li>
+		              <li class="">
+		                  <a href="/page/documentation.html">教程</a>
+		              </li>
+		              <li class="">
+		                  <a href="/page/help.html">联系 &amp; 支持</a>
+		              </li>
+		          </ul>
+		      </div>
+		  </div></div>
+		</div>
+    <!--header end -->
+    <div class='container'>
+    	<div class='row'>
+		    <%= render 'layouts/messages' %>
+		    <%= yield %>
+		</div>
+	</div>
+<!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"65960"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = 'http://static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			|| document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+	</script>
+<!-- Duoshuo Comment END -->	
+  </body>
+</html>

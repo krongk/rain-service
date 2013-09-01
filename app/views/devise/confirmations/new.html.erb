@@ -1,0 +1,15 @@
+<h2 class='text-center'>重新发送邮件确认函</h2>
+
+<div class="text-center">
+	<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+	  <%= devise_error_messages! %>
+
+	  <div><%= f.label :email, '请输入注册时用的电子邮件:' %>
+	    <%= f.email_field :email, :required => true, :autofocus => true %>
+	  </div>
+
+	  <div>
+	    <%= f.submit "确认发送" %>
+	  </div>
+	<% end %>
+</div>

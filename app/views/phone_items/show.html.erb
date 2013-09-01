@@ -1,0 +1,38 @@
+<h1><%= t 'phone_items.show.title ' %></h1>
+
+<div class='row-fluid'>
+  <div class='span12 box box-collapsed box-nomargin'>
+    <%= box_title(@phone_item.mobile_phone) %>
+    <div class='box-content'>
+      <p>
+        <strong>Source name:</strong>
+        <%= @phone_item.source_name %>
+      </p>
+
+      <p>
+        <strong>Name:</strong>
+        <%= @phone_item.name %>
+      </p>
+
+      <p>
+        <strong>City:</strong>
+        <%= @phone_item.city %>
+      </p>
+
+      <p>
+        <strong>Area:</strong>
+        <%= @phone_item.area %>
+      </p>
+
+      <p>
+        <strong>Description:</strong>
+        <%= @phone_item.description %>
+      </p>
+  </div>
+</div>
+
+<%= render partial: "sms_log", collection: @sms_logs %>
+
+
+<%= link_to '返回', phone_items_path %>
+

@@ -1,0 +1,17 @@
+#encoding: utf-8
+zh-CN:
+  activerecord:
+    models:
+      site_post: 网站文章
+    attributes:
+      site_post:
+        user: 拥有者
+        site: 网站
+        title: 标题
+        content: 内容
+        key_words: 关键词
+        cate_id: 类别
+    errors:
+      site_post: 网站文章
+  helpers:
+    site_post: 网站文章

@@ -1,0 +1,36 @@
+<%= simple_form_for(@user_detail) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :user %>
+    <%= f.input :contact_name %>
+    <%= f.input :id_card %>
+    <%= f.input :mobile_phone %>
+    <%= f.input :tel_phone %>
+    <%= f.input :qq %>
+    <%= f.input :email %>
+    <%= f.input :website %>
+    <%= f.input :region %>
+    <%= f.input :city %>
+    <%= f.input :district %>
+    <%= f.input :address %>
+    <%= f.input :latitude %>
+    <%= f.input :longitude %>
+    <%= f.input :company_name %>
+    <%= f.input :company_nickname %>
+    <%= f.input :corporator %>
+    <%= f.input :company_reg_no %>
+    <%= f.input :company_keywords %>
+    <%= f.input :company_description %>
+    <%= f.input :fu_gmail_name %>
+    <%= f.input :fu_gmail_pwd %>
+    <%= f.input :fu_qmail_name %>
+    <%= f.input :fu_qmail_pwd %>
+    <%= f.input :fu_user_name %>
+    <%= f.input :fu_user_pwd %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,0 +1,17 @@
+---
+en:
+  active_record:
+    models:
+      site_post: Site post
+    attributes:
+      site_post:
+        user: User
+        site: Site
+        title: Title
+        content: Content
+        key_words: Key words
+        cate_id: Cate
+    errors:
+      site_post: 
+  helpers:
+    site_post: 

@@ -1,0 +1,19 @@
+---
+en:
+  active_record:
+    models:
+      phone_item: Phone item
+    attributes:
+      phone_item:
+        user: User
+        mobile_phone: Mobile phone
+        source_name: Source name
+        name: Name
+        city: City
+        area: Area
+        description: Description
+        is_processed: Is processed
+    errors:
+      phone_item: 
+  helpers:
+    phone_item: 

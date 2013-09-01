@@ -1,0 +1,20 @@
+#encoding: utf-8
+zh-CN:
+  sms_tmps:
+    index:
+      title: 短信模板
+    show:
+      title: 短信模板
+    edit:
+      title: 修改短信模板
+    new:
+      title: 添加短信模板
+  flash:
+    sms_tmps:
+      create:
+        notice: '%{resource_name} 添加成功.'
+      update:
+        notice: '%{resource_name} 修改成功.'
+      destroy:
+        notice: '%{resource_name} 删除成功.'
+        alert: '%{resource_name} 不能被删除.'

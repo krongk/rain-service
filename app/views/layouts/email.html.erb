@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="author" content="master@inruby.com" />
+
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "application" %>
+  </head>
+  
+  <body data-spy='scroll' style='padding-top:60px;padding-bottom:60px' target='.flatty-sidebar'>
+    <!--header start-->
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+		  <div class="container">
+		      <button class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse" type="button">
+		          <span class="icon-bar"></span>
+		          <span class="icon-bar"></span>
+		          <span class="icon-bar"></span>
+		      </button>
+		      <a class="brand" href="./index.html">Flatty</a>
+		      <div class="nav-collapse collapse">
+		          <ul class="nav">
+		              <li class="">
+		                  <a href="./index.html">Home</a>
+		              </li>
+		              <li class="">
+		                  <a href="./get_started.html">Get started</a>
+		              </li>
+		              <li class="">
+		                  <a href="./documentation.html">Documentation</a>
+		              </li>
+		              <li class="">
+		                  <a href="./contact.html">Contact &amp; support</a>
+		              </li>
+		          </ul>
+		      </div>
+		  </div></div>
+		</div>
+    <!--header end -->
+    <%= yield %>
+  </body>
+</html>

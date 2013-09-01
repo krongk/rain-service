@@ -1,0 +1,10 @@
+<div class="alert alert-<%= ApplicationHelper::SMS_SEND_STATUS[sms_log.status][-1] %>">
+    <a href="#" class="close" data-dismiss="alert">×</a>
+    <h4>
+        <i class="icon-<%= sms_log.status == 0 ? 'ok' : 'info'%>-sign"></i>
+        <%= ApplicationHelper::SMS_SEND_STATUS[sms_log.status][0] %> 
+        <span class="pull-right">(<%= sms_log.created_at.to_s(:db)%>)</span>
+    </h4>
+    <%= sms_log.sms_tmp.content %>
+</div>
+

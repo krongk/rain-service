@@ -1,0 +1,20 @@
+---
+en:
+  mail_items:
+    index:
+      title: Mail items
+    show:
+      title: Mail item
+    edit:
+      title: Editing Mail item
+    new:
+      title: New Mail item
+  flash:
+    mail_items:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

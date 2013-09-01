@@ -1,35 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Rain Service" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rain Service" %>">
-    <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-    <%= yield(:head) %>
-  </head>
-  <body class="<%= controller_name %> <%= action_name %>">
-    <div class="navbar navbar-fixed-top">
-      <nav class="navbar-inner">
-        <div class="container">
-          <%= render 'layouts/navigation' %>
-        </div>
-      </nav>
-    </div>
-    <div id="main" role="main">
-      <div class="container">
-        <div class="content">
-           <div class="row">
+  <%=render :partial => 'layouts/head' %>
+
+  <body class="">
+    <%= render :partial => 'layouts/header' %>
+    <div id="wrapper">
+      <div id="main-nav-bg"></div>
+      <nav id="main-nav"><%= render 'layouts/nav' %></nav>
+      <section id="content">
+        <div class="container-fluid">
+          <div class="row-fluid" id="content-wrapper">
             <div class="span12">
               <%= render 'layouts/messages' %>
               <%= yield %>
             </div>
           </div>
-          <footer>
-          </footer>
         </div>
-      </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
+      </section>
+    </div>
   </body>
 </html>

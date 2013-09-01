@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @mail_item.user %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @mail_item.email %>
+</p>
+
+<p>
+  <strong>Source name:</strong>
+  <%= @mail_item.source_name %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @mail_item.name %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @mail_item.city %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @mail_item.area %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @mail_item.description %>
+</p>
+
+<p>
+  <strong>Is processed:</strong>
+  <%= @mail_item.is_processed %>
+</p>
+
+<%= link_to 'Edit', edit_mail_item_path(@mail_item) %> |
+<%= link_to 'Back', mail_items_path %>

@@ -1,0 +1,37 @@
+---
+en:
+  active_record:
+    models:
+      user_detail: User detail
+    attributes:
+      user_detail:
+        user: User
+        contact_name: Contact name
+        id_card: Id card
+        mobile_phone: Mobile phone
+        tel_phone: Tel phone
+        qq: Qq
+        email: Email
+        website: Website
+        region: Region
+        city: City
+        district: District
+        address: Address
+        latitude: Latitude
+        longitude: Longitude
+        company_name: Company name
+        company_nickname: Company nickname
+        corporator: Corporator
+        company_reg_no: Company reg no
+        company_keywords: Company keywords
+        company_description: Company description
+        fu_gmail_name: Fu gmail name
+        fu_gmail_pwd: Fu gmail pwd
+        fu_qmail_name: Fu qmail name
+        fu_qmail_pwd: Fu qmail pwd
+        fu_user_name: Fu user name
+        fu_user_pwd: Fu user pwd
+    errors:
+      user_detail: 
+  helpers:
+    user_detail: 

@@ -1,0 +1,31 @@
+<h1><%= t 'sms_tmps.index.title' %></h1>
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>标题</th>
+      <th>内容</th>
+      <th>内容字数</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sms_tmps.each do |sms_tmp| %>
+      <tr>
+        <td><%= sms_tmp.title %></td>
+        <td><%= sms_tmp.content %></td>
+        <td><%= sms_tmp.content_size %></td>
+        <td><%= link_to '修改', edit_sms_tmp_path(sms_tmp) %></td>
+        <td><%= link_to '删除', sms_tmp, method: :delete, data: { confirm: '确定要删除?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @sms_tmps %>
+<br>
+
+<%= link_to '添加', new_sms_tmp_path, class: 'btn btn-primary btn-large' %>

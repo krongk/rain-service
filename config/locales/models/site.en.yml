@@ -1,0 +1,21 @@
+---
+en:
+  active_record:
+    models:
+      site: Site
+    attributes:
+      site:
+        user: User
+        site_name: Site name
+        site_title: Site title
+        domain: Domain
+        theme_id: Theme
+        head: Head
+        header: Header
+        body: Body
+        footer: Footer
+        is_published: Is published
+    errors:
+      site: 
+  helpers:
+    site: 

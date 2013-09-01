@@ -1,0 +1,18 @@
+<%= simple_form_for(@mail_item) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :user %>
+    <%= f.input :email %>
+    <%= f.input :source_name %>
+    <%= f.input :name %>
+    <%= f.input :city %>
+    <%= f.input :area %>
+    <%= f.input :description %>
+    <%= f.input :is_processed %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

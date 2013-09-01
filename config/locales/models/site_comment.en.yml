@@ -1,0 +1,17 @@
+---
+en:
+  active_record:
+    models:
+      site_comment: Site comment
+    attributes:
+      site_comment:
+        site: Site
+        name: Name
+        mobile_phone: Mobile phone
+        email: Email
+        content: Content
+        is_processed: Is processed
+    errors:
+      site_comment: 
+  helpers:
+    site_comment: 

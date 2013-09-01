@@ -1,0 +1,21 @@
+#encoding: utf-8
+zh-CN:
+  activerecord:
+    models:
+      site: 网站
+    attributes:
+      site:
+        user: 拥有者
+        site_name: 网站名称
+        site_title: 网站标题
+        domain: 域名
+        theme_id: 模板
+        head: HEAD部分
+        header: 页头部分
+        body: 内容部分
+        footer: 页脚部分
+        is_published: 发布状态
+    errors:
+      site: 网站
+  helpers:
+    site: 网站

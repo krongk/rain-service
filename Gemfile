@@ -8,16 +8,32 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bootstrap-sass'
+gem 'bootstrap-will_paginate'
 gem 'cancan'
 gem 'devise'
 gem 'figaro'
-gem 'mysql2'
-gem 'puma'
+gem 'mysql2', '0.3.13'
 gem 'rolify'
 gem 'simple_form', '>= 3.0.0.rc'
-group :assets do
-  gem 'therubyracer', :platform=>:ruby
-end
+
+# For linux
+# group :assets do
+#   gem 'therubyracer', :platform=>:ruby
+# end
+# gem 'puma'
+
+#Excel processing
+gem 'roo', '>=1.11.2' 
+#Wizard
+gem 'wicked'
+
+#I18n
+gem 'rails-i18n', '~> 4.0.0.pre' # For 4.0.x
+gem 'i18n_yaml_generator'
+
+#Queue
+gem 'sidekiq'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
@@ -39,3 +55,4 @@ group :test do
   gem 'database_cleaner', '1.0.1'
   gem 'email_spec'
 end
+

@@ -1,0 +1,20 @@
+---
+zh-CN:
+  site_posts:
+    index:
+      title: Site posts
+    show:
+      title: Site post
+    edit:
+      title: Editing Site post
+    new:
+      title: New Site post
+  flash:
+    site_posts:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

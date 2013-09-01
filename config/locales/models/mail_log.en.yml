@@ -1,0 +1,16 @@
+---
+en:
+  active_record:
+    models:
+      mail_log: Mail log
+    attributes:
+      mail_log:
+        user: User
+        mail_item: Mail item
+        mail_tmp: Mail tmp
+        status: Status
+        billing_count: Billing count
+    errors:
+      mail_log: 
+  helpers:
+    mail_log: 

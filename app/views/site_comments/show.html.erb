@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Site:</strong>
+  <%= @site_comment.site %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @site_comment.name %>
+</p>
+
+<p>
+  <strong>Mobile phone:</strong>
+  <%= @site_comment.mobile_phone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @site_comment.email %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @site_comment.content %>
+</p>
+
+<p>
+  <strong>Is processed:</strong>
+  <%= @site_comment.is_processed %>
+</p>
+
+<%= link_to 'Edit', edit_site_comment_path(@site_comment) %> |
+<%= link_to 'Back', site_comments_path %>

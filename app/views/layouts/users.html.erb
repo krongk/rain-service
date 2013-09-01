@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <%=render :partial => 'layouts/head' %>
+  <body class='wysihtml5-supported  contrast-red sign-in contrast-background'>
+	<div id='wrapper'>
+		<div class='application'>
+		    <div class='application-content'>
+		        <a href="/"><div class='icon-heart'></div>
+		            <span><%= Rails.application.name %></span>
+		        </a>
+		    </div>
+		</div>
+		<div class='controls'>
+		    <div class='caret'></div>
+		    <div class='form-wrapper'>
+				<div class='text-center'>
+				    <%= render 'layouts/messages' %>
+				</div>
+		        <%= yield %>
+		    </div>
+		</div>
+		<div class='login-action text-center'>
+		    <%= render "devise/shared/links" %>
+		</div>
+	</div>
+  </body>
+</html>

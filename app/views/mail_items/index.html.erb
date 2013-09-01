@@ -1,0 +1,41 @@
+<h1>Listing mail_items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Email</th>
+      <th>Source name</th>
+      <th>Name</th>
+      <th>City</th>
+      <th>Area</th>
+      <th>Description</th>
+      <th>Is processed</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mail_items.each do |mail_item| %>
+      <tr>
+        <td><%= mail_item.user %></td>
+        <td><%= mail_item.email %></td>
+        <td><%= mail_item.source_name %></td>
+        <td><%= mail_item.name %></td>
+        <td><%= mail_item.city %></td>
+        <td><%= mail_item.area %></td>
+        <td><%= mail_item.description %></td>
+        <td><%= mail_item.is_processed %></td>
+        <td><%= link_to 'Show', mail_item %></td>
+        <td><%= link_to 'Edit', edit_mail_item_path(mail_item) %></td>
+        <td><%= link_to 'Destroy', mail_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mail item', new_mail_item_path %>

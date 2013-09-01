@@ -1,0 +1,19 @@
+#encoding: utf-8
+zh-CN:
+  activerecord:
+    models:
+      phone_item: 手机
+    attributes:
+      phone_item:
+        user: 拥有者
+        mobile_phone: 手机号码
+        source_name: 来源
+        name: 姓名
+        city: 城市
+        area: 区域
+        description: 描述
+        is_processed: 执行状体
+    errors:
+      phone_item: 手机
+  helpers:
+    phone_item: 手机

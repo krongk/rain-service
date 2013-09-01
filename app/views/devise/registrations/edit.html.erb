@@ -1,14 +1,23 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical' }) do |f| %>
+<h1 class='text-center'>修改用户名/密码</h1>
+<% #fit for render on /setting
+ resource ||= current_user
+ resource_name ||= :user
+%>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= f.error_notification %>
   <%= display_base_errors resource %>
-  <%= f.input :name, :autofocus => true %>
-  <%= f.input :email, :required => true %>
-  <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
-  <%= f.input :password_confirmation, :required => false %>
-  <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
-  <%= f.button :submit, 'Update', :class => 'btn-primary' %>
+  <fieldset>
+	  <%= f.input :email, :disabled => true, :required => true, :input_html => {:class => "span12 icon-over-input"}, wrapper_html: { class: 'row-fluid' } %>
+	  <%= f.input :name, :autofocus => true, :input_html => {:class => "span12 icon-over-input"}, wrapper_html: { class: 'row-fluid' } %>
+	  <%= f.input :password, :autocomplete => "off", :placeholder => "如果不想改变当前的密码，则留空", :required => false, :input_html => {:class => "span12 icon-over-input"}, wrapper_html: { class: 'row-fluid' } %>
+	  <%= f.input :password_confirmation, :required => false, :input_html => {:class => "span12 icon-over-input"}, wrapper_html: { class: 'row-fluid' } %>
+	  <%= f.input :current_password, :placeholder => "请输入你当前使用的密码", :required => true, :input_html => {:class => "span12 icon-over-input"}, wrapper_html: { class: 'row-fluid' } %>
+  </fieldset>
+  <div class='form-actions' style='margin-bottom: 0;'>
+      <div class='text-right'>
+          <%= button_tag(type: 'submit', class: "btn btn-primary btn-large") do %>
+            <i class='icon-save'></i> 保存
+          <% end %>
+      </div>
+  </div>
 <% end %>
-<h3>Cancel my account</h3>
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
-<%= link_to "Back", :back %>

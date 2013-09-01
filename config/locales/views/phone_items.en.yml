@@ -1,0 +1,20 @@
+---
+en:
+  phone_items:
+    index:
+      title: Phone items
+    show:
+      title: Phone item
+    edit:
+      title: Editing Phone item
+    new:
+      title: New Phone item
+  flash:
+    phone_items:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

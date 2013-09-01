@@ -1,0 +1,19 @@
+---
+en:
+  active_record:
+    models:
+      mail_item: Mail item
+    attributes:
+      mail_item:
+        user: User
+        email: Email
+        source_name: Source name
+        name: Name
+        city: City
+        area: Area
+        description: Description
+        is_processed: Is processed
+    errors:
+      mail_item: 
+  helpers:
+    mail_item: 

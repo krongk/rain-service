@@ -1,0 +1,16 @@
+#encoding: utf-8
+zh-CN:
+  activerecord:
+    models:
+      mail_log: 邮件日志
+    attributes:
+      mail_log:
+        user: 拥有者
+        mail_item: 邮件
+        mail_tmp: 模板
+        status: 状态
+        billing_count: 计费数
+    errors:
+      mail_log: 邮件日志
+  helpers:
+    mail_log: 邮件日志

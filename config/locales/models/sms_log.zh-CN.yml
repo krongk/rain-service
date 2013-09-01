@@ -1,0 +1,16 @@
+#encoding: utf-8
+zh-CN:
+  activerecord:
+    models:
+      sms_log: 短信日志
+    attributes:
+      sms_log:
+        user: 拥有者
+        phone_item: 手机
+        sms_tmp: 短信模板
+        status: 发送状态
+        billing_count: 计费数
+    errors:
+      sms_log: 短信日志
+  helpers:
+    sms_log: 短信日志

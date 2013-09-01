@@ -1,0 +1,37 @@
+#encoding: utf-8
+zh-CN:
+  activerecord:
+    models:
+      user_detail: 用户详情
+    attributes:
+      user_detail:
+        user: 拥有者
+        contact_name: 联系人姓名
+        id_card: 身份证号
+        mobile_phone: 手机号码
+        tel_phone: 电话号码
+        qq: QQ号码
+        email: 电子邮箱
+        website: 网址
+        region: 省
+        city: 市
+        district: 区
+        address: 地址
+        latitude: 纬度
+        longitude: 经度
+        company_name: 公司名称
+        company_nickname: 公司简称
+        corporator: 法人
+        company_reg_no: 营业证号
+        company_keywords: 关键词
+        company_description: 公司介绍
+        fu_gmail_name: 功能Gmail名称
+        fu_gmail_pwd: 功能Gmail密码
+        fu_qmail_name: 功能QQ邮箱
+        fu_qmail_pwd: 功能QQ密码
+        fu_user_name: 功能用户名
+        fu_user_pwd: 功能密码
+    errors:
+      user_detail: 用户详情
+  helpers:
+    user_detail: 用户详情

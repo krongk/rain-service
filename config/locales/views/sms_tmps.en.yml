@@ -1,0 +1,20 @@
+---
+en:
+  sms_tmps:
+    index:
+      title: Sms tmps
+    show:
+      title: Sms tmp
+    edit:
+      title: Editing Sms tmp
+    new:
+      title: New Sms tmp
+  flash:
+    sms_tmps:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

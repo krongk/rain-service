@@ -1,0 +1,14 @@
+<%= simple_form_for(@sms_tmp) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%#= f.association :user %>
+    <%= f.input :title, input_html: { class: 'input-block-level', rows: 4} %>
+    <%= f.input :content, input_html: { class: 'char-counter input-block-level', rows: 4} %>
+    <%= f.input :content_size, as: :string, placeholder: "每64个字符按一条短信计", readonly: true %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,0 +1,16 @@
+---
+en:
+  active_record:
+    models:
+      sms_log: Sms log
+    attributes:
+      sms_log:
+        user: User
+        phone_item: Phone item
+        sms_tmp: Sms tmp
+        status: Status
+        billing_count: Billing count
+    errors:
+      sms_log: 
+  helpers:
+    sms_log: 
