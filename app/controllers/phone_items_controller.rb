@@ -13,12 +13,7 @@ class PhoneItemsController < ApplicationController
       redirect_to "/home/sms" and return
     end
 
-    sms_tmp = SmsTmp.find(params[:sms_tmp_id])
-    phone_item_ids = params[:phone_item_ids] || []
-
-    PhoneItem.where(:id => phone_item_ids).each do |item|
-      SmsWorker.perform_async(current_user.id, item, sms_tmp)
-    end
+    SmsWorker.perform_async(current_user.id, params[:sms_tmp_id], params[:phone_item_ids])
 
     respond_to do |format|
       format.html {redirect_to "/home/sms", notice: '短信发送成功！'}
