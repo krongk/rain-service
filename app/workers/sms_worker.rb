@@ -2,7 +2,7 @@ class SmsWorker
   include Sidekiq::Worker
 
   def perform(sms_tmp_id, phone_item_ids)
-    puts 'start to send sms'
+    puts "start to send sms at #{Time.now}"
     sms_tmp = SmsTmp.find(sms_tmp_id)
     PhoneItem.where(:id => phone_item_ids).each do |phone_item|
 	    status_id = SmsBao.send(ENV['SMS_BAO_USER'], ENV['SMS_BAO_PASSWORD'], phone_item.mobile_phone, sms_tmp.content)
@@ -23,8 +23,7 @@ class SmsWorker
 	    Keystore.increment_value_for("user:#{phone_item.user_id}:sms_billing_count", billing_count)
 	    #increment send count(per phone per send)
 	    Keystore.increment_value_for("user:#{phone_item.user_id}:sms_send_count", 1)
-	    puts billing_count
+	    puts "#{phone_item.id} - #{phone_item.is_processed} - #{billing_count}"
 	end
-
   end
 end
