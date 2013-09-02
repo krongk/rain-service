@@ -13,10 +13,15 @@ class PhoneItemsController < ApplicationController
       redirect_to "/home/sms" and return
     end
 
-    SmsWorker.perform_async(current_user.id, params[:sms_tmp_id], params[:phone_item_ids])
+    if ENV['SMS_BAO_USER'].nil? || ENV['SMS_BAO_PASSWORD'].nil? || ENV['SMS_MAX_CHARACTER_COUNT'].nil?
+      flash[:error] = "请配置短信发送接口的环境变量"
+      redirect_to "/home/sms" and return
+    end
+
+    SmsWorker.perform_async(params[:sms_tmp_id], params[:phone_item_ids])
 
     respond_to do |format|
-      format.html {redirect_to "/home/sms", notice: '短信发送成功！'}
+      format.html {redirect_to "/home/sms", notice: '短信已加入发送队列，请稍后查看发送日志'}
     end
   end
 
