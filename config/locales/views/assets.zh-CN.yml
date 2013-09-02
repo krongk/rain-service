@@ -1,0 +1,20 @@
+---
+zh-CN:
+  assets:
+    index:
+      title: Assets
+    show:
+      title: Asset
+    edit:
+      title: Editing Asset
+    new:
+      title: New Asset
+  flash:
+    assets:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

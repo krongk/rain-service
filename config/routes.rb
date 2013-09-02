@@ -1,5 +1,9 @@
 RainService::Application.routes.draw do
   
+  get "common/file_new"
+  post "common/file_upload"
+  resources :assets
+
   get "home/index"
   get "home/sms"
   get "home/email"

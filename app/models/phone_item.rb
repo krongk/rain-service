@@ -2,6 +2,10 @@
 class PhoneItem < ActiveRecord::Base
   belongs_to :user
   has_many :sms_logs
+
+  self.per_page = 200
+  scope :processed, -> {where("is_processed != ?", 'n')}
+  scope :no_processed, -> {where(is_processed: 'n')}
   
   after_create :increment_total_count
   after_destroy :decrement_total_count

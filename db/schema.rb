@@ -11,11 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130901105806) do
+ActiveRecord::Schema.define(version: 20130902125149) do
+
+  create_table "assets", force: true do |t|
+    t.integer  "user_id"
+    t.string   "asset_cate",         default: "默认"
+    t.string   "bucket"
+    t.string   "asset_key"
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+  end
+
+  add_index "assets", ["user_id"], name: "index_assets_on_user_id", using: :btree
 
   create_table "keystores", force: true do |t|
-    t.string  "key",   null: false
-    t.integer "value", null: false
+    t.string  "key",               null: false
+    t.integer "value", default: 0, null: false
   end
 
   create_table "mail_items", force: true do |t|
@@ -59,13 +75,13 @@ ActiveRecord::Schema.define(version: 20130901105806) do
 
   create_table "phone_items", force: true do |t|
     t.integer  "user_id"
-    t.string   "mobile_phone", null: false
+    t.string   "mobile_phone",               null: false
     t.string   "source_name"
     t.string   "name"
     t.string   "city"
     t.string   "area"
     t.string   "description"
-    t.string   "is_processed"
+    t.string   "is_processed", default: "n", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

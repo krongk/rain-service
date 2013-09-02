@@ -1,0 +1,6 @@
+<%= form_tag("/common/file_upload", method: "post", multipart: true) do %>
+  <%= hidden_field_tag(:asset_type, asset_cate) %>
+  <%= hidden_field_tag(:upload_token, @upload_token) %>
+  <%= file_field_tag(:file) %>
+  <%= submit_tag("上传") %>
+<% end %>

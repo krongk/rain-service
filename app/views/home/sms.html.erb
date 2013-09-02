@@ -5,7 +5,7 @@
 		<%= box_title('添加短信模板') %>
 		<div class='box-content'>
 	      <div class="alert alert-note">接受Excel(.xls和.xlsx)格式的手机号码表导入。<br>请保证表列顺序为（手机号、姓名、来源、城市、地区、描述）<br>一次最多导入2000条记录。</div>
-	      <%#= render 'resource_items/form', :resource_type => 'phone' %>
+	      <%= render 'common/file_form', :asset_cate => 'phone' %>
 	  	</div>
 	</div>
 	<div class='span4 box box-collapsed'>
@@ -74,81 +74,32 @@
     </div>
 </div>
 <div class='box-content box-no-padding'>
-<div class='responsive-table'>
-<div class='scrollable-area'>
 
-<table class='data-table-column-filter table table-bordered table-striped' style='margin-bottom:0;'>
-<thead>
-<tr>
-    <th>
-        选择
-    </th>
-    <th>
-        手机号
-    </th>
-    <th>
-        姓名
-    </th>
-    <th>
-        来源
-    </th>
-    <th>
-        城市
-    </th>
-    <th>
-        区域
-    </th>
-    <th>
-        描述
-    </th>
-    <th>
-        发送状态
-    </th>
-    <th>
-        发送次数
-    </th>
-    <th>
-        操作
-    </th>
-</tr>
-</thead>
-<tbody>
-<% current_user.phone_items.each do |item| %>
-<tr>
-    <td><%= check_box_tag 'phone_item_ids[]', item.id %></td>
-    <td><%= item.mobile_phone %></td>
-    <td><%= item.name.to_s.truncate(10) %></td>
-    <td><%= item.source_name.to_s.truncate(12) %></td>
-    <td><%= item.city.to_s.truncate(20) %></td>
-    <td><span title="<%= item.area %>" class="word-break"><%= item.area.to_s.truncate(8) %></span></td>
-    <td><span title="<%= item.description %>" class="word-break"><%= item.description.to_s.truncate(12) %></span></td>
-    <td><div style="max-width: 65px;" class="word-break"><%= show_send_status(item.is_processed) %></div></td>
-    <td><%#= item.send_count %></td>
-    <td>
-    <%= link_to phone_item_path(item), class: 'btn btn-success btn-mini' do %>
-      <i class='icon-ok'></i>
-    <% end %>
-    <%= link_to item, method: :delete, data: { confirm: '是否删除?' }, class: 'btn btn-danger btn-mini' do %>
-        <i class='icon-remove'></i>
-    <% end %>
-    </td>
-</tr>
-<% end %>
-</tbody>
-<tfoot>
-<tr>
-    <th></th>
-    <th>手机号</th>
-    <th>来源</th>
-    <th>城市</th>
-    <th>区域</th>
-    <th>姓名</th>
-    <th colspan='5'></th>
-</tr>
-</tfoot>
-</table>
-</div>
-</div>
+  <div class="tabbable">
+    <ul class="nav nav-tabs nav-tabs-centered">
+        <li class="active">
+            <a data-toggle="tab" href="#tabcenter1">
+                <i class="icon-indent-left text-red"></i>
+                未发送
+            </a>
+        </li>
+        <li class="">
+            <a data-toggle="tab" href="#tabcenter2">
+                已发送
+                <i class="icon-indent-right text-red"></i>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tabcenter1">
+           <%= render :partial => 'phone_items/list', :locals => {:phone_items => @phone_items_no_processed} %>
+        </div>
+        <div class="tab-pane" id="tabcenter2">
+           <%= render :partial => 'phone_items/list', :locals => {:phone_items => @phone_items_processed} %>
+        </div>
+    </div>
+  </div>
+
 </div>
 </div>
 </div><!-- end datatable -->

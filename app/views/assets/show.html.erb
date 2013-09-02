@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @asset.user %>
+</p>
+
+<%= qiniu_image_tag @asset.asset.url, :thumbnail => '300x300>', :quality => 80 %>
+or
+<%= image_tag qiniu_image_path(@asset.asset.url, :thumbnail => '300x300>', :quality => 80) %>
+<p>
+  <strong>Bucket:</strong>
+  <%= @asset.bucket %>
+</p>
+
+<p>
+  <strong>Asset key:</strong>
+  <%= @asset.asset_key %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @asset.note %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_asset_path(@asset) %> |
+<%= link_to 'Back', assets_path %>

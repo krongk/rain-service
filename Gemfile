@@ -26,6 +26,9 @@ gem 'simple_form', '>= 3.0.0.rc'
 gem 'roo', '>=1.11.2' 
 #Wizard
 gem 'wicked'
+#File upload
+gem 'paperclip'
+gem 'paperclip-qiniu'
 
 #I18n
 gem 'rails-i18n', '~> 4.0.0.pre' # For 4.0.x

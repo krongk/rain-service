@@ -1,0 +1,19 @@
+---
+en:
+  active_record:
+    models:
+      asset: Asset
+    attributes:
+      asset:
+        user: User
+        asset_type: Asset type
+        asset_name: Asset name
+        asset_path: Asset path
+        bucket: Bucket
+        asset_key: Asset key
+        note: Note
+        return_hash: Return hash
+    errors:
+      asset: 
+  helpers:
+    asset: 

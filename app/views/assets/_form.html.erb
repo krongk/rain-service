@@ -1,0 +1,16 @@
+<%= simple_form_for(@asset) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :user %>
+    <%= f.input :asset_cate %>
+    <%= f.input :bucket %>
+    <%= f.input :asset_key %>
+    <%= f.input :note %>
+    <%= f.file_field :asset %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

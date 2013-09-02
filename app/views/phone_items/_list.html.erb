@@ -1,0 +1,78 @@
+
+<div class='responsive-table'>
+<div class='scrollable-area'>
+
+<table class='data-table-column-filter table table-bordered table-striped' style='margin-bottom:0;'>
+<thead>
+<tr>
+    <th>
+        选择
+    </th>
+    <th>
+        手机号
+    </th>
+    <th>
+        姓名
+    </th>
+    <th>
+        来源
+    </th>
+    <th>
+        城市
+    </th>
+    <th>
+        区域
+    </th>
+    <th>
+        描述
+    </th>
+    <th>
+        发送状态
+    </th>
+    <th>
+        发送次数
+    </th>
+    <th>
+        操作
+    </th>
+</tr>
+</thead>
+<tbody>
+<% phone_items.each do |item| %>
+<tr>
+    <td><%= check_box_tag 'phone_item_ids[]', item.id %></td>
+    <td><%= item.mobile_phone %></td>
+    <td><%= item.name.to_s.truncate(10) %></td>
+    <td><%= item.source_name.to_s.truncate(12) %></td>
+    <td><%= item.city.to_s.truncate(20) %></td>
+    <td><span title="<%= item.area %>" class="word-break"><%= item.area.to_s.truncate(8) %></span></td>
+    <td><span title="<%= item.description %>" class="word-break"><%= item.description.to_s.truncate(12) %></span></td>
+    <td><div style="max-width: 65px;" class="word-break"><%= show_send_status(item.is_processed) %></div></td>
+    <td><%= item.sms_logs.count %></td>
+    <td>
+    <%= link_to phone_item_path(item), class: 'btn btn-success btn-mini' do %>
+      <i class='icon-ok'></i>
+    <% end %>
+    <%= link_to item, method: :delete, data: { confirm: '是否删除?' }, class: 'btn btn-danger btn-mini' do %>
+        <i class='icon-remove'></i>
+    <% end %>
+    </td>
+</tr>
+<% end %>
+</tbody>
+<tfoot>
+<tr>
+    <th></th>
+    <th>手机号</th>
+    <th>来源</th>
+    <th>城市</th>
+    <th>区域</th>
+    <th>姓名</th>
+    <th colspan='5'></th>
+</tr>
+</tfoot>
+</table>
+
+<%= will_paginate phone_items %>
+</div>
+</div>
