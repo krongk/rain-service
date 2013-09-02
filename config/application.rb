@@ -50,3 +50,4 @@ module RainService
 end
 
 require "#{Rails.root}/lib/monkey"
+require "#{Rails.root}/lib/sms_bao"
