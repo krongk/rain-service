@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130902125149) do
+ActiveRecord::Schema.define(version: 20130903072419) do
 
   create_table "assets", force: true do |t|
     t.integer  "user_id"
@@ -28,6 +28,20 @@ ActiveRecord::Schema.define(version: 20130902125149) do
   end
 
   add_index "assets", ["user_id"], name: "index_assets_on_user_id", using: :btree
+
+  create_table "faq_cates", force: true do |t|
+    t.integer "typo",                    null: false
+    t.string  "name",                    null: false
+    t.boolean "is_auth", default: false
+  end
+
+  create_table "faq_items", force: true do |t|
+    t.integer "faq_cate_id"
+    t.string  "title",       null: false
+    t.text    "content"
+  end
+
+  add_index "faq_items", ["faq_cate_id"], name: "index_faq_items_on_faq_cate_id", using: :btree
 
   create_table "keystores", force: true do |t|
     t.string  "key",               null: false

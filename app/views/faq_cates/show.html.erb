@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Typo:</strong>
+  <%= @faq_cate.typo %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @faq_cate.name %>
+</p>
+
+<p>
+  <strong>Is auth:</strong>
+  <%= @faq_cate.is_auth %>
+</p>
+
+<%= link_to 'Edit', edit_faq_cate_path(@faq_cate) %> |
+<%= link_to 'Back', faq_cates_path %>

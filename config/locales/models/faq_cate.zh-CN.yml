@@ -1,0 +1,14 @@
+#encoding: utf-8
+zh-CN:
+  activerecord:
+    models:
+      faq_cate: 说明类型
+    attributes:
+      faq_cate:
+        typo: 分类
+        name: 名称
+        is_auth: 是否需要权限
+    errors:
+      faq_cate: 
+  helpers:
+    faq_cate: 

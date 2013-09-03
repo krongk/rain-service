@@ -1,0 +1,13 @@
+<%= simple_form_for(@faq_cate) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :typo, collection: FaqCate.typos %>
+    <%= f.input :name %>
+    <%= f.input :is_auth %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

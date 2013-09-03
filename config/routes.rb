@@ -1,5 +1,9 @@
 RainService::Application.routes.draw do
   
+  resources :faq_items
+
+  resources :faq_cates
+
   get "common/file_new"
   post "common/file_upload"
   resources :assets

@@ -1,0 +1,14 @@
+#encoding: utf-8
+zh-CN:
+  activerecord:
+    models:
+      faq_item: 帮助说明
+    attributes:
+      faq_item:
+        faq_cate: 分类
+        title: 标题
+        content: 内容
+    errors:
+      faq_item: 
+  helpers:
+    faq_item: 

@@ -1,0 +1,14 @@
+---
+en:
+  active_record:
+    models:
+      faq_cate: Faq cate
+    attributes:
+      faq_cate:
+        typo: Typo
+        name: Name
+        is_auth: Is auth
+    errors:
+      faq_cate: 
+  helpers:
+    faq_cate: 

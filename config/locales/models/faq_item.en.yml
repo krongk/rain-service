@@ -1,0 +1,14 @@
+---
+en:
+  active_record:
+    models:
+      faq_item: Faq item
+    attributes:
+      faq_item:
+        faq_cate: Faq cate
+        title: Title
+        content: Content
+    errors:
+      faq_item: 
+  helpers:
+    faq_item: 

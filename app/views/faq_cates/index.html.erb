@@ -1,0 +1,94 @@
+<!-- page header container -->
+<div class="row-fluid">
+  <div class="span12">
+    <div class="page-header">
+
+      <!-- page title -->
+      <h1 class="pull-left">
+        <i class="icon-star"></i>
+        <span>FAQ</span>
+      </h1>
+
+      <!-- breadcrumbs -->
+      <div class="pull-right">
+        <ul class="breadcrumb">
+          <li>
+            <a href="/home/index"><i class="icon-bar-chart"></i>
+            </a>
+          </li>
+          <li class="separator">
+            <i class="icon-angle-left"></i>
+            <%= link_to '添加分类', new_faq_cate_path, class: 'btn btn-mini btn-primary' %>
+          </li>
+          <li class="separator">
+            <i class="icon-angle-left"></i>
+            <%= link_to '添加教程', new_faq_item_path, class: 'btn btn-mini btn-info' %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- content of page -->
+<div class='container-fluid'>
+<div class='row-fluid' id='content-wrapper'>
+<div class='span12'>
+    
+    <div id='faq'>
+    <div class='row-fluid'>
+    <div class='tabbable tabs-left'>
+        <ul class='nav nav-tabs'>
+          <% @faq_cates.each_with_index do |faq_cate, index| %>
+            <% index += 1 %>
+            <li class="<%= index == 1 ? 'active': '' %>">
+                <a data-toggle='tab' href='#faq<%= index %>'>
+                    <i class='icon-double-angle-right text-contrast'></i>
+                    <%= faq_cate.name %>
+                    <%#= link_to 'Edit', edit_faq_cate_path(faq_cate) %>
+                    <%#= link_to 'Destroy', faq_cate, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </a>
+            </li>
+          <% end %>
+        </ul>
+
+        <div class='tab-content'>
+          <input class='span12' placeholder='Search...' type='text'>
+
+          <% @faq_cates.each_with_index do |faq_cate, index| %>
+            <% index += 1 %>
+            <div class='tab-pane <%= index == 1 ? 'active': '' %>' id='faq<%= index %>'>
+            <div class='accordion' id='accordion<%= index %>'>
+              <% faq_cate.faq_items.each_with_index do |faq_item, item_index| %>
+                <% item_index += 1 %>
+                <div class='accordion-group'>
+                    <div class='accordion-heading'>
+                        <a class='accordion-toggle' data-parent='#accordion<%= index %>' data-toggle='collapse' href='#collapse<%= index %>-<%= item_index %>'>
+                            <div class='text-contrast'><%= faq_item.title %></div>
+                        </a>
+                    </div>
+                    <div class='accordion-body collapse' id='collapse<%= index %>-<%= item_index %>'>
+                        <div class='accordion-inner'>
+                            <div class="pull-right">
+                            <%= link_to '修改', edit_faq_item_path(faq_item), class: 'btn btn-primary' %> | 
+                            <%= link_to '删除', edit_faq_item_path(faq_item), class: 'btn btn-warning' %>
+                            </div>
+                            <% if faq_item.markeddown_content.present? %>
+                                <%= raw faq_item.markeddown_content %>
+                            <% else %>
+                                <%= simple_format faq_item.content %>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+              <% end %>
+            </div>
+            </div>
+          <% end %>
+        </div>
+    </div><!-- tabs-left -->
+    </div><!-- row-fluid -->
+    </div><!-- faq -->
+</div>
+</div>
+</div>

@@ -27,15 +27,28 @@ RainService::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  #Gmail
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.gmail.com",
+  #   port: 587,
+  #   domain: ENV["DOMAIN_NAME"],
+  #   authentication: "plain",
+  #   enable_starttls_auto: true,
+  #   user_name: ENV["GMAIL_USERNAME"],
+  #   password: ENV["GMAIL_PASSWORD"]
+  # }
+
+  #Qmail
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
+    address: "smtp.qq.com",
+    port: 25,
     domain: ENV["DOMAIN_NAME"],
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
+    user_name: ENV["QMAIL_USERNAME"],
+    password: ENV["QMAIL_PASSWORD"]
   }
+
   # Send email in development mode.
   config.action_mailer.perform_deliveries = true
 

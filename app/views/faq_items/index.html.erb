@@ -1,0 +1,31 @@
+<h1>Listing faq_items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Faq cate</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @faq_items.each do |faq_item| %>
+      <tr>
+        <td><%= faq_item.faq_cate %></td>
+        <td><%= faq_item.title %></td>
+        <td><%= faq_item.content %></td>
+        <td><%= link_to 'Show', faq_item %></td>
+        <td><%= link_to 'Edit', edit_faq_item_path(faq_item) %></td>
+        <td><%= link_to 'Destroy', faq_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Faq item', new_faq_item_path %>

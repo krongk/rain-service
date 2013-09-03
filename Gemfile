@@ -37,6 +37,10 @@ gem 'i18n_yaml_generator'
 #Queue
 gem 'sidekiq'
 
+gem "nokogiri"
+gem "htmlentities"
+gem 'slodown'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]

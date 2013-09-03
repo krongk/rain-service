@@ -1,0 +1,13 @@
+<%= simple_form_for(@faq_item) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs row-fluid">
+    <%= f.association :faq_cate %>
+    <%= f.input :title, input_html: {class: 'span12'} %>
+    <%= f.input :content, input_html: {class: 'span12', rows: 20}  %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
