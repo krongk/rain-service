@@ -1,9 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @asset.user %>
-</p>
+
 <%= link_to  @asset.asset.url,  @asset.asset.url %>
 |
 <%= qiniu_image_tag @asset.asset.url, :thumbnail => '300x300>', :quality => 80 %>
@@ -14,15 +11,6 @@ or
   <%= @asset.bucket %>
 </p>
 
-<p>
-  <strong>Asset key:</strong>
-  <%= @asset.asset_key %>
-</p>
-
-<p>
-  <strong>Note:</strong>
-  <%= @asset.note %>
-</p>
 
 
 

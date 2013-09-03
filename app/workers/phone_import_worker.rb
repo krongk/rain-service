@@ -1,13 +1,19 @@
+require 'open-uri'
+
 class PhoneImportWorker
   include Sidekiq::Worker
 
   def perform(excel_url, file_ext)
+    puts "start import phone items"
+
+    file = open(excel_url).read
+    puts "file is null" and return if file.nil?
 
     case file_ext
     when 'xls'
-      s = Roo::Excel.new(excel_url)
+      s = Roo::Excel.new(file)
     when 'xlsx'
-      s = Roo::Excelx.new(excel_url)
+      s = Roo::Excelx.new(file)
     end
     s.default_sheet = s.sheets.first 
 
@@ -38,6 +44,5 @@ class PhoneImportWorker
       p.save!
       index +=  1
     end
-  end
   end
 end
