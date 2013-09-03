@@ -5,7 +5,7 @@
 		<%= box_title('添加短信模板') %>
 		<div class='box-content'>
 	      <div class="alert alert-note">接受Excel(.xls和.xlsx)格式的手机号码表导入。<br>请保证表列顺序为（手机号、姓名、来源、城市、地区、描述）<br>一次最多导入2000条记录。</div>
-	      <%= render 'common/file_form', :asset_cate => 'phone' %>
+	      <%= render 'assets/form', {:bucket => 'song-dev', :asset_type => 'phone'} %>
 	  	</div>
 	</div>
 	<div class='span4 box box-collapsed'>

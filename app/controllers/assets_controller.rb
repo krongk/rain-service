@@ -25,9 +25,23 @@ class AssetsController < ApplicationController
   # POST /assets.json
   def create
     @asset = Asset.new(asset_params)
+    @asset.user_id = current_user.id
 
+    #render :text => @asset.asset_file_name and return
+
+    file_ext =  @asset.asset_file_name.sub(/(.*)\.([a-zA-Z]+)$/, '\2').to_s.downcase
+    #validate
+    #1. validate phone import
+    if 'phone' == @asset.asset_type && !['xls', 'xlsx'].include?(file_ext) && 'application/vnd.ms-excel' != @asset.asset_content_type
+      flash[:error] = "错误的文件格式，请导入Excel文件"
+      return
+    end
     respond_to do |format|
       if @asset.save
+        case @asset.asset_type
+        when 'phone' #import phone excel processing
+          PhoneImportWorker.perform_async(@asset.asset.url, file_ext)
+        end
         format.html { redirect_to @asset, notice: 'Asset was successfully created.' }
         format.json { render action: 'show', status: :created, location: @asset }
       else
@@ -69,6 +83,7 @@ class AssetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def asset_params
-      params.require(:asset).permit(:asset, :asset_file_name, :asset_content_type, :asset_file_size, :asset_updated_at, :user_id, :asset_type, :asset_name, :asset_path, :bucket, :asset_key, :note, :return_hash)
+      params.require(:asset).permit(:asset, :asset_file_name, :asset_content_type, :asset_file_size, :asset_updated_at,
+       :asset_type, :bucket)
     end
 end

@@ -7,13 +7,10 @@ class HomeController < ApplicationController
   def sms
   	@sms_tmp = SmsTmp.new
     @phone_item = PhoneItem.new
-
+    @asset = Asset.new
+    
     @phone_items_processed = current_user.phone_items.processed.page(params[:page])
     @phone_items_no_processed = current_user.phone_items.no_processed.page(params[:page])
-
-    @upload_token = Qiniu::RS.generate_upload_token :scope => 'song-dev',
-                                :callback_url       => '/home/sms',
-                                :customer           => current_user.id.to_s
   end
 
   def email

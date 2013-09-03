@@ -4,7 +4,8 @@
   <strong>User:</strong>
   <%= @asset.user %>
 </p>
-
+<%= link_to  @asset.asset.url,  @asset.asset.url %>
+|
 <%= qiniu_image_tag @asset.asset.url, :thumbnail => '300x300>', :quality => 80 %>
 or
 <%= image_tag qiniu_image_path(@asset.asset.url, :thumbnail => '300x300>', :quality => 80) %>

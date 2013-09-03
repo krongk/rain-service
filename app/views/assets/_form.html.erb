@@ -1,16 +1,13 @@
 <%= simple_form_for(@asset) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.association :user %>
-    <%= f.input :asset_cate %>
-    <%= f.input :bucket %>
-    <%= f.input :asset_key %>
-    <%= f.input :note %>
+    <%#= f.association :user %>
+    <%= f.input :asset_type, as: :hidden, input_html: {value: asset_type } %>
+    <%= f.input :bucket, as: :hidden, input_html: {value: bucket} %>
+    <%#= f.input :asset_key, as: :hidden, input_html: {value: asset_key} %>
+    <%#= f.input :note %>
     <%= f.file_field :asset %>
-  </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+    <%= f.button :submit, data: { disable_with: '正在提交...'} %>
+
 <% end %>

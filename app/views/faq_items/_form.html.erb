@@ -4,10 +4,10 @@
   <div class="form-inputs row-fluid">
     <%= f.association :faq_cate %>
     <%= f.input :title, input_html: {class: 'span12'} %>
-    <%= f.input :content, input_html: {class: 'span12', rows: 20}  %>
+    <%= f.input :content, input_html: {class: 'span12', rows: 30}  %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, data: { disable_with: "正在上传..." } %>
   </div>
 <% end %>
