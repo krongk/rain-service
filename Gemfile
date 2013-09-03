@@ -24,6 +24,8 @@ gem 'simple_form', '>= 3.0.0.rc'
 
 #Excel processing
 gem 'roo', '>=1.11.2' 
+gem 'rubyzip', "~> 0.9.9" #fix the error: cannot load such file -- zip/zipfilesystem
+
 #Wizard
 gem 'wicked'
 #File upload

@@ -1,19 +1,64 @@
 class CommonController < ApplicationController
   def file_new
-  	@upload_token = Qiniu::RS.generate_upload_token :scope => 'song-dev',
-                                :callback_url       => '/home/sms',
-                                :customer           => current_user.id.to_s
+
   end
 
   def file_upload
   	#render :text => params and return
+    #upload file
+    tmp = params[:file].tempfile
+    unless (file_ext = params[:file].original_filename.split('.')).size > 1
+      render :text => '错误的文件扩展名！<br/><a href="javascript: history.go(-1);">返回</a>'
+      return
+    end
+    file_name = "#{Time.now.to_i}.#{file_ext.last.downcase}"
+    file_path = File.join("public", "resource", params[:asset_type] || 'other')
+    unless File.exist?(file_path)
+      FileUtils.mkdir_p file_path
+    end
+    #public/resource/picture/2/1304543534.jpg
+    file = File.join(file_path, file_name)
+    FileUtils.cp tmp.path, file
+    #FileUtils.rm tmp.path
+    
+    #/resource/phone/1304543534.xls
+    puts "[#{file_ext}]"
+    case file_ext.last.downcase
+    when 'xls'
+      s = Roo::Excel.new(file)
+    when 'xlsx'
+      s = Roo::Excelx.new(file)
+    else
+      raise "错误的文件扩展名！！"
+    end
+    s.default_sheet = s.sheets.first 
 
-  	
-    return_hash = Qiniu::RS.upload_file :uptoken => params[:upload_token],
-                      :file               => params[:filename],
-                      :bucket             => 'song-dev',
-                      :key                => 'keyss',
-                      :note               => 'test'
-    render :text => return_hash and return                  
+    
+    #导入的字段为（手机号、姓名、来源、城市、地区、描述）
+    index = 0
+    1.upto(20000) do |row|
+      val = []
+      1.upto(6) do |col|
+        val << s.cell(row, col).to_s.strip
+      end
+      #the last line?
+      break if val.join.blank?
+   
+      phone = val[0].to_s.sub(/^(\d{11}).*/, '\1').strip
+      p = PhoneItem.find_or_initialize_by_mobile_phone(phone)
+ 
+      next if phone.nil? || 
+       (phone !~ /^[\w-]+@([\w-]+\.)+[\w]+$/ &&
+       phone !~ /^(1(([35][0-9])|(47)|[8][01236789]))\d{8}$/)
+
+      p.user_id = current_user.id
+      p.name = val[1]
+      p.source_name = val[2]
+      p.city = val[3]
+      p.area = val[4]
+      p.description = val[-1]
+      p.save!
+      index +=  1
+    end     
   end
 end
