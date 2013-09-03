@@ -43,8 +43,6 @@ class AssetsController < ApplicationController
         case @asset.asset_type
         when 'phone' #import phone excel processing
           PhoneImportWorker.perform_async(current_user.id, @asset.asset.url, file_ext)
-          format.html { redirect_to '/home/sms', notice: '数据正在后台导入过程中，过1分钟后刷新页面即可看到最新结果.' }
-          return
         end
         format.html { redirect_to @asset, notice: 'Asset was successfully created.' }
         format.json { render action: 'show', status: :created, location: @asset }
