@@ -42,7 +42,7 @@ class AssetsController < ApplicationController
       if @asset.save
         case @asset.asset_type
         when 'phone' #import phone excel processing
-          PhoneImportWorker.perform_async(current_user.id, @asset.asset.url, file_ext)
+          PhoneImportWorker.perform_async(@asset.id, file_ext)
         end
         format.html { redirect_to @asset, notice: 'Asset was successfully created.' }
         format.json { render action: 'show', status: :created, location: @asset }
