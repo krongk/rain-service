@@ -3,10 +3,10 @@ require 'open-uri'
 class PhoneImportWorker
   include Sidekiq::Worker
 
-  def perform(excel_url, file_ext)
+  def perform(current_user_id, excel_url, file_ext)
     puts "start import phone items"
 
-    file = open(excel_url).read
+    file = excel_url
     puts "file is null" and return if file.nil?
 
     case file_ext
@@ -35,7 +35,7 @@ class PhoneImportWorker
        (phone !~ /^[\w-]+@([\w-]+\.)+[\w]+$/ &&
        phone !~ /^(1(([35][0-9])|(47)|[8][01236789]))\d{8}$/)
 
-      p.user_id = current_user.id
+      p.user_id = current_user_id
       p.name = val[1]
       p.source_name = val[2]
       p.city = val[3]
