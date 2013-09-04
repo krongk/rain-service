@@ -1,10 +1,11 @@
 class MailTmpsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_mail_tmp, only: [:show, :edit, :update, :destroy]
 
   # GET /mail_tmps
   # GET /mail_tmps.json
   def index
-    @mail_tmps = MailTmp.all
+    @mail_tmps = current_user.mail_tmps.page(params[:page]).order("updated_at DESC")
   end
 
   # GET /mail_tmps/1
@@ -25,10 +26,11 @@ class MailTmpsController < ApplicationController
   # POST /mail_tmps.json
   def create
     @mail_tmp = MailTmp.new(mail_tmp_params)
+    @mail_tmp.user_id = current_user.id
 
     respond_to do |format|
       if @mail_tmp.save
-        format.html { redirect_to @mail_tmp, notice: 'Mail tmp was successfully created.' }
+        format.html { redirect_to @mail_tmp, notice: '邮件模板添加成功.' }
         format.json { render action: 'show', status: :created, location: @mail_tmp }
       else
         format.html { render action: 'new' }
@@ -42,7 +44,7 @@ class MailTmpsController < ApplicationController
   def update
     respond_to do |format|
       if @mail_tmp.update(mail_tmp_params)
-        format.html { redirect_to @mail_tmp, notice: 'Mail tmp was successfully updated.' }
+        format.html { redirect_to @mail_tmp, notice: '邮件模板修改成功.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -65,10 +67,11 @@ class MailTmpsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_mail_tmp
       @mail_tmp = MailTmp.find(params[:id])
+      can_access?(@mail_tmp)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mail_tmp_params
-      params.require(:mail_tmp).permit(:user_id, :title, :content)
+      params.require(:mail_tmp).permit(:title, :content)
     end
 end

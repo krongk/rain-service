@@ -2,12 +2,11 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :user %>
-    <%= f.input :title %>
-    <%= f.input :content %>
+    <%= f.input :title, input_html: {class: 'span12'} %>
+    <textarea class="span12 wysihtml5" id="mail_tmp_content" name="mail_tmp[content]" placeholder="内容放这里..." rows="30"><%= @mail_tmp.content %></textarea>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn btn-primary btn-large', data: {disable_with: '正在提交...'} %>
   </div>
 <% end %>

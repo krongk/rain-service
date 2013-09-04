@@ -5,6 +5,9 @@ class MailItem < ActiveRecord::Base
   after_create :increment_total_count
   after_destroy :decrement_total_count
 
+  scope :processed, -> {where("is_processed != ?", 'n')}
+  scope :no_processed, -> {where(is_processed: 'n')}
+  
   validates_presence_of :email
   validate do
     (m = !self.email.to_s.strip.match(/^[\w-]+@([\w-]+\.)+[\w]+$/)) &&

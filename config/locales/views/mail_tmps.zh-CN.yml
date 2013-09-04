@@ -1,20 +1,20 @@
----
+#encoding: utf-8
 zh-CN:
   mail_tmps:
     index:
-      title: Mail tmps
+      title: 邮件模板
     show:
-      title: Mail tmp
+      title: 邮件模板
     edit:
-      title: Editing Mail tmp
+      title: 修改邮件模板
     new:
-      title: New Mail tmp
+      title: 添加邮件模板
   flash:
     mail_tmps:
       create:
-        notice: '%{resource_name} was successfully created.'
+        notice: '%{resource_name} 添加成功.'
       update:
-        notice: '%{resource_name} was successfully updated.'
+        notice: '%{resource_name} 修改成功.'
       destroy:
-        notice: '%{resource_name} was successfully deleted.'
-        alert: '%{resource_name} could not be deleted.'
+        notice: '%{resource_name} 删除成功.'
+        alert: '%{resource_name} 无法删除.'

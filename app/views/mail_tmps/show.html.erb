@@ -1,19 +1,20 @@
-<p id="notice"><%= notice %></p>
+<%= page_header(t('mail_tmps.show.title'), {'返回邮件通' => '/home/email', 
+  '邮件列表' => '/mail_items', '模板列表' => '/mail_tmps'}) %>
 
-<p>
-  <strong>User:</strong>
-  <%= @mail_tmp.user %>
-</p>
+<div class='row-fluid'>
+  <div class='span12 box box-nomargin'>
+    <%= box_title(@mail_tmp.title) %>
+    <div class='box-content'>
 
-<p>
-  <strong>Title:</strong>
-  <%= @mail_tmp.title %>
-</p>
+      <p>
+        <%= raw @mail_tmp.content %>
+      </p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @mail_tmp.content %>
-</p>
+      <div class="pull-right">
+        <%= link_to "修改", edit_mail_tmp_path(@mail_tmp), class: 'btn btn-primary' %>
+        <%= link_to '删除', @mail_tmp, method: :delete, data: { confirm: '确定要删除?' }, class: 'btn btn-inverse' %>
+      </div>
 
-<%= link_to 'Edit', edit_mail_tmp_path(@mail_tmp) %> |
-<%= link_to 'Back', mail_tmps_path %>
+    </div>
+  </div>
+</div>

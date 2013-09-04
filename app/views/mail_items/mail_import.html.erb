@@ -1,0 +1,17 @@
+<%= page_header(t('mail_items.show.title'), {'返回邮件通' => '/home/email', '邮件列表' => '/mail_items', '添加邮件' => new_mail_item_path, '添加模板' => new_mail_tmp_path}) %>
+
+<div class="row-fluid">
+  <div class='span12 box'>
+      <div class='box-header blue-background'>
+          <div class='title'>邮件批量导入</div>
+          <div class='actions'>
+              <a href="#" class="btn box-collapse btn-mini btn-link"><i></i>
+              </a>
+          </div>
+      </div>
+      <div class='box-content'>
+          <div class="alert alert-note">接受Excel(.xls和.xlsx)格式的邮件表导入。请保证表列顺序为（邮箱、姓名、来源、城市、地区、描述）。一次最多导入2000条记录。</div>
+          <%= render 'assets/form', :asset_type => 'email', :bucket => 'song-dev' %>
+      </div>
+  </div>
+</div>

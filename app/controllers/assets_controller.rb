@@ -1,6 +1,6 @@
 #encoding: utf-8
-
 class AssetsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_asset, only: [:show, :edit, :update, :destroy]
 
   # GET /assets
@@ -30,20 +30,25 @@ class AssetsController < ApplicationController
     @asset.user_id = current_user.id
 
     file_ext =  @asset.asset_file_name.sub(/(.*)\.([a-zA-Z]+)$/, '\2').to_s.downcase
-    #validate
-    #1. validate phone import
-    if 'phone' == @asset.asset_type && !['xls', 'xlsx'].include?(file_ext)
+
+    #1. validate phone import and mail
+    if ['phone', 'mail'].include?(@asset.asset_type) && !['xls', 'xlsx'].include?(file_ext)
       flash[:error] = "错误的文件格式，请导入Excel文件"
       redirect_to '/home/sms/' and return
     end
 
     respond_to do |format|
       if @asset.save
+        redicect_url = asset_path(@asset)
         case @asset.asset_type
         when 'phone' #import phone excel processing
           PhoneImportWorker.perform_async(@asset.id, file_ext)
+          redicect_url = '/home/sms'
+        when 'mail' #import mail excel processing
+          MailImportWorker.perform_async(@asset.id, file_ext)
+          redicect_url = '/mail_import'
         end
-        format.html { redirect_to (@asset.asset_type == 'phone' ? '/home/sms' : @asset), notice: 'Asset was successfully created.' }
+        format.html { redirect_to redicect_url, notice: '资源添加成功.' }
         format.json { render action: 'show', status: :created, location: @asset }
       else
         format.html { render action: 'new' }
@@ -80,6 +85,7 @@ class AssetsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_asset
       @asset = Asset.find(params[:id])
+      can_access?(@asset)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -18,4 +18,12 @@ class ApplicationController < ActionController::Base
     devise_controller? ? "users" : "application"
   end
 
+  #put it on controller method: set_object
+  #rule: if use owned object, only owner can access.
+  def can_access?(object)
+    unless object.respond_to?(:user_id) ? (object.user_id == current_user.id) : true
+      redirect_to root_path, :alert => "没有访问权限"
+    end
+  end
+
 end

@@ -1,5 +1,111 @@
-<%= page_header('邮件通', {'发送日志' => '/email_items', '添加邮件' => new_mail_item_path, '添加模板' => new_mail_tmp_path}) %>
+<%= page_header('邮件通', {'发送日志' => '/email_items', '添加邮件' => new_mail_item_path, '添加模板' => new_mail_tmp_path, '批量导入' => '/mail_import'}) %>
 
 
-<h1>Home#email</h1>
-<p>Find me in app/views/home/email.html.erb</p>
+<!-- send mail start -->
+<%= form_tag "/mail_send", :method => :post do |f| %>
+
+<div class='row-fluid'>
+  <div class='span12 box'>
+    <div class='box-header'>
+        <div class='title'><div class="icon-play"></div> 1.选择邮件模版</div>
+        <div class='actions'>
+            <a href="#" class="btn box-collapse btn-mini btn-link"><i></i>
+            </a>
+        </div>
+    </div>
+    <div class='box-content'>
+        <div class='accordion accordion-green' id='accordion2' style='margin-bottom:0;'>
+            <% current_user.mail_tmps.each_with_index do |item, index| %> 
+            <div class='accordion-group'>
+                <div class='accordion-heading'>
+
+                 <input id="mail_item_name<%=index %>" name="mail_tmp_id" type="radio" value="<%=item.id%>" style="float: left; margin: 0px;" checked ="true">
+
+                <a class='accordion-toggle' data-parent='#accordion2' data-toggle='collapse' href='#collapse<%=index%>-accordion2'>
+                      <span class="badge badge-<%=rand_flag%>"><%=item.id%></span>
+                      <%= item.title %>
+                    </a>
+                </div>
+                <div class='accordion-body collapse' id='collapse<%=index%>-accordion2'>
+                    <div class='accordion-inner'>
+                       <%= item.content %>
+                       <div class="text-right">
+                       <%= link_to '编辑', edit_mail_tmp_path(item), class: "btn btn-primary" %>
+                       <%= link_to '删除', item, class: "btn btn-danger", method: :delete, data: { confirm: '确定删除?' } %>
+                       </div>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- datatable -->
+<div class='row-fluid'>
+<div class='span12 box bordered-box orange-border' style='margin-bottom:0;'>
+<div class='box-header'>
+    <div class='title'><div class="icon-forward"></div> 2.选择电子邮箱</div>
+    <div class='actions'>
+        <a href="#" class="btn box-collapse btn-mini btn-link"><i></i>
+        </a>
+    </div>
+</div>
+<div class='box-content box-no-padding'>
+
+  <div class="tabbable">
+    <ul class="nav nav-tabs nav-tabs-centered">
+        <li class="active">
+            <a data-toggle="tab" href="#tabcenter1">
+                <i class="icon-indent-left text-red"></i>
+                未发送
+            </a>
+        </li>
+        <li class="">
+            <a data-toggle="tab" href="#tabcenter2">
+                已发送
+                <i class="icon-indent-right text-red"></i>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tabcenter1">
+           <%= render :partial => 'mail_items/list', :locals => {:mail_items => @mail_items_no_processed} %>
+        </div>
+        <div class="tab-pane" id="tabcenter2">
+           <%= render :partial => 'mail_items/list', :locals => {:mail_items => @mail_items_processed} %>
+        </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</div><!-- end datatable -->
+
+  <div class="form-actions">
+     <a onClick="javascript: ToggleCheck();" href="javascript:void(0);">全选</a> &nbsp;|&nbsp;
+    <%= submit_tag "发送邮件", class: 'btn btn-primary btn-large' %>
+  </div>
+<% end %>
+
+
+<script type="text/javascript">
+    function ToggleCheck()
+    {
+      var names=document.getElementsByName("mail_item_ids[]");
+      var len=names.length;
+      if(len>0)
+      {
+       var i=0;
+       for(i=0;i<len;i++){
+         if(names[i].checked == true){
+                names[i].checked=false;
+         }else{
+                names[i].checked=true;
+         }
+       }
+       
+      }
+    }
+</script>

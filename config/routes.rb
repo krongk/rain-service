@@ -24,6 +24,7 @@ RainService::Application.routes.draw do
   get "home/video"
   get "home/mobile"
   get "home/setting"
+  get "mail_import" => "mail_items#mail_import"
   post "/phone_send" => "phone_items#phone_send", :via => :post
   post "/mail_send" => "mail_items#mail_send", :via => :post
   

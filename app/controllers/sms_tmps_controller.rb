@@ -71,6 +71,7 @@ class SmsTmpsController < ApplicationController
     def set_sms_tmp
       @sms_tmp = SmsTmp.find(params[:id])
       @sms_tmp = @sms_tmp.user_id == current_user.id ? @sms_tmp : SmsTmp.where(:user_id => current_user.id).last
+      can_access?(@sms_tmp)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

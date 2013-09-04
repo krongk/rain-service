@@ -1,4 +1,5 @@
 class FaqItemsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_faq_item, only: [:show, :edit, :update, :destroy]
 
   # GET /faq_items

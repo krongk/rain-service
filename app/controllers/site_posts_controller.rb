@@ -1,4 +1,5 @@
 class SitePostsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_site_post, only: [:show, :edit, :update, :destroy]
 
   # GET /site_posts
@@ -65,6 +66,7 @@ class SitePostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_site_post
       @site_post = SitePost.find(params[:id])
+      can_access?(@site_post)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

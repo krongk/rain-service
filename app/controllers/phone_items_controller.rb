@@ -91,6 +91,7 @@ class PhoneItemsController < ApplicationController
     def set_phone_item
       @phone_item = PhoneItem.find(params[:id])
       @phone_item = @phone_item.user_id == current_user.id ? @phone_item : PhoneItem.where(:user_id => current_user.id).last
+      can_access?(@phone_item)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

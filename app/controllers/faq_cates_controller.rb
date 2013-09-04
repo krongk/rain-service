@@ -1,4 +1,5 @@
 class FaqCatesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_faq_cate, only: [:show, :edit, :update, :destroy]
 
   # GET /faq_cates

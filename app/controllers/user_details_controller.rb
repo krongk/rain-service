@@ -1,4 +1,5 @@
 class UserDetailsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_user_detail, only: [:show, :edit, :update, :destroy]
 
   # GET /user_details
@@ -65,6 +66,7 @@ class UserDetailsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user_detail
       @user_detail = UserDetail.find(params[:id])
+      can_access?(@user_detail)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

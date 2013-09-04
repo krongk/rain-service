@@ -1,4 +1,4 @@
-class PhoneImportWorker
+class MailImportWorker
   include Sidekiq::Worker
 
   def perform(asset_id, file_ext)
@@ -16,7 +16,7 @@ class PhoneImportWorker
       end
       s.default_sheet = s.sheets.first 
       
-      #导入的字段为（手机号、姓名、来源、城市、地区、描述）
+      #导入的字段为（邮件、姓名、来源、城市、地区、描述）
       index = 0
       1.upto(20000) do |row|
         val = []
@@ -25,19 +25,18 @@ class PhoneImportWorker
         end
         #the last line?
         break if val.join.blank?
-     
-        phone = val[0].to_s.sub(/^(\d{11}).*/, '\1').strip
-        next if phone.nil? || (phone !~ /^[\w-]+@([\w-]+\.)+[\w]+$/ &&
-                phone !~ /^(1(([35][0-9])|(47)|[8][01236789]))\d{8}$/)
+        
+        email = val[0].to_s.strip
+        next if email.nil? || !email.match(/^[\w-]+@([\w-]+\.)+[\w]+$/)
 
-        p = PhoneItem.find_or_initialize_by_user_id_and_mobile_phone(asset.user_id, phone)
-        p.user_id = asset.user_id
-        p.name = val[1].to_s.strip
-        p.source_name = val[2].to_s.strip
-        p.city = val[3].to_s.strip
-        p.area = val[4].to_s.strip
-        p.description = val[5..-1].join.to_s.strip
-        p.save!
+        e = MailItem.find_or_initialize_by_user_id_and_email(asset.user_id, email)
+        e.user_id = asset.user_id
+        e.name = val[1].to_s.strip
+        e.source_name = val[2].to_s.strip
+        e.city = val[3].to_s.strip
+        e.area = val[4].to_s.strip
+        e.description = val[5..-1].join.to_s.strip
+        e.save!
         index +=  1
       end
 
