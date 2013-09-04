@@ -11,7 +11,7 @@
       </div>
       <div class='box-content'>
           <div class="alert alert-note">接受Excel(.xls和.xlsx)格式的邮件表导入。请保证表列顺序为（邮箱、姓名、来源、城市、地区、描述）。一次最多导入2000条记录。</div>
-          <%= render 'assets/form', :asset_type => 'email', :bucket => 'song-dev' %>
+          <%= render 'assets/form', :asset_type => 'mail', :bucket => 'song-dev', :redirect_url => '/mail_import' %>
       </div>
   </div>
 </div>

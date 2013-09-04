@@ -29,26 +29,37 @@ class AssetsController < ApplicationController
     @asset = Asset.new(asset_params)
     @asset.user_id = current_user.id
 
+    #validates
+    if @asset.asset_file_name.nil? || @asset.asset_type.nil? || @asset.bucket.nil?
+      flash[:error] = "请指定要上传的内容"
+      redirect_to(params[:redirect_url] || '/', notice: "eeeeeee") and return 
+    end
+
     file_ext =  @asset.asset_file_name.sub(/(.*)\.([a-zA-Z]+)$/, '\2').to_s.downcase
 
     #1. validate phone import and mail
     if ['phone', 'mail'].include?(@asset.asset_type) && !['xls', 'xlsx'].include?(file_ext)
       flash[:error] = "错误的文件格式，请导入Excel文件"
-      redirect_to '/home/sms/' and return
+      redirect_to params[:redirect_url] || '/' and return 
     end
 
     respond_to do |format|
       if @asset.save
         redicect_url = asset_path(@asset)
+        notice = '资源添加成功.'
+
         case @asset.asset_type
         when 'phone' #import phone excel processing
           PhoneImportWorker.perform_async(@asset.id, file_ext)
-          redicect_url = '/home/sms'
+          redicect_url = params[:redirect_url]
+          notice = "文档已经导入后台执行，这需要一会儿时间，请耐心等待一下再刷新该页面。"
         when 'mail' #import mail excel processing
           MailImportWorker.perform_async(@asset.id, file_ext)
-          redicect_url = '/mail_import'
+          redicect_url = params[:redirect_url]
+          notice = "文档已经导入后台执行，这需要一会儿时间，请耐心等待一下再刷新该页面。"
         end
-        format.html { redirect_to redicect_url, notice: '资源添加成功.' }
+
+        format.html { redirect_to redicect_url, notice: notice }
         format.json { render action: 'show', status: :created, location: @asset }
       else
         format.html { render action: 'new' }

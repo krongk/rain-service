@@ -7,15 +7,12 @@ class HomeController < ApplicationController
   def sms
   	@sms_tmp = SmsTmp.new
     @phone_item = PhoneItem.new
-    @asset = Asset.new
     
     @phone_items_processed = current_user.phone_items.processed.page(params[:page]).order("updated_at DESC")
     @phone_items_no_processed = current_user.phone_items.no_processed.page(params[:page]).order("updated_at DESC")
   end
 
-  def email
-    @asset = Asset.new
-    
+  def email  
     @mail_items_processed = current_user.mail_items.processed.page(params[:page]).order("updated_at DESC")
     @mail_items_no_processed = current_user.mail_items.no_processed.page(params[:page]).order("updated_at DESC")
   end

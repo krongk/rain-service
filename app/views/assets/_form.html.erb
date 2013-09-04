@@ -1,5 +1,6 @@
 <%= simple_form_for(@asset, :html => {:multipart => true}) do |f| %>
   <%= f.error_notification %>
+    <%= hidden_field_tag :redirect_url, redirect_url  %>
     <%= f.input :asset_type, as: :hidden, input_html: {value: asset_type } %>
     <%= f.input :bucket, as: :hidden, input_html: {value: bucket} %>
     <%= f.file_field :asset %>

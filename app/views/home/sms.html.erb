@@ -1,26 +1,7 @@
-<%= page_header('短信通', {'发送日志' => phone_items_url}) %>
-
-<div class='row-fluid'>
-	<div class='span4 box'>
-		<%= box_title('添加短信模板') %>
-		<div class='box-content'>
-	      <div class="alert alert-note">接受Excel(.xls和.xlsx)格式的手机号码表导入。<br>请保证表列顺序为（手机号、姓名、来源、城市、地区、描述）<br>一次最多导入2000条记录。</div>
-	      <%= render 'assets/form', {:bucket => 'song-dev', :asset_type => 'phone'} %>
-	  	</div>
-	</div>
-	<div class='span4 box'>
-		<%= box_title('添加手机号码') %>
-		<div class='box-content'>
-	    	<%= render 'phone_items/form' %>
-	  	</div>
-	</div>
-	<div class='span4 box'>
-		<%= box_title('添加短信模板') %>
-		<div class='box-content'>
-	    	<%= render 'sms_tmps/form' %>
-	  	</div>
-	</div>
-</div>
+<%= page_header('短信通', {'发送日志' => phone_items_url,
+  '号码列表' => phone_items_url, 
+  '短信模板' => sms_tmps_url,
+  '批量导入' => '/phone_import'}) %>
 
 <!-- send sms start -->
 <%= form_tag "/phone_send", :method => :post do |f| %>

@@ -25,6 +25,10 @@ class PhoneItemsController < ApplicationController
     end
   end
 
+  def phone_import
+    @asset = Asset.new
+  end
+  
   # GET /phone_items
   # GET /phone_items.json
   def index
