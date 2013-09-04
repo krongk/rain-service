@@ -9,6 +9,7 @@ class MailItemsController < ApplicationController
       redirect_to "/home/email"
       return
     end
+    
     if params[:mail_item_ids].nil?
       flash[:error] = "没有选择任何要发送的邮箱"
       redirect_to "/home/email"

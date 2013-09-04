@@ -18,7 +18,7 @@ class PhoneItemsController < ApplicationController
       redirect_to "/home/sms" and return
     end
 
-    SmsWorker.perform_async(params[:sms_tmp_id], params[:phone_item_ids])
+    SmsSendWorker.perform_async(params[:sms_tmp_id], params[:phone_item_ids])
 
     respond_to do |format|
       format.html {redirect_to "/home/sms", notice: "短信已加入发送队列，请稍后查看发送日志: <a href='/phone_items'点击这里查看</a>"}

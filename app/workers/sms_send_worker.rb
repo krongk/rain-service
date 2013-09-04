@@ -1,4 +1,4 @@
-class SmsWorker
+class SmsSendWorker
   include Sidekiq::Worker
 
   def perform(sms_tmp_id, phone_item_ids)
