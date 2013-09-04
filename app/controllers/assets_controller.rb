@@ -29,10 +29,10 @@ class AssetsController < ApplicationController
     @asset = Asset.new(asset_params)
     @asset.user_id = current_user.id
 
+    #render :text => params and return
     #validates
     if @asset.asset_file_name.nil? || @asset.asset_type.nil? || @asset.bucket.nil?
-      flash[:error] = "请指定要上传的内容"
-      redirect_to(params[:redirect_url] || '/', notice: "eeeeeee") and return 
+      redirect_to(params[:redirect_url] || '/', error: "请指定要上传的内容") and return 
     end
 
     file_ext =  @asset.asset_file_name.sub(/(.*)\.([a-zA-Z]+)$/, '\2').to_s.downcase
