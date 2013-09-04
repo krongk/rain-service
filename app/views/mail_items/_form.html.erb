@@ -2,17 +2,17 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :user %>
+    <%#= f.association :user %>
     <%= f.input :email %>
-    <%= f.input :source_name %>
+    <%= f.input :source_name, input_html: {value: '人工添加'} %>
     <%= f.input :name %>
     <%= f.input :city %>
     <%= f.input :area %>
     <%= f.input :description %>
-    <%= f.input :is_processed %>
+    <%#= f.input :is_processed %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, data: { disable_with: '正在提交...'} %>
   </div>
 <% end %>

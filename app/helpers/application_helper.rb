@@ -60,8 +60,10 @@ module ApplicationHelper
   end
 
   #On admin page title, e.g. /home/sms
-  def page_header(title, sub_title)
-    %{
+  # <%= page_header('短信通', {'发送日志' => '/phone_items',}) %>
+  def page_header(title, opts = {})
+    arr = []
+    arr << %{
       <div class="row-fluid">
         <div class="span12">
           <div class="page-header">
@@ -74,37 +76,36 @@ module ApplicationHelper
 
             <!-- breadcrumbs -->
             <div class="pull-right">
-              <ul class="breadcrumb">
-                <li>
-                  <a href="/home/index"><i class="icon-bar-chart"></i>
-                  </a>
-                </li>
-                <li class="separator">
-                  <i class="icon-angle-right"></i>
-                </li>
-                <li class="active">#{sub_title}</li>
-              </ul>
+              <div class="btn-group">
+                <a href="/home/index" clas="btn btn-white"><i class="icon-bar-chart"></i>返回</a>}
+
+                opts.each_pair do |k, v|
+                  arr << link_to(k, v, :class=> 'btn btn-white') 
+                end
+
+                arr << %{</div>
             </div>
 
           </div>
         </div>
       </div>
-    }.html_safe
+    }
+    arr.join.html_safe
   end
 
+  # <%= box_title('日志查看') %>
   def box_title(title, color = 'blue')
     %{
       <div class="box-header #{color}-background">
           <div class="title">#{title}</div>
           <div class="actions">
-              <a href="#" class="btn box-remove btn-mini btn-link"><i class="icon-remove"></i>
-              </a>
               <a href="#" class="btn box-collapse btn-mini btn-link"><i></i>
               </a>
           </div>
       </div>
     }.html_safe
   end
+  
   #flash动画显示
   # eg: play_flash("flash/top_banner.swf")
   # or: play_flash asset_path("flash/top_banner.swf"), :width => '985', :height => '249'

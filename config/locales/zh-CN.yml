@@ -4,6 +4,10 @@
 # copy from tsechingho (http://github.com/tsechingho)
 
 zh-CN:
+  will_paginate:
+    previous_label: "&#8592; 上一页"
+    next_label: "下一页 &#8594;"
+    page_gap: "&hellip;"
   date:
     formats:
       default: "%Y-%m-%d"

@@ -1,5 +1,4 @@
-<h1>New mail_item</h1>
+<%= page_header(t('mail_items.new.title'), {'返回邮件通' => '/home/email', '邮件列表' => '/mail_items', '添加模板' => new_mail_tmp_path}) %>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', mail_items_path %>

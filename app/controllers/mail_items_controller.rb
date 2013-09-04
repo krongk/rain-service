@@ -4,7 +4,7 @@ class MailItemsController < ApplicationController
   # GET /mail_items
   # GET /mail_items.json
   def index
-    @mail_items = MailItem.all
+    @mail_items = current_user.mail_items.paginate(:page => params[:page] || 1, :per_page => 100).order("updated_at DESC")
   end
 
   # GET /mail_items/1
@@ -25,10 +25,11 @@ class MailItemsController < ApplicationController
   # POST /mail_items.json
   def create
     @mail_item = MailItem.new(mail_item_params)
+    @mail_item.user_id = current_user.id
 
     respond_to do |format|
       if @mail_item.save
-        format.html { redirect_to @mail_item, notice: 'Mail item was successfully created.' }
+        format.html { redirect_to @mail_item, notice: '添加成功.' }
         format.json { render action: 'show', status: :created, location: @mail_item }
       else
         format.html { render action: 'new' }
@@ -42,7 +43,7 @@ class MailItemsController < ApplicationController
   def update
     respond_to do |format|
       if @mail_item.update(mail_item_params)
-        format.html { redirect_to @mail_item, notice: 'Mail item was successfully updated.' }
+        format.html { redirect_to @mail_item, notice: '更新成功.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -56,7 +57,7 @@ class MailItemsController < ApplicationController
   def destroy
     @mail_item.destroy
     respond_to do |format|
-      format.html { redirect_to mail_items_url }
+      format.html { redirect_to mail_items_url, notice: '删除成功.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +70,6 @@ class MailItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mail_item_params
-      params.require(:mail_item).permit(:user_id, :email, :source_name, :name, :city, :area, :description, :is_processed)
+      params.require(:mail_item).permit(:email, :source_name, :name, :city, :area, :description, :is_processed)
     end
 end

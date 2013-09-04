@@ -1,20 +1,20 @@
----
+#encoding: utf-8
 zh-CN:
   phone_items:
     index:
-      title: Phone items
+      title: 手机号码管理
     show:
-      title: Phone item
+      title: 手机号码
     edit:
-      title: Editing Phone item
+      title: 修改手机号码
     new:
-      title: New Phone item
+      title: 添加手机号码
   flash:
     phone_items:
       create:
-        notice: '%{resource_name} was successfully created.'
+        notice: '%{resource_name} 添加成功.'
       update:
-        notice: '%{resource_name} was successfully updated.'
+        notice: '%{resource_name} 修改成功.'
       destroy:
-        notice: '%{resource_name} was successfully deleted.'
-        alert: '%{resource_name} could not be deleted.'
+        notice: '%{resource_name} 删除成功.'
+        alert: '%{resource_name} 不能被删除.'

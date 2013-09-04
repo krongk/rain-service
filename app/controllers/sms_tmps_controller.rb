@@ -28,6 +28,9 @@ class SmsTmpsController < ApplicationController
   def create
     @sms_tmp = SmsTmp.new(sms_tmp_params)
 
+    #the content_size on view is just see for user, not the realy stored size.
+    @sms_tmp.content_size = @sms_tmp.content.length
+
     respond_to do |format|
       if @sms_tmp.save
         format.html { redirect_to sms_tmps_url, notice: '短信模板添加成功.' }

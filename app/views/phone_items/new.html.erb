@@ -1,5 +1,4 @@
-<h1><%= t 'phone_items.new.title ' %></h1>
+<%= page_header(t('phone_items.new.title'), {'返回短信通' => '/home/sms', '号码列表' => phone_items_url}) %>
 
 <%= render 'form' %>
 
-<%= link_to '返回', phone_items_path %>

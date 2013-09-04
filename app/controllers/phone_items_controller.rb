@@ -21,14 +21,14 @@ class PhoneItemsController < ApplicationController
     SmsWorker.perform_async(params[:sms_tmp_id], params[:phone_item_ids])
 
     respond_to do |format|
-      format.html {redirect_to "/home/sms", notice: '短信已加入发送队列，请稍后查看发送日志'}
+      format.html {redirect_to "/home/sms", notice: "短信已加入发送队列，请稍后查看发送日志: <a href='/phone_items'点击这里查看</a>"}
     end
   end
 
   # GET /phone_items
   # GET /phone_items.json
   def index
-    @phone_items = PhoneItem.where(:user_id => current_user.id).page(params[:page]).order("updated_at DESC")
+    @phone_items = PhoneItem.where(:user_id => current_user.id).paginate(:page => params[:page]|| 1, :per_page => 50).order("updated_at DESC")
   end
 
   # GET /phone_items/1
@@ -81,7 +81,7 @@ class PhoneItemsController < ApplicationController
   def destroy
     @phone_item.destroy
     respond_to do |format|
-      format.html { redirect_to phone_items_url }
+      format.html { redirect_to phone_items_url, notice: '删除成功.' }
       format.json { head :no_content }
     end
   end
@@ -95,7 +95,6 @@ class PhoneItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def phone_item_params
-      params[:phone_item][:user_id] = current_user.id
-      params.require(:phone_item).permit(:user_id, :mobile_phone, :source_name, :name, :city, :area, :description, :is_processed)
+      params.require(:phone_item).permit(:mobile_phone, :source_name, :name, :city, :area, :description, :is_processed)
     end
 end

@@ -1,38 +1,41 @@
-<h1><%= t 'phone_items.show.title ' %></h1>
+<%= page_header(t('phone_items.edit.title'), {'返回短信通' => '/home/sms', '号码列表' => phone_items_url}) %>
 
 <div class='row-fluid'>
-  <div class='span12 box box-collapsed box-nomargin'>
+  <div class='span12 box box-nomargin'>
     <%= box_title(@phone_item.mobile_phone) %>
     <div class='box-content'>
       <p>
-        <strong>Source name:</strong>
+        <strong>来源:</strong>
         <%= @phone_item.source_name %>
       </p>
 
       <p>
-        <strong>Name:</strong>
+        <strong>姓名:</strong>
         <%= @phone_item.name %>
       </p>
 
       <p>
-        <strong>City:</strong>
+        <strong>城市:</strong>
         <%= @phone_item.city %>
       </p>
 
       <p>
-        <strong>Area:</strong>
+        <strong>区域:</strong>
         <%= @phone_item.area %>
       </p>
 
       <p>
-        <strong>Description:</strong>
+        <strong>描述:</strong>
         <%= @phone_item.description %>
       </p>
+
+      <div class="pull-right">
+        <%= link_to "修改", edit_phone_item_path(@phone_item), class: 'btn btn-primary' %>
+        <%= link_to '删除', @phone_item, method: :delete, data: { confirm: '确定要删除?' }, class: 'btn btn-inverse' %>
+      </div>
+
   </div>
 </div>
 
 <%= render partial: "sms_log", collection: @sms_logs %>
-
-
-<%= link_to '返回', phone_items_path %>
 

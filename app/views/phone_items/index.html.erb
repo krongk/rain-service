@@ -1,4 +1,4 @@
-<h1><%= t 'phone_items.index.title' %></h1>
+<%= page_header(t('phone_items.index.title'), {'返回短信通' => '/home/sms', '添加号码' => new_phone_item_path}) %>
 
 <table class="table table-bordered">
   <thead>
@@ -8,7 +8,6 @@
       <th>姓名</th>
       <th>城市</th>
       <th>区域</th>
-      <th>描述</th>
       <th>执行情况</th>
       <th colspan="3">操作</th>
     </tr>
@@ -22,9 +21,8 @@
         <td><%= phone_item.name %></td>
         <td><%= phone_item.city %></td>
         <td><%= phone_item.area %></td>
-        <td><%= phone_item.description %></td>
         <td><%= phone_item.is_processed %></td>
-        <td><%= link_to '发送日志', phone_item %></td>
+        <td><%= link_to '日志', phone_item %></td>
         <td><%= link_to '修改', edit_phone_item_path(phone_item) %></td>
         <td><%= link_to '删除', phone_item, method: :delete, data: { confirm: '确定删除吗?' } %></td>
       </tr>
@@ -34,7 +32,3 @@
 
 <%= will_paginate @phone_items %>
 <br>
-
-
-<%= link_to '添加', new_phone_item_path, class: 'btn btn-primary btn-large' %>  | 
-<%= link_to '返回', '/home/sms' %>

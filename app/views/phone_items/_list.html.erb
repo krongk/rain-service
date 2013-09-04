@@ -30,9 +30,6 @@
         发送状态
     </th>
     <th>
-        发送次数
-    </th>
-    <th>
         操作
     </th>
 </tr>
@@ -48,7 +45,6 @@
     <td><span title="<%= item.area %>" class="word-break"><%= item.area.to_s.truncate(8) %></span></td>
     <td><span title="<%= item.description %>" class="word-break"><%= item.description.to_s.truncate(12) %></span></td>
     <td><div style="max-width: 65px;" class="word-break"><%= show_send_status(item.is_processed) %></div></td>
-    <td><%= item.sms_logs.count %></td>
     <td>
     <%= link_to phone_item_path(item), class: 'btn btn-success btn-mini' do %>
       <i class='icon-ok'></i>

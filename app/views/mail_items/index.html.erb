@@ -1,16 +1,15 @@
-<h1>Listing mail_items</h1>
+<%= page_header(t('mail_items.index.title'), {'返回邮件通' => '/home/email', '添加邮件' => new_mail_item_path, '添加模板' => new_mail_tmp_path}) %>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>User</th>
       <th>Email</th>
-      <th>Source name</th>
-      <th>Name</th>
-      <th>City</th>
-      <th>Area</th>
-      <th>Description</th>
-      <th>Is processed</th>
+      <th>来源</th>
+      <th>姓名</th>
+      <th>城市</th>
+      <th>区域</th>
+      <th>描述</th>
+      <th>执行情况</th>
       <th></th>
       <th></th>
       <th></th>
@@ -20,7 +19,6 @@
   <tbody>
     <% @mail_items.each do |mail_item| %>
       <tr>
-        <td><%= mail_item.user %></td>
         <td><%= mail_item.email %></td>
         <td><%= mail_item.source_name %></td>
         <td><%= mail_item.name %></td>
@@ -28,14 +26,12 @@
         <td><%= mail_item.area %></td>
         <td><%= mail_item.description %></td>
         <td><%= mail_item.is_processed %></td>
-        <td><%= link_to 'Show', mail_item %></td>
-        <td><%= link_to 'Edit', edit_mail_item_path(mail_item) %></td>
-        <td><%= link_to 'Destroy', mail_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '修改', edit_mail_item_path(mail_item) %></td>
+        <td><%= link_to '删除', mail_item, method: :delete, data: { confirm: '确定要删除?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<%= will_paginate @mail_items %>
 <br>
-
-<%= link_to 'New Mail item', new_mail_item_path %>

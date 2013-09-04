@@ -1,18 +1,18 @@
-<h1><%= t 'sms_tmps.show.title' %></h1>
+<%= page_header(t('sms_tmps.show.title'), {'返回短信通' => '/home/sms', '短信模版列表' => sms_tmps_url, '修改' => edit_sms_tmp_path(@sms_tmp)}) %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @sms_tmp.title %>
-</p>
+<div class='row-fluid'>
+  <div class='span12 box box-nomargin'>
+    <%= box_title(@sms_tmp.title) %>
+    <div class='box-content'>
+      <p>
+        <%= @sms_tmp.content %>
+      </p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @sms_tmp.content %>
-</p>
+      <p>
+        <strong>字数:</strong>
+        <%= @sms_tmp.content_size %>
+      </p>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Content size:</strong>
-  <%= @sms_tmp.content_size %>
-</p>
-
-<%= link_to '修改', edit_sms_tmp_path(@sms_tmp) %> |

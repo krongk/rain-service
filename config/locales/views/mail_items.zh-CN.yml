@@ -1,14 +1,14 @@
----
+#encoding: utf-8
 zh-CN:
   mail_items:
     index:
-      title: Mail items
+      title: 邮件通
     show:
-      title: Mail item
+      title: 电子邮件
     edit:
-      title: Editing Mail item
+      title: 修改电子邮件
     new:
-      title: New Mail item
+      title: 添加电子邮寄
   flash:
     mail_items:
       create:
