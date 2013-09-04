@@ -34,8 +34,7 @@ class AssetsController < ApplicationController
     #1. validate phone import
     if 'phone' == @asset.asset_type && !['xls', 'xlsx'].include?(file_ext)
       flash[:error] = "错误的文件格式，请导入Excel文件"
-      redirect_to '/home/sms/'
-      return
+      redirect_to '/home/sms/' and return
     end
 
     respond_to do |format|
