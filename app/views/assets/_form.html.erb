@@ -1,11 +1,7 @@
-<%= simple_form_for(@asset) do |f| %>
+<%= simple_form_for(@asset, :html => {:multipart => true}) do |f| %>
   <%= f.error_notification %>
-
-    <%#= f.association :user %>
     <%= f.input :asset_type, as: :hidden, input_html: {value: asset_type } %>
     <%= f.input :bucket, as: :hidden, input_html: {value: bucket} %>
-    <%#= f.input :asset_key, as: :hidden, input_html: {value: asset_key} %>
-    <%#= f.input :note %>
     <%= f.file_field :asset %>
 
     <%= f.button :submit, data: { disable_with: '正在提交...'} %>

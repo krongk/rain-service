@@ -29,22 +29,22 @@ class AssetsController < ApplicationController
     @asset = Asset.new(asset_params)
     @asset.user_id = current_user.id
 
-    #render :text => @asset.asset_file_name and return
-
     file_ext =  @asset.asset_file_name.sub(/(.*)\.([a-zA-Z]+)$/, '\2').to_s.downcase
     #validate
     #1. validate phone import
-    if 'phone' == @asset.asset_type && !['xls', 'xlsx'].include?(file_ext) && 'application/vnd.ms-excel' != @asset.asset_content_type
+    if 'phone' == @asset.asset_type && !['xls', 'xlsx'].include?(file_ext)
       flash[:error] = "错误的文件格式，请导入Excel文件"
+      redirect_to '/home/sms/'
       return
     end
+
     respond_to do |format|
       if @asset.save
         case @asset.asset_type
         when 'phone' #import phone excel processing
           PhoneImportWorker.perform_async(@asset.id, file_ext)
         end
-        format.html { redirect_to @asset, notice: 'Asset was successfully created.' }
+        format.html { redirect_to (@asset.asset_type == 'phone' ? '/home/sms' : @asset), notice: 'Asset was successfully created.' }
         format.json { render action: 'show', status: :created, location: @asset }
       else
         format.html { render action: 'new' }

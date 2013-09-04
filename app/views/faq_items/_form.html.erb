@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs row-fluid">
-    <%= f.association :faq_cate %>
+    <%= f.association :faq_cate, include_blank: false %>
     <%= f.input :title, input_html: {class: 'span12'} %>
     <%= f.input :content, input_html: {class: 'span12', rows: 30}  %>
   </div>

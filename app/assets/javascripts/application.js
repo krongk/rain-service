@@ -1,12 +1,12 @@
 //
-// Add following lines. otherwise rails can not work, e.g sign_out can not work
+// 因为有jquery.turbolinks插件的魔法，一下顺序不能改变， 即turbolinks放最后
+//
 //= require jquery 
 //= require jquery_ujs
-//= require turbolinks
-
-// Add flatty 
+//= require jquery.turbolinks
 //= require flatty/flatty
 //= require demo
 
 //= require_tree .
 
+//= require turbolinks
