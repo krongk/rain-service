@@ -21,7 +21,7 @@ class MailItemsController < ApplicationController
     MailSendWorker.perform_async(params[:mail_tmp_id], params[:mail_item_ids])
 
     respond_to do |format|
-      format.html {redirect_to "/home/email", notice: '邮件发送成功！'}
+      format.html {redirect_to "/home/email", notice: '邮件已经加入发送队列，请稍后查看发送日志！'}
     end
   end
 

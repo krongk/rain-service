@@ -3,17 +3,17 @@ class MailSendWorker
 
   def perform(mail_tmp_id, mail_item_ids)
     email_tmp = MailTmp.find_by_id(mail_tmp_id)
-    mail_item_ids = mail_item_ids || []
     return email_tmp.nil? || mail_item_ids.empty?
 
     #fetch from email
     from_email = current_user.user_detail.domain
     from_email = 'admin@' + current_user.user_detail.domain unless from_email.nil?
     from_email ||= current_user.email
-    
+
     MailItem.where(:id => mail_item_ids).each do |item|
       current_user = User.find(item.user_id)
 
+      puts "#{from_email} => #{item.email} start"
       UserMailer.marketing(email_tmp, from_email, item.email).deliver
      
       status = 'y'
@@ -33,6 +33,7 @@ class MailSendWorker
 
       #increment send count(per phone per send)
       Keystore.increment_value_for("user:#{item.user_id}:mail_send_count", 1)
+      puts "down"
     end
   end
 end
