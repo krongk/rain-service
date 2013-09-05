@@ -5,7 +5,7 @@ class UserDetailsController < ApplicationController
   # GET /user_details
   # GET /user_details.json
   def index
-    @user_details = UserDetail.all
+    #@user_details = UserDetail.all
   end
 
   # GET /user_details/1
@@ -29,7 +29,7 @@ class UserDetailsController < ApplicationController
 
     respond_to do |format|
       if @user_detail.save
-        format.html { redirect_to @user_detail, notice: 'User detail was successfully created.' }
+        format.html { redirect_to edit_user_detail_path(@user_detail), notice: '会员信息添加成功.' }
         format.json { render action: 'show', status: :created, location: @user_detail }
       else
         format.html { render action: 'new' }
@@ -43,7 +43,7 @@ class UserDetailsController < ApplicationController
   def update
     respond_to do |format|
       if @user_detail.update(user_detail_params)
-        format.html { redirect_to @user_detail, notice: 'User detail was successfully updated.' }
+        format.html { redirect_to edit_user_detail_path(@user_detail), notice: '会员信息修改成功.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -57,7 +57,7 @@ class UserDetailsController < ApplicationController
   def destroy
     @user_detail.destroy
     respond_to do |format|
-      format.html { redirect_to user_details_url }
+      format.html { redirect_to '/' }
       format.json { head :no_content }
     end
   end
@@ -65,12 +65,12 @@ class UserDetailsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_detail
-      @user_detail = UserDetail.find(params[:id])
+      @user_detail = current_user.user_detail
       can_access?(@user_detail)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_detail_params
-      params.require(:user_detail).permit(:user_id, :contact_name, :id_card, :mobile_phone, :tel_phone, :qq, :email, :website, :region, :city, :district, :address, :latitude, :longitude, :company_name, :company_nickname, :corporator, :company_reg_no, :company_keywords, :company_description, :fu_gmail_name, :fu_gmail_pwd, :fu_qmail_name, :fu_qmail_pwd, :fu_user_name, :fu_user_pwd)
+      params.require(:user_detail).permit(:contact_name, :id_card, :mobile_phone, :tel_phone, :qq, :email, :website, :region, :city, :district, :address, :latitude, :longitude, :company_name, :company_nickname, :corporator, :company_reg_no, :company_keywords, :company_description, :fu_gmail_name, :fu_gmail_pwd, :fu_qmail_name, :fu_qmail_pwd, :fu_user_name, :fu_user_pwd)
     end
 end

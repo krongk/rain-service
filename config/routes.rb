@@ -43,9 +43,9 @@ RainService::Application.routes.draw do
   end
 
   devise_for :users, :controllers => {:registrations => "registrations"}
-  resources :users do
-    resources :user_details
-  end
+  resources :users
+  resources :user_details
+  
 
   root :to => "home#index"
 end

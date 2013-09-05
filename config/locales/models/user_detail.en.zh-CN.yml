@@ -23,6 +23,7 @@ zh-CN:
         company_nickname: 公司简称
         corporator: 法人
         company_reg_no: 营业证号
+        company_reg_code: 组织机构代码
         company_keywords: 关键词
         company_description: 公司介绍
         fu_gmail_name: 功能Gmail名称

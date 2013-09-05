@@ -21,8 +21,8 @@
         <td><%= phone_item.name %></td>
         <td><%= phone_item.city %></td>
         <td><%= phone_item.area %></td>
-        <td><%= phone_item.is_processed %></td>
-        <td><%= link_to '日志', phone_item %></td>
+        <td><%= show_send_status(phone_item.is_processed) %></td>
+        <td><%= link_to '发送日志', phone_item %></td>
         <td><%= link_to '修改', edit_phone_item_path(phone_item) %></td>
         <td><%= link_to '删除', phone_item, method: :delete, data: { confirm: '确定删除吗?' } %></td>
       </tr>

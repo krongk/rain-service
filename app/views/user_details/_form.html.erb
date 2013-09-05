@@ -1,36 +1,100 @@
-<%= simple_form_for(@user_detail) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.association :user %>
-    <%= f.input :contact_name %>
-    <%= f.input :id_card %>
-    <%= f.input :mobile_phone %>
-    <%= f.input :tel_phone %>
-    <%= f.input :qq %>
-    <%= f.input :email %>
-    <%= f.input :website %>
-    <%= f.input :region %>
-    <%= f.input :city %>
-    <%= f.input :district %>
-    <%= f.input :address %>
-    <%= f.input :latitude %>
-    <%= f.input :longitude %>
-    <%= f.input :company_name %>
-    <%= f.input :company_nickname %>
-    <%= f.input :corporator %>
-    <%= f.input :company_reg_no %>
-    <%= f.input :company_keywords %>
-    <%= f.input :company_description %>
-    <%= f.input :fu_gmail_name %>
-    <%= f.input :fu_gmail_pwd %>
-    <%= f.input :fu_qmail_name %>
-    <%= f.input :fu_qmail_pwd %>
-    <%= f.input :fu_user_name %>
-    <%= f.input :fu_user_pwd %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+<div class="row-fluid">
+<div class='span12 box'>
+    <div class='box-content box-double-padding'>
+    <%= simple_form_for(@user_detail, :html => {:method => :put, :class => 'form-horizontal' }) do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
+        <fieldset>
+            <div class='row-fluid'>
+                <div class='span2'>
+                    <div class='lead'>
+                        <i class='icon-signin text-contrast'></i>
+                        联系信息
+                    </div>
+                    <small class='muted'>联系信息并不是本网站的注册信息。 联系信息主要用于建站、信息外发、营销活动等。身份证信息主要用于一些需要真实性验证的营销网站上，如企业域名备案，门户网站加V等。</small>
+                </div>
+                <div class='span4 offset1'>
+                    <%= f.input :contact_name %>
+                    <%= f.input :id_card, placeholder: "用于资质验证，请输入正确的身份证号" %>
+                    <%= f.input :mobile_phone, 'data-mask' => '+999 999 999 999', placeholder: '+999 999 999 999' %>
+                    <%= f.input :tel_phone %>
+                    <%= f.input :qq %>
+                    <%= f.input :email %>
+                    <%= f.input :website %>
+                </div>
+                <div class='span5'>
+                    <%= f.input :region %>
+                    <%= f.input :city %>
+                    <%= f.input :district %>
+                    <%= f.input :address %>
+                    <%= f.input :latitude %>
+                    <%= f.input :longitude %>
+                </div>
+            </div>
+        </fieldset>
+        <div class='form-actions' style='margin-bottom: 0;'>
+            <div class='text-right'>
+                <%= button_tag(type: 'submit', class: "btn btn-primary btn-large") do %>
+                  <i class='icon-save'></i> 保存
+                <% end %>
+            </div>
+        </div>
+        <hr class='hr-normal'>
+        <fieldset>
+            <div class='row-fluid'>
+                <div class='span2 box'>
+                    <div class='lead'>
+                        <i class='icon-user text-contrast'></i>
+                        企业信息
+                    </div>
+                    <small class='muted'>请认真填写企业信息，公司的所有营销将基于此信息，这里提供统一修改公司信息的接口.</small>
+                </div>
+                <div class='span4 offset1'>
+                    <%= f.input :company_name %>
+                    <%= f.input :company_nickname %>
+                    <%= f.input :corporator %>
+                    <%= f.input :company_reg_no %>
+                    <%= f.input :company_reg_code %>
+                </div>
+                <div class='span5'>
+                    <%= f.input :company_keywords, place_holder: '用空格隔开', input_html: { class: 'input-block-level'} %>
+                    <%= f.input :company_description, as: :text, input_html: {cols: 4, rows: 8, class: 'autosize input-block-level'} %>
+                </div>
+            </div>
+        </fieldset>
+        <div class='form-actions' style='margin-bottom: 0;'>
+            <div class='text-right'>
+                <%= button_tag(type: 'submit', class: "btn btn-primary btn-large") do %>
+                  <i class='icon-save'></i> 保存
+                <% end %>
+            </div>
+        </div>
+        <hr class='hr-normal'>
+        <fieldset>
+            <div class='span4 box'>
+                <div class='lead'>
+                    <i class='icon-user text-contrast'></i>
+                    功能账户信息
+                </div>
+                <small class='muted'>功能账户即用于服务网站外发信息，登录各大平台使用的通用账户， 如发送邮件的邮箱设置，发送短信的账户设置等等.</small>
+            </div>
+            <div class='span7 offset1'>
+                <%= f.input :fu_gmail_name %>
+                <%= f.input :fu_gmail_pwd %>
+                <%= f.input :fu_qmail_name %>
+                <%= f.input :fu_qmail_pwd %>
+                <%= f.input :fu_user_name %>
+                <%= f.input :fu_user_pwd %>
+            </div>
+        </fieldset>
+        <div class='form-actions' style='margin-bottom: 0;'>
+            <div class='text-right'>
+                <%= button_tag(type: 'submit', class: "btn btn-primary btn-large") do %>
+                  <i class='icon-save'></i> 保存
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+    </div>
+</div>
+</div>

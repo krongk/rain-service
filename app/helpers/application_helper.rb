@@ -11,6 +11,11 @@ module ApplicationHelper
     51 => ['号码错误', 'error'],
     100 => ['未知错误', 'info']
   }
+  MAIL_SEND_STATUS = {
+    0 => ['成功', 'success'], 
+    1 => ['失败', 'error']
+  }
+
   BADGE_FLAG = {'success' => '成功', 'error' => '错误', 'warning' => '警告', 'important' => '严重', 'info' => '提示', 'inverse' => '失败'}
 
   def rand_flag

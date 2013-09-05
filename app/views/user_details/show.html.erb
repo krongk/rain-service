@@ -1,9 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User:</strong>
-  <%= @user_detail.user %>
-</p>
+<%= page_header(t('user_details.show.title'), {'控制面板' => '/'}) %>
 
 <p>
   <strong>Contact name:</strong>
@@ -130,5 +125,3 @@
   <%= @user_detail.fu_user_pwd %>
 </p>
 
-<%= link_to 'Edit', edit_user_detail_path(@user_detail) %> |
-<%= link_to 'Back', user_details_path %>

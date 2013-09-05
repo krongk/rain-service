@@ -1,7 +1,7 @@
 #encoding: utf-8
 class PhoneItem < ActiveRecord::Base
   belongs_to :user
-  has_many :sms_logs
+  has_many :sms_logs, :dependent => :destroy
 
   self.per_page = 1000
 

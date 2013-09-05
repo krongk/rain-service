@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
   end
 
   def create_user_detail
-    #self.user_detail.create!(:user_id => self.id, :contact_name => self.name, :email => self.email)
+    UserDetail.find_or_create_by!(
+      :user_id => self.id,
+      :contact_name => self.name,
+      :email => self.email
+    )
   end
 end

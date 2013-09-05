@@ -16,19 +16,9 @@ class MailItemsController < ApplicationController
       return
     end
 
-    email_tmp = MailTmp.find(params[:mail_tmp_id])
-    mail_item_ids = params[:mail_item_ids] || []
-    content = email_tmp.content
-    BizMailer.marketing_mail(content).deliver
+    #render :text => params and return
 
-    # MailItem.where(:id => mail_item_ids).each do |item|
-    #   
-    #   status_id = emailBao.send(ENV['email_BAO_USER'], ENV['email_BAO_PASSWORD'], item.mobile, content)
-    #   item.is_processed = item.is_processed == 'n' ? "#{email_tmp.id},#{status_id}" : "#{email_tmp.id},#{status_id}|" + item.is_processed
-    #   item.send_count = item.send_count + 1
-    #   item.save!
-    #   Keystore.increment_value_for("user:#{item.user_id}:mail_items_send")
-    # end
+    MailSendWorker.perform_async(params[:mail_tmp_id], params[:mail_item_ids])
 
     respond_to do |format|
       format.html {redirect_to "/home/email", notice: '邮件发送成功！'}

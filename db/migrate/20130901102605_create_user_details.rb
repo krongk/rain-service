@@ -2,9 +2,9 @@ class CreateUserDetails < ActiveRecord::Migration
   def change
     create_table :user_details do |t|
       t.references :user, index: true, null: false
-      t.string :contact_name, null: false
+      t.string :contact_name
       t.string :id_card
-      t.string :mobile_phone, null: false
+      t.string :mobile_phone
       t.string :tel_phone
       t.string :qq
       t.string :email
@@ -19,6 +19,7 @@ class CreateUserDetails < ActiveRecord::Migration
       t.string :company_nickname
       t.string :corporator
       t.string :company_reg_no
+      t.string :company_reg_code
       t.string :company_keywords
       t.text :company_description
       t.string :fu_gmail_name

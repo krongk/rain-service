@@ -9,10 +9,8 @@
       <th>城市</th>
       <th>区域</th>
       <th>描述</th>
-      <th>执行情况</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th title="数字表示邮件模板ID">执行情况</th>
+      <th colspan="3">操作</th>
     </tr>
   </thead>
 
@@ -25,7 +23,8 @@
         <td><%= mail_item.city %></td>
         <td><%= mail_item.area %></td>
         <td><%= mail_item.description %></td>
-        <td><%= mail_item.is_processed %></td>
+        <td><%= show_send_status(mail_item.is_processed) %></td>
+        <td><%= link_to '发送日志', mail_item_path(mail_item) %></td>
         <td><%= link_to '修改', edit_mail_item_path(mail_item) %></td>
         <td><%= link_to '删除', mail_item, method: :delete, data: { confirm: '确定要删除?' } %></td>
       </tr>

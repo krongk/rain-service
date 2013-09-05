@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+  </head>
+  <body>
+    <div id="mailContentContainer" class="qmbox" style="height: auto; min-height: 100px; word-wrap: break-word; font-size: 14px; padding: 0px; font-family: 'lucida Grande', Verdana;"> 
+      <table border="0" cellspacing="0" cellpadding="1" style="width:600px;border:1px solid #ddd;font-family: &quot;Helvetica Neue&quot;, &quot;Luxi Sans&quot;, &quot;DejaVu Sans&quot;, Tahoma, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft YaHei&quot;, Arial, sans-serif;box-shadow:0 0 20px #777;">
+        <tbody>
+          <tr>
+            <td bgcolor="#319400" style="padding-left:20px;color:#ffffff;font-weight:bold;font-size:40px;" height="60">
+              <%= @mail_tmp.title %>
+            </td>
+          </tr>
+          <tr>
+            <td bgcolor="ffffff" style="padding:20px;">
+               <%= @mail_tmp.content.html_safe %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

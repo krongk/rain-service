@@ -1,14 +1,14 @@
----
+#encoding: utf-8
 zh-CN:
   user_details:
     index:
-      title: User details
+      title: 会员信息
     show:
-      title: User detail
+      title: 会员信息
     edit:
-      title: Editing User detail
+      title: 修改会员信息
     new:
-      title: New User detail
+      title: 添加会员信息
   flash:
     user_details:
       create:
