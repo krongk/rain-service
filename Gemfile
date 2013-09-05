@@ -39,9 +39,13 @@ gem 'i18n_yaml_generator'
 #Queue
 gem 'sidekiq'
 
+#Markdown syntax
 gem "nokogiri"
 gem "htmlentities"
 gem 'slodown'
+
+#Send Mail
+gem 'mailgun'
 
 group :development do
   gem 'better_errors'
