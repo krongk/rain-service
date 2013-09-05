@@ -2,6 +2,9 @@ class MailSendWorker
   include Sidekiq::Worker
 
   def perform(mail_tmp_id, mail_item_ids)
+    puts "............"
+    puts mail_tmp_id
+    puts mail_item_ids
     email_tmp = MailTmp.find_by_id(mail_tmp_id)
     return email_tmp.nil? || mail_item_ids.empty?
 
@@ -10,6 +13,7 @@ class MailSendWorker
     from_email = 'admin@' + current_user.user_detail.domain unless from_email.nil?
     from_email ||= current_user.email
 
+    puts "start....."
     MailItem.where(:id => mail_item_ids).each do |item|
       current_user = User.find(item.user_id)
 
