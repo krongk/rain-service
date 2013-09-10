@@ -1,0 +1,25 @@
+<%= simple_form_for(@site, url: wizard_path) do |f| %>
+  <%= f.error_notification %>
+  <% if @site.errors.any? %>
+    <div class="error_messages">
+      <h2><%= pluralize(@site.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+      <% @site.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= yield f %>
+
+  <div class='form-actions' style='margin-bottom: 0;'>
+    <div class='text-right'>
+      <% unless step.to_s == 'theme' %>
+        <%= link_to "上一步", previous_wizard_path, :class => "btn btn-primary btn-large"  %> &nbsp;
+      <% end %> 
+      <%= button_tag(type: 'submit', class: "btn btn-primary btn-large") do %>
+        <i class='icon-arrow-right'></i> 下一步
+      <% end %>
+    </div>
+  </div>
+<% end %>

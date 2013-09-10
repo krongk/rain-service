@@ -2,13 +2,13 @@
 zh-CN:
   sites:
     index:
-      title: Sites
+      title: 网站
     show:
-      title: Site
+      title: 网站
     edit:
-      title: Editing Site
+      title: 修改网站
     new:
-      title: New Site
+      title: 添加网址
   flash:
     sites:
       create:

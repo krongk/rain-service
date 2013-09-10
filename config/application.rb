@@ -20,6 +20,9 @@ module RainService
       g.helper_specs false
     end
 
+    #auto load extras
+    config.autoload_paths += %W(#{config.root}/extras)
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -48,6 +51,3 @@ module RainService
     config.encoding = "utf-8"
   end
 end
-
-require "#{Rails.root}/lib/sms_bao"
-require "#{Rails.root}/lib/markdowner"

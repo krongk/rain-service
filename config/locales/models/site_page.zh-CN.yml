@@ -1,0 +1,16 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      site_page: 网站页面
+    attributes:
+      site_page:
+        user: 拥有者
+        short_id: 唯一标示
+        site: 网站
+        title: 标题
+        content: 内容
+    errors:
+      site_page: 
+  helpers:
+    site_page: 

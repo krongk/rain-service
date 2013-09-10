@@ -1,20 +1,87 @@
+<div class='fuelux'>
+    <div class='wizard'>
+        <ul class='steps'>
+            <li class='active' data-target='#step1'>
+                <span class='step'>1</span>
+            </li>
+            <li data-target='#step2'>
+                <span class='step'>2</span>
+            </li>
+            <li data-target='#step3'>
+                <span class='step'>3</span>
+            </li>
+            <li data-target='#step4'>
+                <span class='step'>4</span>
+            </li>
+        </ul>
+    </div>
+    <div class='step-content'>
+        <hr class='hr-normal'>
+
+          <div class='step-pane active' id='step1'>
+
 <%= simple_form_for(@site) do |f| %>
   <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.association :user %>
-    <%= f.input :site_name %>
-    <%= f.input :site_title %>
-    <%= f.input :domain %>
-    <%= f.input :theme_id %>
-    <%= f.input :head %>
-    <%= f.input :header %>
-    <%= f.input :body %>
-    <%= f.input :footer %>
-    <%= f.input :is_published %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <% if @site.errors.any? %>
+    <div class="alert alert-error error_messages">
+      <ul>
+      <% @site.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class='row-fluid'>
+<div class='span12'>
+<div class='gallery'>
+<ul class='unstyled inline'>
+<% Theme.all.each do |theme| %>
+<li>
+    <div class='picture' style="border: 2px solid #ccc;">
+        <div class='tags'>
+            <% theme.tags.split(/[ ,]+/).each do |tag| %>
+                <div class='label label-'<%= rand_flag %> ><%=tag %></div>
+            <% end %>
+        </div>
+        <div class='actions' style="background: #ccc; color: #fff;">
+            <div class='pull-left'>
+                <i class='icon-user'></i>
+                <%= theme.name %>
+                &nbsp;&nbsp;
+                <%= link_to theme.templete_url, target: '_blank' do %>
+                  <i class='icon-share'></i>预览效果
+                <% end %>
+            </div>
+            <div class='pull-right'> 
+                选择<input id="site_theme_id_<%=theme.id%>" name="site[theme_id]" type="radio" value="<%= theme.id %>" <% if theme.id == @site.theme_id then%> checked="true"<% end %> >
+            </div>
+        </div>
+        <%= image_tag  theme.templete_image, :width => '300px' %>
+<!--         <img alt="250x150" src="http://placehold.it/250x150" />
+ -->    </div>
+</li>
 <% end %>
+</ul>
+</div>
+</div></div>
+  <div class='form-actions' style='margin-bottom: 0;'>
+    <div class='text-right'>
+      <%= button_tag(type: 'submit', class: "btn btn-primary btn-large") do %>
+        <i class='icon-arrow-right'></i> 下一步
+      <% end %>
+    </div>
+  </div>                  
+<% end %>
+            
+          </div>
+          <div class='step-pane' id='step2'>
+             <div class="alert alert-info">请首先完成第一步</div>
+          </div>
+          <div class='step-pane' id='step3'>
+             <div class="alert alert-info">请首先完成第二步</div>
+          </div>
+          <div class='step-pane' id='step4'>
+             <div class="alert alert-info">请首先完成第三步</div>
+          </div>
+    </div>
+</div>

@@ -11,16 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130903072419) do
+ActiveRecord::Schema.define(version: 20130910071352) do
 
   create_table "assets", force: true do |t|
     t.integer  "user_id"
-    t.string   "asset_cate",         default: "默认"
+    t.string   "asset_type",         default: "默认"
     t.string   "bucket"
-    t.string   "asset_key"
-    t.string   "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "asset_file_name"
     t.string   "asset_content_type"
     t.integer  "asset_file_size"
@@ -36,16 +32,17 @@ ActiveRecord::Schema.define(version: 20130903072419) do
   end
 
   create_table "faq_items", force: true do |t|
-    t.integer "faq_cate_id"
-    t.string  "title",       null: false
+    t.integer "faq_cate_id",        null: false
+    t.string  "title",              null: false
     t.text    "content"
+    t.text    "markeddown_content"
   end
 
-  add_index "faq_items", ["faq_cate_id"], name: "index_faq_items_on_faq_cate_id", using: :btree
+  add_index "faq_items", ["faq_cate_id", "title"], name: "index_faq_items_on_faq_cate_id", unique: true, using: :btree
 
   create_table "keystores", force: true do |t|
-    t.string  "key",               null: false
-    t.integer "value", default: 0, null: false
+    t.string  "key",                         null: false
+    t.integer "value", limit: 8, default: 0, null: false
   end
 
   create_table "mail_items", force: true do |t|
@@ -126,6 +123,19 @@ ActiveRecord::Schema.define(version: 20130903072419) do
 
   add_index "site_comments", ["site_id"], name: "index_site_comments_on_site_id", using: :btree
 
+  create_table "site_pages", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.string   "short_id",   null: false
+    t.integer  "site_id",    null: false
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "site_pages", ["site_id"], name: "index_site_pages_on_site_id", using: :btree
+  add_index "site_pages", ["user_id"], name: "index_site_pages_on_user_id", using: :btree
+
   create_table "site_posts", force: true do |t|
     t.integer  "user_id",                  null: false
     t.integer  "site_id",                  null: false
@@ -143,10 +153,10 @@ ActiveRecord::Schema.define(version: 20130903072419) do
 
   create_table "sites", force: true do |t|
     t.integer  "user_id"
-    t.string   "site_name",                    null: false
-    t.string   "site_title",                   null: false
+    t.string   "short_id"
+    t.string   "title"
     t.string   "domain"
-    t.integer  "theme_id",                     null: false
+    t.integer  "theme_id"
     t.text     "head"
     t.text     "header"
     t.text     "body"
@@ -184,14 +194,24 @@ ActiveRecord::Schema.define(version: 20130903072419) do
   add_index "sms_tmps", ["user_id"], name: "index_sms_tmps_on_user_id", using: :btree
 
   create_table "themes", force: true do |t|
-    t.string "name", null: false
+    t.string "name",                                                                                                                                                                         null: false
+    t.string "cate",           default: "bootswatch",                                                                                                                                        null: false
+    t.string "tags"
+    t.string "templete_image"
+    t.string "templete_url"
+    t.string "default_pages",  default: "['首页', 'index']|['关于', 'about']|['产品特色', 'features']|['产品列表', 'portfolio']|['博客', 'blog']|['联系方式', 'contact']|['在线帮助', 'comment']|['帮助说明', 'faq']"
+    t.text   "css_url"
+    t.text   "js_url"
+    t.text   "header"
+    t.text   "body"
+    t.text   "footer"
   end
 
   create_table "user_details", force: true do |t|
-    t.integer  "user_id",             null: false
-    t.string   "contact_name",        null: false
+    t.integer  "user_id",                         null: false
+    t.string   "contact_name"
     t.string   "id_card"
-    t.string   "mobile_phone",        null: false
+    t.string   "mobile_phone"
     t.string   "tel_phone"
     t.string   "qq"
     t.string   "email"
@@ -206,6 +226,7 @@ ActiveRecord::Schema.define(version: 20130903072419) do
     t.string   "company_nickname"
     t.string   "corporator"
     t.string   "company_reg_no"
+    t.string   "company_reg_code",    limit: 128
     t.string   "company_keywords"
     t.text     "company_description"
     t.string   "fu_gmail_name"

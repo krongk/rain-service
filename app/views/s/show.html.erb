@@ -1,0 +1,17 @@
+<%= content_for :title do %>
+  <%= @site.title %>
+<% end %>
+
+<%= content_for :head do %>
+  <%= raw @site.head %>
+<% end %>
+
+<%= content_for :header do %>
+  <%= raw @site.header %>
+<% end %>
+
+<%= content_for :footer do %>
+  <%= raw @site.footer %>
+<% end %>
+
+<%= raw @site.body %>

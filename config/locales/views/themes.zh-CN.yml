@@ -1,0 +1,20 @@
+---
+zh-CN:
+  themes:
+    index:
+      title: 网站模版
+    show:
+      title: 网站模版
+    edit:
+      title: 编辑网站模版
+    new:
+      title: 添加网站模版
+  flash:
+    themes:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

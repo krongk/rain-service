@@ -1,0 +1,32 @@
+<%= page_header(t('themes.show.title'), {'编辑' => edit_theme_path(@theme), '返回' => themes_url}) %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @theme.name %>
+</p>
+
+<p>
+  <strong>Cate:</strong>
+  <%= @theme.cate %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <%= @theme.tags %>
+</p>
+
+<p>
+  <strong>Templete image:</strong>
+  <%= image_tag @theme.templete_image %>
+</p>
+
+<p>
+  <strong>Templete url:</strong>
+  <%= link_to @theme.templete_url, @theme.templete_url %>
+</p>
+
+<p>
+  <strong>Default pages:</strong>
+  <%= @theme.default_pages %>
+</p>
+

@@ -1,5 +1,20 @@
 RainService::Application.routes.draw do
   
+  # get "s/index"
+  # get "s/show"
+  # get "s/page"
+  # get "s/post"
+  get "/s/:id" => "s#show"
+  get "/s/:id/page/:page_id" => "s#page"
+  get "s-:id-page-:page_id" => "s#page"
+
+  get "/s/:id/post/:post_id" => "s#post"
+  get "s-:id-post-:post_id" => "s#post"
+
+  resources :site_pages
+
+  resources :themes
+
   resources :faq_items
 
   resources :faq_cates
@@ -41,6 +56,7 @@ RainService::Application.routes.draw do
     resources :site_comments
     resources :site_posts
   end
+  resources :site_steps
 
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :users

@@ -1,0 +1,21 @@
+zh-CN:
+  activerecord:
+    models:
+      theme: 网址模板
+    attributes:
+      theme:
+        name: 名称
+        cate: 类型
+        tags: 标签
+        templete_image: 预览图片
+        templete_url: 预览地址
+        default_pages: 默认包含页面
+        css_url: CSS文件组
+        js_url: JS文件组
+        header: 页头模版
+        body: 内容模版
+        footer: 页脚模版
+    errors:
+      theme: 网址模板
+  helpers:
+    theme: 网址模板

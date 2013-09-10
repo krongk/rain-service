@@ -26,10 +26,14 @@ class SitesController < ApplicationController
   # POST /sites.json
   def create
     @site = Site.new(site_params)
+    @site.user_id = current_user.id
 
     respond_to do |format|
       if @site.save
-        format.html { redirect_to @site, notice: 'Site was successfully created.' }
+        session[:site_id] = @site.id
+        #initialize local structures on public/s/short_id
+        
+        format.html { redirect_to site_steps_path, notice: '提交成功.' }
         format.json { render action: 'show', status: :created, location: @site }
       else
         format.html { render action: 'new' }
@@ -43,7 +47,7 @@ class SitesController < ApplicationController
   def update
     respond_to do |format|
       if @site.update(site_params)
-        format.html { redirect_to @site, notice: 'Site was successfully updated.' }
+        format.html { redirect_to site_steps_path, notice: 'Site was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -70,6 +74,6 @@ class SitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
-      params.require(:site).permit(:user_id, :site_name, :site_title, :domain, :theme_id, :head, :header, :body, :footer, :is_published)
+      params.require(:site).permit(:user_id, :short_id, :title, :domain, :theme_id, :head, :header, :body, :footer, :is_published)
     end
 end

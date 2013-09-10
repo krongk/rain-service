@@ -1,0 +1,17 @@
+---
+en:
+  active_record:
+    models:
+      theme: Theme
+    attributes:
+      theme:
+        name: Name
+        cate: Cate
+        tags: Tags
+        templete_image: Templete image
+        templete_url: Templete url
+        default_pages: Default pages
+    errors:
+      theme: 
+  helpers:
+    theme: 

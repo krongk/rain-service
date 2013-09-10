@@ -1,0 +1,20 @@
+---
+zh-CN:
+  site_pages:
+    index:
+      title: 网站页面
+    show:
+      title: 网站页面
+    edit:
+      title: 编辑网站页面
+    new:
+      title: 添加网站页面
+  flash:
+    site_pages:
+      create:
+        notice: '%{resource_name} was successfully created.'
+      update:
+        notice: '%{resource_name} was successfully updated.'
+      destroy:
+        notice: '%{resource_name} was successfully deleted.'
+        alert: '%{resource_name} could not be deleted.'

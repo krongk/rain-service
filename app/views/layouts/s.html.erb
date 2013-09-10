@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <title><%= yield(:title) %></title>
+    <meta name="keywords" content= "<%= yield(:meta_keywords) %>">
+    <meta name="description" content="<%= yield(:meta_description) %>">
+
+    <%= javascript_include_tag "jquery" %>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <%= csrf_meta_tags %>
+     
+    <%= yield(:head) %>
+  </head>
+  <body class="theme">
+    <%= yield(:header) %>
+
+		<%= render 'layouts/messages' %>
+		<%= yield %>
+
+	  <%= yield(:footer) %>
+  </body>
+</html>
+
+

@@ -1,0 +1,90 @@
+<div class='container-fluid'>
+    <div class='row-fluid' id='content-wrapper'>
+        <div class='span12'>
+            <div class='row-fluid'>
+                <div class='span12'>
+                    <div class='page-header'>
+                        <h1 class='pull-left'>
+                            <i class='icon-edit'></i>
+                            <span>创建网站四步骤</span>
+                        </h1>
+                        <div class='pull-right'>
+                            <ul class='breadcrumb'>
+                                <li>
+                                    <a href="/sites"><i class='icon-bar-chart'></i>
+                                    </a>
+                                </li>
+                                <li class='separator'>
+                                    <i class='icon-angle-right'></i>
+                                </li>
+                                <li>
+                                    站内通
+                                </li>
+                                <li class='separator'>
+                                    <i class='icon-angle-right'></i>
+                                </li>
+                                <li class='active'>创建网站</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='row-fluid'>
+                <div class='span12 box'>
+                    <div class='box-content box-padding'>
+											<div class='fuelux'>
+											    <div class='wizard'>
+											        <ul class='steps'>
+											            <li data-target='#step1'>
+											                <span class='step'>1</span>
+											            </li>
+											            <li data-target='#step2'>
+											                <span class='step'>2</span>
+											            </li>
+											            <li class='active' data-target='#step3'>
+											                <span class='step'>3</span>
+											            </li>
+											            <li data-target='#step4'>
+                                      <span class='step'>4</span>
+                                  </li>
+											        </ul>
+											    </div>
+											    <div class='step-content'>
+											        <hr class='hr-normal'>
+
+											          <div class='step-pane' id='step1'>
+											            <div class="alert alert-info">网站名称一旦创建成功就不能修改</div>
+											          </div>
+											          <div class='step-pane' id='step2'>
+																	<%= render layout: 'form' do |f| %>
+																	  <fieldset>
+																	    <%= f.input :theme_id %>
+																	  </fieldset>
+																	<% end %>
+											          </div>
+											          <div class='step-pane active' id='step3'>
+																	<%= render layout: 'form' do |f| %>
+																	  <fieldset>
+<%= f.input :head, hint: "保存页头信息，如引用的css样式，js代码。", :input_html => {:value => @site.head.nil? ? Site.first.head : @site.head, :class => "span12 icon-over-input", :rows => 10}, wrapper_html: { class: 'row-fluid' } %>
+
+<%= f.input :header, :input_html => {:value => @site.header.nil? ? Site.first.header : @site.header, :class => "span12 icon-over-input", :rows => 10}, wrapper_html: { class: 'row-fluid' } %>
+
+<%= f.input :body, :input_html => {:value => @site.body.nil? ? Site.first.body : @site.body, :class => "span12 icon-over-input input-block-level", :rows => 20}, wrapper_html: { class: 'row-fluid', rows: '35', value: @site.user.user_detail.company_description } %>
+
+<%= f.input :footer, :input_html => {:value => @site.footer.nil? ? Site.first.footer : @site.footer, :class => "span12 icon-over-input", :rows => 10}, wrapper_html: { class: 'row-fluid' } %>
+																	  </fieldset>
+																	<% end %>
+											          </div>
+											          <div class='step-pane' id='step4'>
+											             <div class="alert alert-info">请首先完成第三步</div>
+											          </div>
+											    </div>
+											</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

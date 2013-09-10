@@ -1,45 +1,31 @@
-<h1>Listing sites</h1>
+<%= page_header(t('sites.index.title'), {'添加网站' => new_site_path}) %>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>User</th>
-      <th>Site name</th>
-      <th>Site title</th>
-      <th>Domain</th>
-      <th>Theme</th>
-      <th>Head</th>
-      <th>Header</th>
-      <th>Body</th>
-      <th>Footer</th>
-      <th>Is published</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>唯一标示</th>
+      <th>网站标题</th>
+      <th>域名</th>
+      <th>模版</th>
+      <th>是否发布</th>
+      <th colspan="3">操作</th>
     </tr>
   </thead>
 
   <tbody>
     <% @sites.each do |site| %>
       <tr>
-        <td><%= site.user %></td>
-        <td><%= site.site_name %></td>
-        <td><%= site.site_title %></td>
+        <td><%= site.short_id %></td>
+        <td><%= site.title %></td>
         <td><%= site.domain %></td>
         <td><%= site.theme_id %></td>
-        <td><%= site.head %></td>
-        <td><%= site.header %></td>
-        <td><%= site.body %></td>
-        <td><%= site.footer %></td>
         <td><%= site.is_published %></td>
-        <td><%= link_to 'Show', site %></td>
-        <td><%= link_to 'Edit', edit_site_path(site) %></td>
-        <td><%= link_to 'Destroy', site, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '预览', site %></td>
+        <td><%= link_to '编辑', edit_site_path(site) %></td>
+        <td><%= link_to '删除', site, method: :delete, data: { confirm: '确定要删除么?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Site', new_site_path %>

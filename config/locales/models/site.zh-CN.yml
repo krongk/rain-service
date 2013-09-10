@@ -6,8 +6,8 @@ zh-CN:
     attributes:
       site:
         user: 拥有者
-        site_name: 网站名称
-        site_title: 网站标题
+        short_id: 唯一标示
+        title: 网站标题
         domain: 域名
         theme_id: 模板
         head: HEAD部分

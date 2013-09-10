@@ -5,7 +5,7 @@ class FaqItem < ActiveRecord::Base
   validates_uniqueness_of :title, :scope => :faq_cate_id
 
   def generated_markeddown_content
-    Markdowner.to_html(self.content, {:coderay => true })
+    Markdowner.to_html(self.content, {:coderay => true})
   end
 
   def content=(desc)

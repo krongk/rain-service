@@ -10,17 +10,19 @@
 
   Markdowner.to_html(self.content, { :coderay => true })
     => coderay(formatter.complete.to_s)
+
+  Markdowner.to_html(self.content, { :coderay => true, :markdown => true })
+    => coderay(formatter.markdown.to_s)
 =end
 class Markdowner
   # opts[:coderay] do highlight code.
-  # opts[:disable_profile_links] disables @username -> /u/username links
-
   def self.coderay(text)
     text.gsub!(/\<code( lang="(.+?)")?\>(.+?)\<\/code\>/m) do
       code, lang = $3, $2
       code = code.to_s.gsub(/&lt;/, '<').gsub(/&gt;/, '>')
       CodeRay.scan(code, lang || :ruby).div(:css => :class)
     end
+    text
   end
 
   def self.to_html(text, opts = {})
@@ -32,22 +34,27 @@ class Markdowner
 
     if !!opts[:markdown]
       formatter = formatter.markdown
+      puts "markdown"
     end
 
     if !!opts[:autolink]
       formatter = formatter.autolink
+      puts "autolink"
     end
 
     if !!opts[:sanitize]
       formatter = formatter.sanitize
+      puts "sanitize"
     end
 
     if opts.reject{|k| k == :coderay }.empty?
       formatter = formatter.complete
+      puts "complete"
     end
 
     if !!opts[:coderay]
       formatter = coderay(formatter.to_s)
+      puts "coderay"
     end
 
     html = formatter.to_s
