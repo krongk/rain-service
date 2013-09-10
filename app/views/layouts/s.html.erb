@@ -8,19 +8,18 @@
     <meta name="keywords" content= "<%= yield(:meta_keywords) %>">
     <meta name="description" content="<%= yield(:meta_description) %>">
 
-    <%= javascript_include_tag "jquery" %>
+    <%= javascript_include_tag "jquery", "turbolinks" %>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <%= raw @site.head %>
     <%= csrf_meta_tags %>
-     
-    <%= yield(:head) %>
   </head>
   <body class="theme">
-    <%= yield(:header) %>
+    <%= raw @site.header %>
 
 		<%= render 'layouts/messages' %>
 		<%= yield %>
 
-	  <%= yield(:footer) %>
+	  <%= raw @site.footer %>
   </body>
 </html>
 

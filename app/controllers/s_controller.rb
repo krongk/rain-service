@@ -10,15 +10,15 @@ class SController < ApplicationController
   end
 
   def page
-    @site_page = SitePage.find_by(short_id: params[:page_id])
-    @site_page ||= SitePage.find_by(id: params[:page_id]) if params[:page_id] =~ /^\d+$/
+    @site_page = @site.site_pages.find_by(short_id: params[:page_id])
+    @site_page ||= @site.site_pages.find_by(id: params[:page_id]) if params[:page_id] =~ /^\d+$/
     if @site_page.nil?
       render 'show'
     end
   end
 
   def post
-    @site_post = SitePost.find_by(id: params[:post_id])
+    @site_post = @site.site_posts.find_by(id: params[:post_id])
     if @site_post.nil?
         render 'show'
     end

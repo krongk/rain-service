@@ -20,7 +20,7 @@
         <td><%= site.domain %></td>
         <td><%= site.theme_id %></td>
         <td><%= site.is_published %></td>
-        <td><%= link_to '预览', site %></td>
+        <td><%= link_to '预览', get_short_url(site), target: '_blank' %></td>
         <td><%= link_to '编辑', edit_site_path(site) %></td>
         <td><%= link_to '删除', site, method: :delete, data: { confirm: '确定要删除么?' } %></td>
       </tr>

@@ -2,15 +2,15 @@
 class Site < ActiveRecord::Base
   belongs_to :user
   belongs_to :theme
+  has_many :site_pages, :dependent => :destroy
+  has_many :site_posts, :dependent => :destroy
+  has_many :site_comments, :dependent => :destroy
 
   validates_presence_of :theme_id
   before_validation :assign_short_id,
     :on => :create
   validates_uniqueness_of :short_id, :case_sensitive => false
   
-  has_many :site_comments, :dependent => :destroy
-  #has_many :site_posts, :dependent => :destroy
-
   after_create  :assign_theme_content, :create_default_site_pages, :increment_total_count
   after_destroy :decrement_total_count
 
@@ -53,7 +53,7 @@ class Site < ActiveRecord::Base
   end
   #将模版内容中的变量(short_id)替换
   def get_theme_content(content)
-    content.to_s.gsub!(/\(short_id\)/, self.short_id)
+    return content.to_s.gsub(/\(short_id\)/, self.short_id)
   end
 
   #将模板下面的文件内容拷到对应的页面中， 

@@ -1,15 +1,14 @@
 RainService::Application.routes.draw do
   
-  # get "s/index"
-  # get "s/show"
-  # get "s/page"
-  # get "s/post"
+  # /s/short_id
   get "/s/:id" => "s#show"
-  get "/s/:id/page/:page_id" => "s#page"
-  get "s-:id-page-:page_id" => "s#page"
+  # /s/short_id/p/page_id
+  get "/s/:id/p/:page_id" => "s#page"
+  get "s-:id-p-:page_id" => "s#page"
 
-  get "/s/:id/post/:post_id" => "s#post"
-  get "s-:id-post-:post_id" => "s#post"
+  # /s/short_id/b/post_id
+  get "/s/:id/b/:post_id" => "s#post"
+  get "s-:id-b-:post_id" => "s#post"
 
   resources :site_pages
 

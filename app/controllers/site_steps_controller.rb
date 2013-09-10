@@ -1,7 +1,7 @@
 class SiteStepsController < ApplicationController
   include Wicked::Wizard
 
-  steps :theme, :content, :publish
+  steps :title, :content, :publish
   
   def show
     @site = Site.find(session[:site_id])

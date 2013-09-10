@@ -1,17 +1,5 @@
-<%= content_for :title do %>
-  <%= @site.title %>
-<% end %>
-
-<%= content_for :head do %>
-  <%= raw @site.head %>
-<% end %>
-
-<%= content_for :header do %>
-  <%= raw @site.header %>
-<% end %>
-
-<%= content_for :footer do %>
-  <%= raw @site.footer %>
-<% end %>
+<% title @site.title %>
+<% meta_keywords @site.title %>
+<% meta_description @site.title %>
 
 <%= raw @site.body %>

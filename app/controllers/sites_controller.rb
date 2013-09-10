@@ -31,7 +31,6 @@ class SitesController < ApplicationController
     respond_to do |format|
       if @site.save
         session[:site_id] = @site.id
-        #initialize local structures on public/s/short_id
         
         format.html { redirect_to site_steps_path, notice: '提交成功.' }
         format.json { render action: 'show', status: :created, location: @site }
@@ -47,7 +46,7 @@ class SitesController < ApplicationController
   def update
     respond_to do |format|
       if @site.update(site_params)
-        format.html { redirect_to site_steps_path, notice: 'Site was successfully updated.' }
+        format.html { redirect_to site_steps_path, notice: '提交成功.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

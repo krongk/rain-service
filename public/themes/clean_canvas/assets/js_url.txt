@@ -1,0 +1,5 @@
+/themes/clean_canvas/js/jquery.countdown.min.js
+/themes/clean_canvas/js/jquery.isotope.min.js
+/themes/clean_canvas/js/flexslider.js
+/themes/clean_canvas/js/index-slider.js
+/themes/clean_canvas/js/theme.js

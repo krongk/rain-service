@@ -65,6 +65,20 @@ module ApplicationHelper
     content_for(:meta_description){ meta_description}
   end
 
+  #on sites/index to get site short url
+  #e.g. 
+  # /s/short_id
+  # /s/short_id/p/page_short_id
+  # /s/short_id/b/post_short_id
+  # page and post can not act at same time.
+  def get_short_url(site, page = nil, post = nil)
+    return '/' if site.nil?
+    url = "/s/#{site.short_id}"
+    url << "/p/#{page.short_id}" unless page.nil?
+    url << "/b/#{post.id}" unless post.nil?
+    return url
+  end
+
   #On admin page title, e.g. /home/sms
   # <%= page_header('短信通', {'发送日志' => '/phone_items',}) %>
   def page_header(title, opts = {})
