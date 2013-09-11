@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  before_filter :authenticate_user!, except: [:show, :index]
+  before_filter :authenticate_user!
   before_action :set_site, only: [:show, :edit, :update, :destroy]
 
   # GET /sites
@@ -11,6 +11,9 @@ class SitesController < ApplicationController
   # GET /sites/1
   # GET /sites/1.json
   def show
+    @site_pages = @site.site_pages.order("updated_at DESC").limit(20)
+    @site_posts = @site.site_posts.order("updated_at DESC").limit(20)
+    @site_comments = @site.site_comments.order("updated_at DESC").limit(20)
   end
 
   # GET /sites/new

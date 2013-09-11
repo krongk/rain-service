@@ -4,11 +4,11 @@ RainService::Application.routes.draw do
   get "/s/:id" => "s#show"
   # /s/short_id/p/page_id
   get "/s/:id/p/:page_id" => "s#page"
-  get "s-:id-p-:page_id" => "s#page"
+  get "s/:id/p-:page_id" => "s#page"
 
   # /s/short_id/b/post_id
   get "/s/:id/b/:post_id" => "s#post"
-  get "s-:id-b-:post_id" => "s#post"
+  get "s/:id/b-:post_id" => "s#post" #all in s/:id/ can do cache.
 
   resources :site_pages
 
@@ -54,6 +54,7 @@ RainService::Application.routes.draw do
   resources :sites do
     resources :site_comments
     resources :site_posts
+    resources :site_pages
   end
   resources :site_steps
 

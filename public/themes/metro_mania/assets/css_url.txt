@@ -1,0 +1,8 @@
+/themes/metro_mania/css/bootstrap.css
+/themes/metro_mania/css/font-awesome.css
+/themes/metro_mania/css/prettyPhoto.css
+/themes/metro_mania/css/slider.css
+/themes/metro_mania/css/flexslider.css
+/themes/metro_mania/css/style.css
+/themes/metro_mania/css/orange.css
+/themes/metro_mania/css/bootstrap-responsive.css

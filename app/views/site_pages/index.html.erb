@@ -1,35 +1,39 @@
-<h1>Listing site_pages</h1>
+<hr class='hr-double'>
+<div class='row-fluid'>
+    <div class='span12 box'>
+        <div class='box-header green-background'>
+            <div class='title'>网站页面列表</div>
+        </div>
+        <div class='box-content'>
+            <div class='row-fluid'>
+                <div class='span12'>
+                    <div class='tabbable'>
+                        <ul class='nav nav-tabs nav-tabs-centered'>
+                            <% @sites.each_with_index do |site, index| %>
+                                <li <%= index == 0 ? "class='active'" : ''%>>
+                                    <a data-toggle='tab' href='#Ta<%= index %>a'>
+                                        <i class='icon-indent-left'></i>
+                                        <span class='label label-<%= rand_flag %>'><%= site.site_pages.size %></span>
+                                        <%= site.title %>
+                                    </a>
+                                </li>
+                            <% end %>
+                        </ul>
+                        <div class='tab-content'>
+                            <% @sites.each_with_index do |site, index| %>
+                                <div class='tab-pane <%= index == 0 ? "active" : ''%>' id='Ta<%= index %>a'>
+                                    
+                                    <span class='label label-<%= rand_flag %>'><%= site.site_pages.size %></span>
+                                    <%= site.title %>
+                                
+                                </div>
+                            <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Short</th>
-      <th>Site</th>
-      <th>Title</th>
-      <th>Content</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @site_pages.each do |site_page| %>
-      <tr>
-        <td><%= site_page.user %></td>
-        <td><%= site_page.short_id %></td>
-        <td><%= site_page.site %></td>
-        <td><%= site_page.title %></td>
-        <td><%= site_page.content %></td>
-        <td><%= link_to 'Show', site_page %></td>
-        <td><%= link_to 'Edit', edit_site_page_path(site_page) %></td>
-        <td><%= link_to 'Destroy', site_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Site page', new_site_page_path %>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

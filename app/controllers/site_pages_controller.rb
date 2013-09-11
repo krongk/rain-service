@@ -1,14 +1,17 @@
 class SitePagesController < ApplicationController
-  before_action :set_site_page, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
+  before_action :set_site_page, only: [:new, :show, :edit, :update, :destroy]
 
   # GET /site_pages
   # GET /site_pages.json
   def index
-    @site_pages = SitePage.all
+    @sites = current_user.sites
   end
 
   # GET /site_pages/1
   # GET /site_pages/1.json
+  # http://localhost:3000/sites/19/site_pages/80
+  # {"action"=>"show", "controller"=>"site_pages", "site_id"=>"19", "id"=>"80"}
   def show
   end
 
@@ -28,7 +31,7 @@ class SitePagesController < ApplicationController
 
     respond_to do |format|
       if @site_page.save
-        format.html { redirect_to @site_page, notice: 'Site page was successfully created.' }
+        format.html { redirect_to site_pages_url, notice: '添加成功.' }
         format.json { render action: 'show', status: :created, location: @site_page }
       else
         format.html { render action: 'new' }
@@ -42,7 +45,7 @@ class SitePagesController < ApplicationController
   def update
     respond_to do |format|
       if @site_page.update(site_page_params)
-        format.html { redirect_to @site_page, notice: 'Site page was successfully updated.' }
+        format.html { redirect_to site_pages_url, notice: '添加成功.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -64,7 +67,8 @@ class SitePagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_site_page
-      @site_page = SitePage.find(params[:id])
+      @site = Site.find_by(id: params[:site_id])
+      @site_page = SitePage.find_by(id: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

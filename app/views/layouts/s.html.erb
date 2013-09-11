@@ -8,6 +8,8 @@
     <meta name="keywords" content= "<%= yield(:meta_keywords) %>">
     <meta name="description" content="<%= yield(:meta_description) %>">
 
+    <%= stylesheet_link_tag "s" %>
+
     <%= javascript_include_tag "jquery", "turbolinks" %>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <%= raw @site.head %>
