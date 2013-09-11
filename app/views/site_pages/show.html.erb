@@ -1,29 +1,11 @@
-<p id="notice"><%= notice %></p>
+<%= page_header(t('sites.index.title'), {'编辑' => edit_site_page_path(@site_page), '返回' => site_pages_path}) %>
 
-<p>
-  <strong>User:</strong>
-  <%= @site_page.user %>
-</p>
 
-<p>
-  <strong>Short:</strong>
-  <%= @site_page.short_id %>
-</p>
-
-<p>
-  <strong>Site:</strong>
-  <%= @site_page.site %>
-</p>
-
-<p>
-  <strong>Title:</strong>
+<h2>
   <%= @site_page.title %>
-</p>
-
+</h2>
+<hr>
 <p>
-  <strong>Content:</strong>
-  <%= @site_page.content %>
+  <%= raw @site_page.content %>
 </p>
 
-<%= link_to 'Edit', edit_site_page_path(@site_page) %> |
-<%= link_to 'Back', site_pages_path %>

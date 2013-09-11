@@ -1,11 +1,11 @@
 class SitePagesController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_site_page, only: [:new, :show, :edit, :update, :destroy]
+  before_action :set_site_page, only: [:new, :create, :show, :edit, :update, :destroy]
 
   # GET /site_pages
   # GET /site_pages.json
   def index
-    @sites = current_user.sites
+    @sites = current_user.sites.order("updated_at DESC")
   end
 
   # GET /site_pages/1
@@ -28,6 +28,7 @@ class SitePagesController < ApplicationController
   # POST /site_pages.json
   def create
     @site_page = SitePage.new(site_page_params)
+    @site_page.user_id = current_user.id
 
     respond_to do |format|
       if @site_page.save

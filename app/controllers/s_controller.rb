@@ -1,6 +1,6 @@
 class SController < ApplicationController
   layout 's'
-  before_action :set_site, only: [:show, :page, :post]
+  before_action :set_site, only: [:show, :page, :post, :blog]
 
   def index
   end
@@ -20,8 +20,12 @@ class SController < ApplicationController
   def post
     @site_post = @site.site_posts.find_by(id: params[:post_id])
     if @site_post.nil?
-        render 'show'
+      render 'show'
     end
+  end
+
+  def blog
+    @site_posts = @site.site_posts.page(params[:page]).order("updated_at DESC")
   end
 
   private

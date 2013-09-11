@@ -2,9 +2,8 @@ class SitePage < ActiveRecord::Base
   belongs_to :user
   belongs_to :site
 
-  before_validation :assign_short_id,
-    :on => :create
-  validates_presence_of :user_id, :site_id, :short_id
+  before_validation :assign_short_id, :on => :create
+  validates_presence_of :user_id, :site_id
   validates_uniqueness_of :short_id, :scope => [:site_id]
 
   def assign_short_id

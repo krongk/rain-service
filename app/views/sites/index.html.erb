@@ -1,4 +1,4 @@
-<%= page_header(t('sites.index.title'), {'添加网站' => new_site_path}) %>
+<%= page_header(t('sites.index.title'), {'添加网站' => new_site_path(@site)}) %>
 
 <table class="table table-bordered">
   <thead>
@@ -8,7 +8,7 @@
       <th>域名</th>
       <th>模版</th>
       <th>是否发布</th>
-      <th colspan="4">操作</th>
+      <th>操作</th>
     </tr>
   </thead>
 
@@ -20,10 +20,10 @@
         <td><%= site.domain %></td>
         <td><%= site.theme_id %></td>
         <td><%= site.is_published %></td>
-        <td><%= link_to '预览', get_short_url(site), target: '_blank' %></td>
-        <td><%= link_to '管理', site_path(site) %></td>
-        <td><%= link_to '编辑', edit_site_path(site) %></td>
-        <td><%= link_to '删除', site, method: :delete, data: { confirm: '确定要删除么?' } %></td>
+        <td><%= link_to '预览', get_short_url(site), target: '_blank', class: 'btn btn-primary' %>
+          <%= link_to '管理', site_path(site), class: 'btn btn-warning' %>
+          <%= link_to '编辑', edit_site_path(site), class: 'btn btn-info' %>
+          <%= link_to '删除', site, method: :delete, data: { confirm: '确定要删除么?' }, class: 'btn btn-inverse' %></td>
       </tr>
     <% end %>
   </tbody>

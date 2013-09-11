@@ -5,7 +5,13 @@ class SitePostsController < ApplicationController
   # GET /site_posts
   # GET /site_posts.json
   def index
-    @site_posts = SitePost.all
+    @site = Site.find_by(id: params[:site_id])
+    @sites = current_user.sites.order("updated_at DESC")
+
+    if params[:site_id]
+      @site_posts = Site.find_by(id: params[:site_id]).site_posts.page(params[:page]).order("updated_at DESC")
+    end
+    @site_posts ||= []
   end
 
   # GET /site_posts/1
@@ -26,10 +32,11 @@ class SitePostsController < ApplicationController
   # POST /site_posts.json
   def create
     @site_post = SitePost.new(site_post_params)
+    @site_post.user_id = current_user.id
 
     respond_to do |format|
       if @site_post.save
-        format.html { redirect_to @site_post, notice: 'Site post was successfully created.' }
+        format.html { redirect_to site_posts_url, notice: '添加成功.' }
         format.json { render action: 'show', status: :created, location: @site_post }
       else
         format.html { render action: 'new' }
@@ -43,7 +50,7 @@ class SitePostsController < ApplicationController
   def update
     respond_to do |format|
       if @site_post.update(site_post_params)
-        format.html { redirect_to @site_post, notice: 'Site post was successfully updated.' }
+        format.html { redirect_to site_posts_url, notice: '添加成功.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -65,6 +72,7 @@ class SitePostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_site_post
+      @site = Site.find_by(id: params[:site_id])
       @site_post = SitePost.find(params[:id])
       can_access?(@site_post)
     end

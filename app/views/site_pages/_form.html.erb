@@ -2,11 +2,14 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :site, include_blank: false, :selected => @site.id %>
-    <%= f.input :short_id, placeholder: "可以留空，系统自动生成。" %>
+    <%= f.association :site, include_blank: false, :selected => @site_page.site_id %>
     
+    <% unless @site_page.new_record? %>
+      <%= f.input :short_id, placeholder: "可以留空，系统自动生成。" %>
+    <% end %>
+
     <%= f.input :title, input_html: {class: 'input-block-level'} %>
-    <%= f.input :content, input_html: {class: 'input-block-level ckeditor',  id: 'wysiwyg1', rows: 40} %>
+    <%= f.input :content, input_html: {class: 'input-block-level ckeditor',  id: 'wysiwyg1', rows: 20} %>
   </div>
 
   <div class="form-actions">

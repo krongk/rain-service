@@ -1,0 +1,9 @@
+<% title "博客 - #{@site.title}" %>
+<% meta_keywords "博客, #{@site.title}" %>
+<% meta_description "博客, #{@site.title}" %>
+
+<ul>
+<% @site_posts.each do |item| %>
+  <li><%= link_to item.title, get_short_url(item.site, nil, item) %></li>
+<% end %>
+</ul>

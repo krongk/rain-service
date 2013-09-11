@@ -25,4 +25,9 @@ class SitePost < ActiveRecord::Base
   def decrement_total_count
     Keystore.decrement_value_for("site:#{self.site_id}:site_posts_count")
   end
+
+  def send_to_qzone
+
+  end
+  
 end

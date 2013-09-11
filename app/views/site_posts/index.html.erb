@@ -1,37 +1,40 @@
-<h1>Listing site_posts</h1>
+<%= page_header(t('site_posts.index.title'), {'添加博客' => new_site_post_path}) %>
 
-<table>
+<div class="row-fluid">
+  <% @sites.each do |site| %>
+    <div class="span3 box-quick-link <%= @site.try(:id) == site.id ? 'red' : 'blue'%>-background" style="margin-bottom: 10px;">
+      <%= link_to site_site_posts_path(site) do %>
+          <div class="header">
+              <div class="icon-comments"></div>
+          </div>
+          <div class="content"><%= site.title %></div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>User</th>
-      <th>Site</th>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Key words</th>
-      <th>Cate</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>标题</th>
+      <th>操作</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @site_posts.each do |site_post| %>
+    <% @site_posts.each do |item| %>
       <tr>
-        <td><%= site_post.user %></td>
-        <td><%= site_post.site %></td>
-        <td><%= site_post.title %></td>
-        <td><%= site_post.content %></td>
-        <td><%= site_post.key_words %></td>
-        <td><%= site_post.cate_id %></td>
-        <td><%= link_to 'Show', site_post %></td>
-        <td><%= link_to 'Edit', edit_site_post_path(site_post) %></td>
-        <td><%= link_to 'Destroy', site_post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= item.title %></td>
+        
+        <td>
+          <%= link_to '预览', get_short_url(item.site, nil, item), target: '_blank', class: 'btn btn-primary' %>
+          <%= link_to '编辑', edit_site_post_path(item), class: 'btn btn-info' %>
+          <%= link_to '删除', item, method: :delete, data: { confirm: '确定要删除么?' }, class: 'btn btn-inverse' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Site post', new_site_post_path %>

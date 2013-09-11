@@ -1,2 +1,5 @@
-<h1>S#post</h1>
-<p>Find me in app/views/s/post.html.erb</p>
+<% title "#{@site_post.title} - #{@site.title}" %>
+<% meta_keywords "#{@site.title}, #{@site_post.title}" %>
+<% meta_description "#{@site.title}, #{@site_post.title}" %>
+
+<%= raw @site_post.content %>

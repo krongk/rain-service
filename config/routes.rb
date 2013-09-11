@@ -2,6 +2,9 @@ RainService::Application.routes.draw do
   
   # /s/short_id
   get "/s/:id" => "s#show"
+  #
+  get "/s/:id/blog" => "s#blog"
+  
   # /s/short_id/p/page_id
   get "/s/:id/p/:page_id" => "s#page"
   get "s/:id/p-:page_id" => "s#page"
@@ -10,7 +13,7 @@ RainService::Application.routes.draw do
   get "/s/:id/b/:post_id" => "s#post"
   get "s/:id/b-:post_id" => "s#post" #all in s/:id/ can do cache.
 
-  resources :site_pages
+  
 
   resources :themes
 
@@ -56,6 +59,9 @@ RainService::Application.routes.draw do
     resources :site_posts
     resources :site_pages
   end
+  resources :site_pages
+  resources :site_posts
+  resources :site_comments
   resources :site_steps
 
   devise_for :users, :controllers => {:registrations => "registrations"}
