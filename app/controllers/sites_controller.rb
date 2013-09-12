@@ -49,6 +49,8 @@ class SitesController < ApplicationController
   def update
     respond_to do |format|
       if @site.update(site_params)
+        session[:site_id] = @site.id
+        
         format.html { redirect_to site_steps_path, notice: '提交成功.' }
         format.json { head :no_content }
       else
