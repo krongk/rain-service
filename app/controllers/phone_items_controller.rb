@@ -54,7 +54,8 @@ class PhoneItemsController < ApplicationController
   # POST /phone_items.json
   def create
     @phone_item = PhoneItem.new(phone_item_params)
-
+    @phone_item.user_id = current_user.id
+    
     respond_to do |format|
       if @phone_item.save
         format.html { redirect_to phone_items_url, notice: '添加成功.' }
