@@ -1,5 +1,7 @@
 <%= page_header(t('phone_items.index.title'), {'返回短信通' => '/home/sms', '添加号码' => new_phone_item_path}) %>
 
+<%= render partial: "search_form" %>
+
 <table class="table table-bordered">
   <thead>
     <tr>

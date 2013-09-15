@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :site, include_blank: false, :selected => @site_page.site_id %>
+    <%= f.association :site, include_blank: false, :selected => @site.id %>
     
     <% unless @site_page.new_record? %>
       <%= f.input :short_id, placeholder: "可以留空，系统自动生成。" %>

@@ -3,7 +3,7 @@ class PhoneItem < ActiveRecord::Base
   belongs_to :user
   has_many :sms_logs, :dependent => :destroy
 
-  self.per_page = 1000
+  self.per_page = 50
 
   scope :processed, -> {where("is_processed != ?", 'n')}
   scope :no_processed, -> {where(is_processed: 'n')}

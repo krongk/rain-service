@@ -3,7 +3,7 @@ class PhoneItemsController < ApplicationController
 
   before_action :set_phone_item, only: [:show, :edit, :update, :destroy]
 
-  def phone_send
+  def phone_send   
     if params[:sms_tmp_id].nil?
       flash[:error] = "没有选择短信模版"
       redirect_to "/home/sms" and return
@@ -32,7 +32,23 @@ class PhoneItemsController < ApplicationController
   # GET /phone_items
   # GET /phone_items.json
   def index
-    @phone_items = PhoneItem.where(:user_id => current_user.id).paginate(:page => params[:page]|| 1, :per_page => 50).order("updated_at DESC")
+    
+    @phone_item = PhoneItem.new #use for search_form
+
+    if params[:phone_item] && (mobi = params[:phone_item][:mobile_phone]) =~ /\d+/
+      mobi = mobi.gsub(/[^0-9]/, '')
+      @phone_items = PhoneItem
+        .where(:user_id => current_user.id)
+        .where('mobile_phone like ?', "%#{mobi}%")
+        .paginate(:page => params[:page]|| 1, :per_page => 50)
+        .order("updated_at DESC")
+    else
+      @phone_items = PhoneItem
+        .where(:user_id => current_user.id)
+        .paginate(:page => params[:page]|| 1, :per_page => 50)
+        .order("updated_at DESC")
+    end
+
   end
 
   # GET /phone_items/1

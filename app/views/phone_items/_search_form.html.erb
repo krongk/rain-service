@@ -1,0 +1,9 @@
+<%= simple_form_for @phone_item, action: "/phone_items", :method => :get do |f| %>
+<div class='row-fluid text-right'>
+    <div class='span12'>
+       <%= f.input :mobile_phone, placeholder: '输入手机号码' %>
+       <%= f.button :submit, '搜索', data: { disable_with: '正在提交...'}, class: 'btn btn-mini' %>
+       <%= link_to "显示全部", phone_items_url, class: 'btn btn-mini btn-white' %>
+    </div>
+</div>
+<% end %>

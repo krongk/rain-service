@@ -1,11 +1,13 @@
 class SitePagesController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_site_page, only: [:new, :create, :show, :edit, :update, :destroy]
+  before_action :set_site_page, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   # GET /site_pages
   # GET /site_pages.json
   def index
-    @sites = current_user.sites.order("updated_at DESC")
+    redirect_to sites_url if @site.nil? and return
+
+    @site_pages = @site.site_pages.page(params[:page]).order("updated_at DESC")
   end
 
   # GET /site_pages/1
@@ -32,7 +34,7 @@ class SitePagesController < ApplicationController
 
     respond_to do |format|
       if @site_page.save
-        format.html { redirect_to site_pages_url, notice: '添加成功.' }
+        format.html { redirect_to site_site_pages_path(@site_page.site), notice: '添加成功.' }
         format.json { render action: 'show', status: :created, location: @site_page }
       else
         format.html { render action: 'new' }
@@ -46,7 +48,7 @@ class SitePagesController < ApplicationController
   def update
     respond_to do |format|
       if @site_page.update(site_page_params)
-        format.html { redirect_to site_pages_url, notice: '添加成功.' }
+        format.html { redirect_to site_site_pages_path(@site_page.site), notice: '添加成功.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -60,7 +62,7 @@ class SitePagesController < ApplicationController
   def destroy
     @site_page.destroy
     respond_to do |format|
-      format.html { redirect_to site_pages_url }
+      format.html { redirect_to site_site_pages_url(@site_page.site) }
       format.json { head :no_content }
     end
   end

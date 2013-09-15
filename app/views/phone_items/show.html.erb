@@ -37,5 +37,38 @@
   </div>
 </div>
 
+<%= form_tag "/phone_send", :method => :post do |f| %>
+  <div class='row-fluid'>
+    <div class='span12 box'>
+      <div class='box-header'>
+          <div class='title'><div class="icon-play"></div> 选择短信模版发送</div>
+          <div class='actions'>
+              <a href="#" class="btn box-collapse btn-mini btn-link"><i></i>
+              </a>
+          </div>
+      </div>
+      <div class='box-content'>
+        <div class="row-fluid">
+          <div class="span10">
+            <ul class="table table-striped">
+              <% current_user.sms_tmps.each_with_index do |item, index| %>
+                <li>
+                  <input id="phone_item_name_false" name="sms_tmp_id" type="radio" value="<%=item.id%>" style="float: left; margin: 0px;" checked ="true">
+                  <span class="badge badge-<%=rand_flag%>"><%= item.title %></span>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="span2 text-right">
+            <%= hidden_field_tag("phone_item_ids[]", @phone_item.id ) %>
+            <%= submit_tag "发送短信", class: 'btn btn-primary btn-large' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <%= render partial: "sms_log", collection: @sms_logs %>
+
 

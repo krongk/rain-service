@@ -1,6 +1,4 @@
-<h1>Editing site_post</h1>
+<%= page_header(t('site_posts.index.title'), {'博客列表' => site_site_posts_url(@site), '返回网站' => site_path(@site)}) %>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @site_post %> |
-<%= link_to 'Back', site_posts_path %>

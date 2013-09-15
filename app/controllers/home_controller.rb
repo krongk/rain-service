@@ -20,7 +20,12 @@ class HomeController < ApplicationController
   def qq
   end
 
-  def share
+  #商贸通
+  def commerce
+
+  end
+  #数据采集
+  def data
   end
 
   def blog

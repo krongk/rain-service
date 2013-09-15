@@ -3,10 +3,10 @@
 
   <div class="form-inputs">
     <%#= f.association :user %>
-    <%= f.association :site, include_blank: false, selected: @site_post.site_id %>
+    <%= f.association :site, include_blank: false, selected: @site.id %>
     <%= f.input :title, input_html: {class: 'input-block-level'}  %>
     <%= f.input :content, input_html: {class: 'input-block-level ckeditor',  id: 'wysiwyg1', rows: 20} %>
-    <%= f.input :key_words %>
+    <%= f.input :key_words, placeholder: "用逗号隔开" %>
     <%= f.input :cate_id %>
   </div>
 

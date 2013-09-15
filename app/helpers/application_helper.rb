@@ -100,7 +100,11 @@ module ApplicationHelper
                 <a href="/home/index" clas="btn btn-white"><i class="icon-bar-chart"></i>返回</a>}
 
                 opts.each_pair do |k, v|
-                  arr << link_to(k, v, :class=> 'btn btn-white') 
+                  if k =~ /返回/
+                    arr << link_to(k, v, :class=> 'btn btn-white') 
+                  else
+                    arr << link_to(k, v, :class=> 'btn btn-primary')
+                  end
                 end
 
                 arr << %{</div>

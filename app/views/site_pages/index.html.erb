@@ -1,29 +1,29 @@
-<%= page_header(t('site_pages.index.title'), {'添加页面' => new_site_page_path}) %>
+<%= page_header(t('site_pages.index.title'), {'添加页面' => new_site_site_page_path(@site), '返回网站' => site_path(@site)}) %>
 
-<% @sites.each do |site| %>
-  <h2><%= site.title %></h2>
-  <table class="table table-bordered">
-    <thead>
+
+<h2><%= @site.title %></h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>唯一标示</th>
+      <th>标题</th>
+      <th colspan="4">操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @site_pages.each do |item| %>
       <tr>
-        <th>唯一标示</th>
-        <th>标题</th>
-        <th colspan="4">操作</th>
+        <td><%= item.short_id %></td>
+        <td><%= item.title %></td>
+        
+        <td><%= link_to '预览', get_short_url(@site, item), target: '_blank' %></td>
+        <td><%= link_to '编辑', edit_site_site_page_path(@site, item) %></td>
+        <td><%= link_to '删除', item, method: :delete, data: { confirm: '确定要删除么?' } %></td>
       </tr>
-    </thead>
+    <% end %>
+  </tbody>
+</table>
 
-    <tbody>
-      <% site.site_pages.each do |item| %>
-        <tr>
-          <td><%= item.short_id %></td>
-          <td><%= item.title %></td>
-          
-          <td><%= link_to '预览', get_short_url(item.site, item), target: '_blank' %></td>
-          <td><%= link_to '编辑', edit_site_site_page_path(site, item) %></td>
-          <td><%= link_to '删除', item, method: :delete, data: { confirm: '确定要删除么?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
-
+<%= will_paginate @site_pages %>
 <br>

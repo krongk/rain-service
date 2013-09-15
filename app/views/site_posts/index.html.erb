@@ -1,24 +1,12 @@
-<%= page_header(t('site_posts.index.title'), {'添加博客' => new_site_post_path}) %>
+<%= page_header(t('site_posts.index.title'), {'添加页面' => new_site_site_post_path(@site), '返回网站' => site_path(@site)}) %>
 
-<div class="row-fluid">
-  <% @sites.each do |site| %>
-    <div class="span3 box-quick-link <%= @site.try(:id) == site.id ? 'red' : 'blue'%>-background" style="margin-bottom: 10px;">
-      <%= link_to site_site_posts_path(site) do %>
-          <div class="header">
-              <div class="icon-comments"></div>
-          </div>
-          <div class="content"><%= site.title %></div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
-
-
+<h2><%= @site.title %></h2>
 <table class="table table-bordered">
   <thead>
     <tr>
       <th>标题</th>
-      <th>操作</th>
+      <th>关键词</th>
+      <th colspan="4">操作</th>
     </tr>
   </thead>
 
@@ -26,15 +14,15 @@
     <% @site_posts.each do |item| %>
       <tr>
         <td><%= item.title %></td>
+        <td><%= item.key_words %></td>
         
-        <td>
-          <%= link_to '预览', get_short_url(item.site, nil, item), target: '_blank', class: 'btn btn-primary' %>
-          <%= link_to '编辑', edit_site_post_path(item), class: 'btn btn-info' %>
-          <%= link_to '删除', item, method: :delete, data: { confirm: '确定要删除么?' }, class: 'btn btn-inverse' %>
-        </td>
+        <td><%= link_to '预览', get_short_url(@site, nil, item), target: '_blank' %></td>
+        <td><%= link_to '编辑', edit_site_site_post_path(@site, item) %></td>
+        <td><%= link_to '删除', item, method: :delete, data: { confirm: '确定要删除么?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<%= will_paginate @site_posts %>
 <br>

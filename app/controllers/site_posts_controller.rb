@@ -1,17 +1,15 @@
 class SitePostsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_site_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_site_post, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   # GET /site_posts
   # GET /site_posts.json
   def index
-    @site = Site.find_by(id: params[:site_id])
-    @sites = current_user.sites.order("updated_at DESC")
-
-    if params[:site_id]
-      @site_posts = Site.find_by(id: params[:site_id]).site_posts.page(params[:page]).order("updated_at DESC")
+    if @site.nil?
+      redirect_to sites_url
+      return
     end
-    @site_posts ||= []
+    @site_posts = @site.site_posts.page(params[:page]).order("updated_at DESC")
   end
 
   # GET /site_posts/1
@@ -36,7 +34,7 @@ class SitePostsController < ApplicationController
 
     respond_to do |format|
       if @site_post.save
-        format.html { redirect_to site_posts_url, notice: '添加成功.' }
+        format.html { redirect_to site_site_posts_url(@site_post.site), notice: '添加成功.' }
         format.json { render action: 'show', status: :created, location: @site_post }
       else
         format.html { render action: 'new' }
@@ -50,7 +48,7 @@ class SitePostsController < ApplicationController
   def update
     respond_to do |format|
       if @site_post.update(site_post_params)
-        format.html { redirect_to site_posts_url, notice: '添加成功.' }
+        format.html { redirect_to site_site_posts_url(@site_post.site), notice: '添加成功.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -64,7 +62,7 @@ class SitePostsController < ApplicationController
   def destroy
     @site_post.destroy
     respond_to do |format|
-      format.html { redirect_to site_posts_url }
+      format.html { redirect_to site_site_posts_url(@site_post.site) }
       format.json { head :no_content }
     end
   end
@@ -73,7 +71,7 @@ class SitePostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_site_post
       @site = Site.find_by(id: params[:site_id])
-      @site_post = SitePost.find(params[:id])
+      @site_post = SitePost.find_by(id: params[:id])
       can_access?(@site_post)
     end
 
