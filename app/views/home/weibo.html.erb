@@ -1,2 +1,49 @@
-<h1>Home#weibo</h1>
-<p>Find me in app/views/home/weibo.html.erb</p>
+<%= page_header('微博通', {'控制面板' => root_path}) %>
+
+<div class='row-fluid timeline'>
+    <div class='span12'>
+        <ol class='unstyled'>
+            <li>
+                <div class='icon purple-background'>
+                    <i class='icon-plane'></i>
+                </div>
+                <div class='title'>
+                    微博通功能提示
+                    <small class='muted'>to weibo</small>
+                </div>
+                <div class='content box'>
+                  <div class='row-fluid'>
+                    <div class='span6'>
+                        <div class='box-content box-statistic'>
+                            <h3 class='text-error'>绑定网站通</h3>
+                            <small>绑定网站通的‘多说’评论机制，实现将网站通内容到多微博平台同步。</small>
+                            <div class='text-error icon-inbox align-right'></div>
+                        </div>
+                    </div>
+                    <div class='span6'>
+                        <div class='box-content box-statistic'>
+                            <h3 class='text-error'>微博账号管理</h3>
+                            <small>帮助创建多平台微博账号，实现多平台网站账号绑定。</small>
+                            <div class='text-error icon-inbox align-right'></div>
+                        </div>
+                    </div>
+                  </div>
+                  <!-- content end -->
+                </div>
+            </li>
+            <li>
+                <div class='icon green-background'>
+                    <i class='icon-picture'></i>
+                </div>
+                <div class='title'>
+                    价格方案
+                    <small class='muted'></small>
+                </div>
+                <div class='content'>
+                  300元/月
+                </div>
+            </li>
+            
+        </ol>
+    </div>
+</div>

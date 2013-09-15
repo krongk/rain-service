@@ -16,12 +16,15 @@ class MailItemsController < ApplicationController
       return
     end
 
-    #render :text => params and return
+    if ENV['MAILGUN_USERNAME'].nil? || ENV['MAILGUN_PASSWORD'].nil?
+      flash[:error] = "请配置短信发送接口的环境变量"
+      redirect_to "/home/email" and return
+    end
 
     MailSendWorker.perform_async(params[:mail_tmp_id], params[:mail_item_ids])
 
     respond_to do |format|
-      format.html {redirect_to "/home/email", notice: '邮件已经加入发送队列，请稍后查看发送日志！'}
+      format.html {redirect_to "/home/email", notice: '邮件已经加入发送队列，请稍后查看<a href="/mail_items">发送日志</a>！'}
     end
   end
 

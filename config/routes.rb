@@ -29,6 +29,7 @@ RainService::Application.routes.draw do
   get "home/sms"
   get "home/email"
   get "home/data"
+  get "home/pay"
   get "home/blog"
   get "home/qq"
   get "home/commerce"

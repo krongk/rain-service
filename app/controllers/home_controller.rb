@@ -28,6 +28,10 @@ class HomeController < ApplicationController
   def data
   end
 
+  #付费通
+  def pay
+  end
+  
   def blog
   end
 

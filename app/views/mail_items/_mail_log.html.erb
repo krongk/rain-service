@@ -1,17 +1,28 @@
-<%= form_tag "/mail_send", :method => :post do |f| %>
-  <%= hidden_field_tag(:mail_tmp_id, mail_log.mail_tmp_id) %>
-  <%= hidden_field_tag(:mail_item_ids, mail_log.mail_item_id) %>
-  <div class="alert alert-<%= ApplicationHelper::MAIL_SEND_STATUS[mail_log.status][-1] %>">
-      <a href="#" class="close" data-dismiss="alert">×</a>
-      <h4>
-          <i class="icon-<%= mail_log.status == 0 ? 'ok' : 'info'%>-sign"></i>
-          <%= ApplicationHelper::MAIL_SEND_STATUS[mail_log.status][0] %> 
-          <span class="pull-right">
-          (<%= mail_log.created_at.to_s(:db)%>)
-             <%= submit_tag '重新发送', class: 'btn btn-white', data: { disable_with: '正在提交...'}  %>
-          </span>
-      </h4>
-      <%= mail_log.mail_tmp.title %>:<br>
-      <%= strip_tags mail_log.mail_tmp.content.to_s.truncate(150) %>
+<% if mail_log.mail_tmp.nil?  %>
+  <div class="alert alert-important">
+    <a href="#" class="close" data-dismiss="alert">×</a>
+    <h4>发送于<%= mail_log.created_at.to_s(:db) %>的邮件模板已被移动或删除</h4>
   </div>
+<% elsif mail_log.mail_item.nil? %>
+  <div class="alert alert-important">
+    <h2>发送于<%= mail_log.created_at.to_s(:db) %>的邮件已被移动或删除</h2>
+  </div>
+<% else %>
+  <%= form_tag "/mail_send", :method => :post do |f| %>
+    <%= hidden_field_tag(:mail_tmp_id, mail_log.mail_tmp_id) %>
+    <%= hidden_field_tag(:mail_item_ids, mail_log.mail_item_id) %>
+    <div class="alert alert-<%= ApplicationHelper::MAIL_SEND_STATUS[mail_log.status][-1] %>">
+        <a href="#" class="close" data-dismiss="alert">×</a>
+        <h4>
+            <i class="icon-<%= mail_log.status == 0 ? 'ok' : 'info'%>-sign"></i>
+            <%= ApplicationHelper::MAIL_SEND_STATUS[mail_log.status][0] %> 
+            <span class="pull-right">
+            (<%= mail_log.created_at.to_s(:db)%>)
+               <%= submit_tag '重新发送', class: 'btn btn-white', data: { disable_with: '正在提交...'}  %>
+            </span>
+        </h4>
+        <%= mail_log.mail_tmp.title %>:<br>
+        <%= strip_tags mail_log.mail_tmp.content.to_s.truncate(150) %>
+    </div>
+  <% end %>
 <% end %>

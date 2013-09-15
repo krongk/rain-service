@@ -30,7 +30,7 @@ class MailTmpsController < ApplicationController
 
     respond_to do |format|
       if @mail_tmp.save
-        format.html { redirect_to @mail_tmp, notice: '邮件模板添加成功.' }
+        format.html { redirect_to mail_tmp_path(@mail_tmp), notice: '邮件模板添加成功.' }
         format.json { render action: 'show', status: :created, location: @mail_tmp }
       else
         format.html { render action: 'new' }
@@ -44,7 +44,7 @@ class MailTmpsController < ApplicationController
   def update
     respond_to do |format|
       if @mail_tmp.update(mail_tmp_params)
-        format.html { redirect_to @mail_tmp, notice: '邮件模板修改成功.' }
+        format.html { redirect_to mail_tmps_url, notice: '邮件模板修改成功.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

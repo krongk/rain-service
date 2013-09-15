@@ -3,6 +3,8 @@ class MailItem < ActiveRecord::Base
   belongs_to :user
   has_many :mail_logs, :dependent => :destroy
 
+  self.per_page = 30
+  
   after_create :increment_total_count
   after_destroy :decrement_total_count
 
