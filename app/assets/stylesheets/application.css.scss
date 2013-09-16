@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require flatty/flatty
- *= require flatty/light-theme
+ *= require flatty/dark-theme
  *= require_self
  ** require_tree .
 */

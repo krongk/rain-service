@@ -66,5 +66,6 @@ class HomeController < ApplicationController
   end
 
   def setting
+    #render :text => params and return 
   end
 end

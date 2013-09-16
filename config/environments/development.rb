@@ -39,25 +39,26 @@ RainService::Application.configure do
   # }
 
   #Qmail
-  # config.action_mailer.smtp_settings = {
-  #   address: "smtp.qq.com",
-  #   port: 25,
-  #   domain: ENV["DOMAIN_NAME"],
-  #   authentication: "plain",
-  #   enable_starttls_auto: true,
-  #   user_name: ENV["QMAIL_USERNAME"],
-  #   password: ENV["QMAIL_PASSWORD"]
-  # }
-
-  #Mailgun
-  ActionMailer::Base.smtp_settings = {
-    :port           => 587, 
-    :address        => 'smtp.mailgun.org',
-    :user_name      => ENV["MAILGUN_USERNAME"],
-    :password       => ENV["MAILGUN_PASSWORD"],
-    :domain         => 'yufuwu.cn',
-    :authentication => :plain,
+  config.action_mailer.smtp_settings = {
+    address: "smtp.qq.com",
+    port: 25,
+    domain: ENV["DOMAIN_NAME"],
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV["QMAIL_USERNAME"],
+    password: ENV["QMAIL_PASSWORD"]
   }
+
+  # #Mailgun
+  # ActionMailer::Base.smtp_settings = {
+  #   :port           => 587, 
+  #   :address        => 'smtp.mailgun.org',
+  #   :user_name      => ENV["MAILGUN_USERNAME"],
+  #   :password       => ENV["MAILGUN_PASSWORD"],
+  #   :domain         => 'yufuwu.cn',
+  #   :authentication => :plain,
+  # }
+  
   ActionMailer::Base.delivery_method = :smtp
 
   # Send email in development mode.

@@ -12,6 +12,8 @@ class MailSendWorker
       from_email = 'admin@' + from_email.sub(/^http(s)?(:)?(\/\/)?(www)?(\.)?/i, '')
     end
     from_email ||= current_user.email
+    #QQ mail
+    from_mail = ENV['QMAIL_USERNAME'] + 'qq.com'
     
     MailItem.where(:id => mail_item_ids).each do |item|
       current_user = User.find(item.user_id)
