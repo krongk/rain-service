@@ -1,27 +1,40 @@
 class MailSendWorker
   include Sidekiq::Worker
 
-  def perform(mail_tmp_id, mail_item_ids)
+  def qq_perform(mail_tmp_id, mail_item_ids)
+
+  end
+
+  def perform(cate, mail_tmp_id, mail_item_ids)
     mail_tmp = MailTmp.find(mail_tmp_id)
     return if mail_tmp.nil? || mail_item_ids.empty?
 
     #fetch from email
-    # current_user = User.find(mail_tmp.user_id)
-    # from_email = current_user.user_detail.website
-    # unless from_email.nil?
-    #   from_email = 'admin@' + from_email.sub(/^http(s)?(:)?(\/\/)?(www)?(\.)?/i, '')
-    # end
-    # from_email ||= current_user.email
-    
-    #QQ mail
-    from_email = ENV['QMAIL_USERNAME'] + 'qq.com'
-    
-    MailItem.where(:id => mail_item_ids).each do |item|
-      current_user = User.find(item.user_id)
+    current_user = User.find(mail_tmp.user_id)
+    if cate == 'qq'
+      from_email = current_user.user_detail.fu_qmail_name
+    else
+      from_email = current_user.user_detail.website
+      unless from_email.nil?
+        from_email = 'admin@' + from_email.sub(/^http(s)?(:)?(\/\/)?(www)?(\.)?/i, '')
+      end
+      from_email ||= current_user.email
+    end
+    if from_email.nil?
+      puts "error: blank from_email"
+      return
+    end
 
+    MailItem.where(:id => mail_item_ids).each do |item|
       puts "#{from_email} => #{item.email} start"
-      UserMailer.marketing(mail_tmp, from_email, item.email).deliver
-     
+
+      case cate
+      when 'qq'
+        QqMailer.marketing(mail_tmp, from_email, item.email).deliver
+      else
+        UserMailer.marketing(mail_tmp, from_email, item.email).deliver
+      end
+      
       status = 'y'
       item.is_processed = item.is_processed == 'n' ? "#{mail_tmp.id},#{status}" : "#{mail_tmp.id},#{status}|" + item.is_processed
       item.save!
