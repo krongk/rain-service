@@ -14,7 +14,7 @@ class MailSendWorker
     # from_email ||= current_user.email
     
     #QQ mail
-    from_mail = ENV['QMAIL_USERNAME'] + 'qq.com'
+    from_email = ENV['QMAIL_USERNAME'] + 'qq.com'
     
     MailItem.where(:id => mail_item_ids).each do |item|
       current_user = User.find(item.user_id)
