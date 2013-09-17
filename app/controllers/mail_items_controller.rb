@@ -16,12 +16,52 @@ class MailItemsController < ApplicationController
       return
     end
 
-    if ENV['MAILGUN_USERNAME'].nil? || ENV['MAILGUN_PASSWORD'].nil?
-      flash[:error] = "请配置短信发送接口的环境变量"
-      redirect_to "/home/email" and return
+    # if ENV['MAILGUN_USERNAME'].nil? || ENV['MAILGUN_PASSWORD'].nil?
+    #   flash[:error] = "请配置短信发送接口的环境变量"
+    #   redirect_to "/home/email" and return
+    # end
+    cate = params[:cate] || 'gmail'
+
+    mail_tmp = MailTmp.find(params[:mail_tmp_id])
+    return if mail_tmp.nil? || mail_item_ids.empty?
+
+    #fetch from email
+    current_user = User.find(mail_tmp.user_id)
+    if cate == 'qq'
+      from_email = current_user.user_detail.fu_qmail_name
+    else
+      from_email = current_user.user_detail.website
+      unless from_email.nil?
+        from_email = 'admin@' + from_email.sub(/^http(s)?(:)?(\/\/)?(www)?(\.)?/i, '')
+      end
+      from_email ||= current_user.email
+    end
+    if from_email.nil?
+      puts "error: blank from_email"
+      return
     end
 
-    MailSendWorker.perform_async('qq', params[:mail_tmp_id], params[:mail_item_ids])
+    MailItem.where(:id => params[:mail_item_ids]).each do |item|
+      MailSendWorker.perform_async(cate, mail_tmp, from_email, item.email)
+
+      status = 'y'
+      item.is_processed = item.is_processed == 'n' ? "#{mail_tmp.id},#{status}" : "#{mail_tmp.id},#{status}|" + item.is_processed
+      item.save!
+      
+      billing_count = 1
+      MailLog.create!(
+          :user_id => item.user_id, 
+          :mail_item_id => item.id, 
+          :mail_tmp_id => mail_tmp.id, 
+          :status => status,
+          :billing_count => billing_count)
+
+      #increment billing count
+      Keystore.increment_value_for("user:#{item.user_id}:mail_billing_count", billing_count)
+
+      #increment send count(per phone per send)
+      Keystore.increment_value_for("user:#{item.user_id}:mail_send_count", 1)
+    end
 
     respond_to do |format|
       format.html {redirect_to "/home/email", notice: '邮件已经加入发送队列，请稍后查看<a href="/mail_items">发送日志</a>！'}
