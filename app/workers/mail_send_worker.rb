@@ -6,12 +6,13 @@ class MailSendWorker
     return if mail_tmp.nil? || mail_item_ids.empty?
 
     #fetch from email
-    current_user = User.find(mail_tmp.user_id)
-    from_email = current_user.user_detail.website
-    unless from_email.nil?
-      from_email = 'admin@' + from_email.sub(/^http(s)?(:)?(\/\/)?(www)?(\.)?/i, '')
-    end
-    from_email ||= current_user.email
+    # current_user = User.find(mail_tmp.user_id)
+    # from_email = current_user.user_detail.website
+    # unless from_email.nil?
+    #   from_email = 'admin@' + from_email.sub(/^http(s)?(:)?(\/\/)?(www)?(\.)?/i, '')
+    # end
+    # from_email ||= current_user.email
+    
     #QQ mail
     from_mail = ENV['QMAIL_USERNAME'] + 'qq.com'
     
