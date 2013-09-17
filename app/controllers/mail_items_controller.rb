@@ -23,7 +23,7 @@ class MailItemsController < ApplicationController
     cate = params[:cate] || 'gmail'
 
     mail_tmp = MailTmp.find(params[:mail_tmp_id])
-    return if mail_tmp.nil? || mail_item_ids.empty?
+    return if mail_tmp.nil? || params[:mail_item_ids].empty?
 
     #fetch from email
     current_user = User.find(mail_tmp.user_id)
