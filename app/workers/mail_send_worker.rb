@@ -1,12 +1,12 @@
 class MailSendWorker
   include Sidekiq::Worker
 
-  def perform(cate, mail_tmp, from_email, to_email)
+  def perform(cate, mail_tmp_id, from_email, to_email)
     case cate
     when 'qq'
-      QqMailer.marketing(mail_tmp, from_email, to_email).deliver
+      QqMailer.marketing(mail_tmp_id, from_email, to_email).deliver
     when 'gmail'
-      Gmailer.marketing(mail_tmp, from_email, to_email).deliver
+      Gmailer.marketing(mail_tmp_id, from_email, to_email).deliver
     else
       puts 'conflict cate'
     end

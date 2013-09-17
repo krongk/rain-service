@@ -10,9 +10,8 @@ class QqMailer < ActionMailer::Base
     password: ENV["QMAIL_PASSWORD"]
   }
 
-  def marketing(mail_tmp, from_email, to_email)   
-    @mail_tmp = mail_tmp
-    puts "..... -> #{to_email}"
+  def marketing(mail_tmp_id, from_email, to_email)   
+    @mail_tmp = MailTmp.find(mail_tmp_id)
     mail to: to_email, subject: @mail_tmp.title
   end
 end
