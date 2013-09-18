@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one  :user_detail
+  has_many :user_accounts, :dependent => :destroy
   has_many :sms_tmps, :dependent => :destroy
   has_many :sms_logs, :dependent => :destroy
   has_many :phone_items, :dependent => :destroy

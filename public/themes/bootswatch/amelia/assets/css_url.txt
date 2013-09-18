@@ -1,0 +1,6 @@
+/themes/scroll_strap/css/bootstrap.css
+/themes/scroll_strap/css/bootstrap-responsive.css
+/themes/scroll_strap/css/pricing.css
+/themes/scroll_strap/css/style.css
+/themes/scroll_strap/css/prettify.css
+/themes/scroll_strap/css/prettyPhoto.css

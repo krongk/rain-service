@@ -1,0 +1,24 @@
+<%= page_header(t('user_accounts.index.title'), {'添加账号' => new_user_account_path, '控制面板' => '/'}) %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>账户名称</th>
+      <th>值</th>
+      <th colspan="2">操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_accounts.each do |user_account| %>
+      <tr>
+        <td><%= user_account.name %></td>
+        <td><%= user_account.value %></td>
+        <td><%= link_to '修改', edit_user_account_path(user_account) %></td>
+        <td><%= link_to '删除', user_account, method: :delete, data: { confirm: '删除管理账户可能会导致绑定的相关业务不能实现，确定要删除吗?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

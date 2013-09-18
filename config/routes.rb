@@ -1,5 +1,7 @@
 RainService::Application.routes.draw do
   
+  resources :user_accounts
+
   # /s/short_id
   get "/s/:id" => "s#show"
   #

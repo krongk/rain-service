@@ -1,0 +1,14 @@
+---
+en:
+  active_record:
+    models:
+      user_account: User account
+    attributes:
+      user_account:
+        user: User
+        name: Name
+        value: Value
+    errors:
+      user_account: 
+  helpers:
+    user_account: 

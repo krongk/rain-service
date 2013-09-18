@@ -4,10 +4,13 @@ class HomeController < ApplicationController
   def index
   end
 
+  #资源管理
+  def asset
+  end
+  
   #网站通
   def site
   end
-
 
   def sms
   	@sms_tmp = SmsTmp.new

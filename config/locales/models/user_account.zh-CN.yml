@@ -1,0 +1,14 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      user_account: 用户帐户管理
+    attributes:
+      user_account:
+        user: 用户
+        name: 帐户名称
+        value: 账户值
+    errors:
+      user_account: 
+  helpers:
+    user_account: 

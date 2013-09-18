@@ -1,0 +1,20 @@
+---
+zh-CN:
+  user_accounts:
+    index:
+      title: 用户帐户管理
+    show:
+      title: 用户帐户管理
+    edit:
+      title: 修改用户帐户管理
+    new:
+      title: 添加用户帐户管理
+  flash:
+    user_accounts:
+      create:
+        notice: '%{resource_name} 创建成功.'
+      update:
+        notice: '%{resource_name} 修改成功.'
+      destroy:
+        notice: '%{resource_name} 删除成功.'
+        alert: '%{resource_name} 不能被删除.'

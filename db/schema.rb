@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130910071352) do
+ActiveRecord::Schema.define(version: 20130918074138) do
 
   create_table "assets", force: true do |t|
     t.integer  "user_id"
@@ -194,18 +194,27 @@ ActiveRecord::Schema.define(version: 20130910071352) do
   add_index "sms_tmps", ["user_id"], name: "index_sms_tmps_on_user_id", using: :btree
 
   create_table "themes", force: true do |t|
-    t.string "name",                                                                                                                                                                         null: false
-    t.string "cate",           default: "bootswatch",                                                                                                                                        null: false
+    t.string "name",                                                                                                                                                null: false
+    t.string "cate",                              default: "bootswatch",                                                                                            null: false
     t.string "tags"
     t.string "templete_image"
     t.string "templete_url"
-    t.string "default_pages",  default: "['首页', 'index']|['关于', 'about']|['产品特色', 'features']|['产品列表', 'portfolio']|['博客', 'blog']|['联系方式', 'contact']|['在线帮助', 'comment']|['帮助说明', 'faq']"
+    t.string "default_pages",                     default: "关于, about|服务项目, service|产品特色, features|项目展示, portfolio|博客, blog|联系方式, contact|在线帮助, comment|帮助说明, faq"
     t.text   "css_url"
     t.text   "js_url"
     t.text   "header"
-    t.text   "body"
+    t.text   "body",           limit: 2147483647
     t.text   "footer"
   end
+
+  create_table "user_accounts", force: true do |t|
+    t.integer "user_id"
+    t.string  "name"
+    t.string  "value"
+  end
+
+  add_index "user_accounts", ["user_id", "name"], name: "index_user_accounts_on_user_id_and_name", unique: true, using: :btree
+  add_index "user_accounts", ["user_id"], name: "index_user_accounts_on_user_id", using: :btree
 
   create_table "user_details", force: true do |t|
     t.integer  "user_id",                         null: false

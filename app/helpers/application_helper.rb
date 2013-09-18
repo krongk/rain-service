@@ -1,5 +1,20 @@
 module ApplicationHelper
 
+  USER_ACCOUTNS =[
+    ['Google邮箱账户', 'gmail_name'],
+    ['Google邮箱密码', 'gmail_password'],
+    
+    ['QQ邮箱账户', 'qmail_name'],
+    ['QQ邮箱密码', 'qmail_password'],
+
+    ['七牛云存储账户', 'qiniu_name'],
+    ['七牛云存储密码', 'qiniu_password'],
+    ['七牛云存储ACCESS_KEY', 'qiniu_access_key'],
+    ['七牛云存储SECRET_KEY', 'qiniu_secret_key'],
+    ['七牛云存储空间名', 'qiniu_bucket'],
+    ['七牛云存储访问地址', 'qiniu_host'],
+  ]
+
   SMS_SEND_STATUS = {
     0 => ['成功', 'success'], 
     30 => ['密码错误', 'error'],
@@ -100,7 +115,7 @@ module ApplicationHelper
                 <a href="/home/index" clas="btn btn-white"><i class="icon-bar-chart"></i>返回</a>}
 
                 opts.each_pair do |k, v|
-                  if k =~ /返回/
+                  if k =~ /返回|控制面板/
                     arr << link_to(k, v, :class=> 'btn btn-white') 
                   else
                     arr << link_to(k, v, :class=> 'btn btn-primary')

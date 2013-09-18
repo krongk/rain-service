@@ -41,8 +41,14 @@ class MailItemsController < ApplicationController
       return
     end
 
+    per_emails = []
     MailItem.where(:id => params[:mail_item_ids]).each do |item|
-      MailSendWorker.perform_async(cate, mail_tmp.id, from_email, item.email)
+      #一次群发10个
+      if per_emails.size == 10
+        MailSendWorker.perform_async(cate, mail_tmp.id, from_email, per_emails.join(";"))
+        per_emails = []
+      end
+      per_emails << item.email
 
       status = 'y'
       item.is_processed = item.is_processed == 'n' ? "#{mail_tmp.id},#{status}" : "#{mail_tmp.id},#{status}|" + item.is_processed

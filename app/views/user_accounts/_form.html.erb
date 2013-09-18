@@ -1,0 +1,12 @@
+<%= simple_form_for(@user_account) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, collection: ApplicationHelper::USER_ACCOUTNS %>
+    <%= f.input :value %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, data: { disable_with: "正在提交..." }  %>
+  </div>
+<% end %>
