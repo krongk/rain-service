@@ -26,6 +26,7 @@ RainService::Application.routes.draw do
   resources :assets
 
   get "home/index"
+  get "home/site"
   get "home/sms"
   get "home/email"
   get "home/data"

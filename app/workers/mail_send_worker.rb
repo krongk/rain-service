@@ -11,5 +11,8 @@ class MailSendWorker
       puts 'conflict cate'
     end
     puts "install mail sender: #{from_email} -> #{to_email}"
+    t = 120 + rand(300)
+    sleep(t)
+    puts "sleep...#{t}"
   end
 end
