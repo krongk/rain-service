@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_filter :set_current_user, :check_initializer
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
   end
@@ -23,6 +25,23 @@ class ApplicationController < ActionController::Base
   def can_access?(object)
     unless object.respond_to?(:user_id) ? (object.user_id == current_user.id) : true
       redirect_to root_path, :alert => "没有访问权限"
+    end
+  end
+
+  #Can access current_user on Model
+  def set_current_user
+    User.current_user = current_user
+  end
+
+  #If user login, need to initialize user_accounts OR others
+  #Trigger: if user login and has created almost one site.
+  def check_initializer
+    return unless current_user
+    if params[:controller] != 'user_accounts'  &&
+      current_user.sites.any? &&
+      current_user.user_accounts.size < ApplicationHelper::USER_ACCOUTNS.size
+      
+      redirect_to user_accounts_url, :alert => "请在做其他操作前，在这里将账户信息完善了。账户信息绑定到每个应用的功能。" and return
     end
   end
 

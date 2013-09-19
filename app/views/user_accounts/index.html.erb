@@ -1,4 +1,6 @@
-<%= page_header(t('user_accounts.index.title'), {'添加账号' => new_user_account_path, '控制面板' => '/'}) %>
+<%= page_header(t('user_accounts.index.title'), {'控制面板' => '/'}) %>
+
+<%= render 'form' %>
 
 <table class="table table-striped table-bordered">
   <thead>
@@ -21,4 +23,22 @@
   </tbody>
 </table>
 
-<br>
+<hr class="hr-normal">
+<div class="row-fluid">
+  <div class="span12 box">
+    <div class="box-content">
+      <h4><a href="#" class="text-contrast">*提示</a></h4>
+      <ol>
+        <li><strong>gmail_name/gmail_password:</strong> 
+          Google邮箱账户，用于发送邮件。 </li>
+        <li><strong>qmail_name/qmail_password:</strong> 
+          QQ邮箱账户，用于发送邮件。 </li>
+        <li><strong>qiniu_host:</strong> 
+          七牛访问空间的域名，<span style="color: red;">必须以http://打头</span>， 如：http://song-dev.qiniudn.com </li>
+        <li><strong>qiniu_bucket:</strong> 
+          七牛空间名称， 创建七牛账户以后， 在管理控制台创建一个用于保存雨服务资源的空间。名称格式：“账户名-dev”, 如“song-dev” </li>
+        <li><strong>qiniu_access_key/qiniu_secret_key:</strong> 七牛云密钥， 在<a href="https://portal.qiniu.com/setting/key" target="_blank"><strong>这里</strong></a>可以找到。 </li>
+      </ol>
+    </div>
+  </div>
+</div>

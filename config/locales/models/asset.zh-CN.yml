@@ -1,0 +1,16 @@
+#encoding: utf-8
+zh-CN:
+  activerecord:
+    models:
+      asset: 资源
+    attributes:
+      asset:
+        user: 用户
+        asset_type: 类型
+        asset_name: 名称
+        asset_path: 路径
+        bucket: 空间(Bucket)
+    errors:
+      asset: 
+  helpers:
+    asset: 

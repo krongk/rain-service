@@ -4,11 +4,9 @@
   <thead>
     <tr>
       <th>名称</th>
-      <th>分类</th>
       <th>标签</th>
       <th>演示图片</th>
       <th>演示地址</th>
-      <th>默认包含页面</th>
       <th colspan="3">操作</th>
     </tr>
   </thead>
@@ -17,11 +15,9 @@
     <% @themes.each do |theme| %>
       <tr>
         <td><%= theme.name %></td>
-        <td><%= theme.cate %></td>
         <td><%= theme.tags %></td>
         <td><%= image_tag(theme.templete_image, width: '60px', height: '60px') %></td>
         <td><%= link_to theme.templete_url.to_s.truncate(20), theme.templete_url %></td>
-        <td><%= theme.default_pages %></td>
         <td><%= link_to '查看', theme %></td>
         <td><%= link_to '编辑', edit_theme_path(theme) %></td>
         <td><%= link_to '删除', theme, method: :delete, data: { confirm: '确定添加?' } %></td>

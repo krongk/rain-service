@@ -1,5 +1,13 @@
-<h1>New asset</h1>
+<%= page_header(t('assets.new.title'), {'资源列表' => new_asset_path, '控制面板' => '/'}) %>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', assets_path %>
+<div class="row-fluid">
+  <div class="span6">
+    <%= render 'form', :asset_type => nil, :redirect_url => '/assets' %>
+  </div>
+  <div class="span6">
+    <p>1. 在这里上传的资源，可以在任何地方引用。</p>
+    <p>2. 视频推荐上传到优酷，然后引用代码到网站上; 上传到本地，视频解析的速度将很慢。</p>
+    <p>3. 资源使用额度： 存储空间10GB每月; PUT/DELETE 10万次请求; 每月下载流量10GB; 每月 GET 100万次请求
+    </p>
+  </div>
+</div>

@@ -71,6 +71,6 @@ class UserDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_detail_params
-      params.require(:user_detail).permit(:contact_name, :id_card, :mobile_phone, :tel_phone, :qq, :email, :website, :region, :city, :district, :address, :latitude, :longitude, :company_name, :company_nickname, :corporator, :company_reg_no, :company_keywords, :company_description, :fu_gmail_name, :fu_gmail_pwd, :fu_qmail_name, :fu_qmail_pwd, :fu_user_name, :fu_user_pwd)
+      params.require(:user_detail).permit(:contact_name, :id_card, :mobile_phone, :tel_phone, :qq, :email, :website, :region, :city, :district, :address, :latitude, :longitude, :company_name, :company_nickname, :corporator, :company_reg_no, :company_keywords, :company_description)
     end
 end

@@ -1,38 +1,80 @@
-<h1>Listing assets</h1>
+<%= page_header(t('assets.index.title'), {'添加资源' => new_asset_path, '控制面板' => '/'}) %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Asset type</th>
-      <th>Asset name</th>
-      <th>Asset path</th>
-      <th>Bucket</th>
-      <th>Asset key</th>
-      <th>Note</th>
-      <th>Return hash</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="row-fluid">
+  <div class="span12 box">
+      <div class="box-header">
+        <div class="title">
+        </div>
+        <div class="actions">
+            <a href="#" class="btn box-collapse btn-mini btn-link"><i></i>
+            </a>
+        </div>
+      </div>
+      <div class="box-content">
+        <div class="btn-group">
+          <a href="/assets?asset_type=image">
+            <button class="btn">
+              <i class="icon-align-left"></i> 图片
+            </button>
+          </a>
+          <a href="/assets?asset_type=file">
+            <button class="btn">
+              <i class="icon-align-left"></i> 文件
+            </button>
+          </a>
+          <a href="/assets?asset_type=video">
+            <button class="btn">
+              <i class="icon-align-left"></i> 视频
+            </button>
+          </a>
+        </div>
+      </div>
+  </div>
+</div>
 
-  <tbody>
-    <% @assets.each do |asset| %>
+<% if params[:asset_type].nil? || params[:asset_type] == 'image' %>
+  <div class='row-fluid'>
+    <div class='span12 box box-transparent'>
+      <div class='row-fluid'>
+        <% @assets.each do |asset| %>
+          <div class='span2 box-quick-link' style="margin-bottom: 10px;">
+            <%= link_to asset_path(asset) do %>
+              <div class='header'>
+                <div class='' style="height: 60px; overflow: hidden;">
+                  <%= image_tag qiniu_image_path(asset.asset.url, :thumbnail => '80x80>', :quality => 80) %>
+                </div>
+              </div>
+              <div class='content'><%= asset.asset_file_name %></div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <table class="table table-striped table-bordered">
+    <thead>
       <tr>
-        <td><%= asset.user %></td>
-         <td><%= asset.asset_type %></td>
-        <td><%= asset.bucket %></td>
-
-  
-        <td><%= link_to 'Show', asset %></td>
-        <td><%= link_to 'Edit', edit_asset_path(asset) %></td>
-        <td><%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>资源类型</th>
+        <th>资源名称</th>
+        <th>公共路径</th>
+        <th colspan="2">操作</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @assets.each do |asset| %>
+        <tr>
+          <td><%= asset.asset_type %></td>
+          <td><%= asset.asset_file_name %></td>
+          <td><%= link_to asset.asset.url, asset.asset.url, target: '_blank' %></td>
+          <td><%= link_to '查看', asset %></td>
+          <td><%= link_to '删除', asset, method: :delete, data: { confirm: '确定要删除?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= will_paginate @assets %>
 <br>
-
-<%= link_to 'New Asset', new_asset_path %>

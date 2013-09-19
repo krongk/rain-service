@@ -1,8 +1,12 @@
 <%= simple_form_for(@asset, :html => {:multipart => true}) do |f| %>
     <%= display_base_errors @asset %>
     <%= hidden_field_tag :redirect_url, redirect_url  %>
-    <%= f.input :asset_type, as: :hidden, input_html: {value: asset_type } %>
-    <%= f.input :bucket, as: :hidden, input_html: {value: bucket} %>
+    <% if asset_type %>
+      <%= f.input :asset_type, as: :hidden, input_html: {value: asset_type } %>
+    <% else %>
+      <%= f.input :asset_type, collection: [['图片', 'image'], ['视频', 'video'], ['文件', 'file']], include_blank: false %>
+    <% end %>
+
     <%= f.file_field :asset %>
 
     <%= f.button :submit, data: { disable_with: '正在提交...'} %>

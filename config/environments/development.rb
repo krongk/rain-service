@@ -28,26 +28,26 @@ RainService::Application.configure do
   config.assets.debug = true
 
   #Gmail
-  # config.action_mailer.smtp_settings = {
-  #   address: "smtp.gmail.com",
-  #   port: 587,
-  #   domain: ENV["DOMAIN_NAME"],
-  #   authentication: "plain",
-  #   enable_starttls_auto: true,
-  #   user_name: ENV["GMAIL_USERNAME"],
-  #   password: ENV["GMAIL_PASSWORD"]
-  # }
-
-  #Qmail
   config.action_mailer.smtp_settings = {
-    address: "smtp.qq.com",
-    port: 25,
+    address: "smtp.gmail.com",
+    port: 587,
     domain: ENV["DOMAIN_NAME"],
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["QMAIL_USERNAME"],
-    password: ENV["QMAIL_PASSWORD"]
+    user_name: ENV["GMAIL_USERNAME"],
+    password: ENV["GMAIL_PASSWORD"]
   }
+
+  #Qmail
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.qq.com",
+  #   port: 25,
+  #   domain: ENV["DOMAIN_NAME"],
+  #   authentication: "plain",
+  #   enable_starttls_auto: true,
+  #   user_name: ENV["QMAIL_USERNAME"],
+  #   password: ENV["QMAIL_PASSWORD"]
+  # }
 
   # #Mailgun
   # ActionMailer::Base.smtp_settings = {

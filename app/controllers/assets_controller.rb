@@ -6,7 +6,14 @@ class AssetsController < ApplicationController
   # GET /assets
   # GET /assets.json
   def index
-    @assets = Asset.all
+    case params[:asset_type]
+    when 'file'
+      @assets = current_user.assets.all_files.page(params[:page]).order("asset_updated_at DESC")
+    when 'video'
+      @assets = current_user.assets.all_videos.page(params[:page]).order("asset_updated_at DESC")
+    else
+      @assets = current_user.assets.all_images.page(params[:page]).order("asset_updated_at DESC")
+    end
   end
 
   # GET /assets/1
@@ -31,7 +38,7 @@ class AssetsController < ApplicationController
 
     #render :text => params and return
     #validates
-    if @asset.asset_file_name.nil? || @asset.asset_type.nil? || @asset.bucket.nil?
+    if @asset.asset_file_name.nil? || @asset.asset_type.nil? 
       redirect_to(params[:redirect_url] || '/', error: "请指定要上传的内容") and return 
     end
 

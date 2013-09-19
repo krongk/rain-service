@@ -1,12 +1,17 @@
-<%= simple_form_for(@user_account) do |f| %>
+<%= simple_form_for(@user_account, class: 'form form-horizontal') do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name, collection: ApplicationHelper::USER_ACCOUTNS %>
-    <%= f.input :value %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, data: { disable_with: "正在提交..." }  %>
+  <div class="control-group">
+    <div class="controls controls-row">
+      <% if @user_account.new_record? %>
+        <%= f.input :name, collection: @constant_user_acounts, label: false, prompt: '选择账户名称', wrapper: false, input_html: { class: 'span4'}  %>
+      <% else %>
+        <%= f.input :name, label: false, wrapper: false, disabled: true, input_html: { class: 'span4'}  %>
+      <% end %>
+      
+        <%= f.input :value, label: false, placeholder: '值', wrapper: false, input_html: { class: 'span4'}  %>
+        <%= f.button :submit, data: { disable_with: "正在提交..." }, class: 'btn-mini span2' %>
+    </div>
   </div>
 <% end %>
+

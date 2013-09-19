@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   has_one  :user_detail
   has_many :user_accounts, :dependent => :destroy
+  has_many :assets, :dependent => :destroy
   has_many :sms_tmps, :dependent => :destroy
   has_many :sms_logs, :dependent => :destroy
   has_many :phone_items, :dependent => :destroy
@@ -20,6 +21,17 @@ class User < ActiveRecord::Base
   
   before_create :set_default_roles
   after_create :create_user_detail
+
+  #can access current_user on Model
+  class << self
+    def current_user=(user)
+      Thread.current[:current_user] = user
+    end
+
+    def current_user
+      Thread.current[:current_user]
+    end
+  end
 
   private
   def set_default_roles

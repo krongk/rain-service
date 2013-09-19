@@ -5,6 +5,16 @@ class UserAccountsController < ApplicationController
   # GET /user_accounts
   # GET /user_accounts.json
   def index
+    #for New
+    @user_account = UserAccount.new
+
+    #use on select options
+    @constant_user_acounts = ApplicationHelper::USER_ACCOUTNS.dup
+    current_user.user_accounts.find_each do |ua|
+      @constant_user_acounts.reject!{|a| a[-1] == ua.name}
+    end
+
+    #for index
     @user_accounts = current_user.user_accounts.all
   end
 
@@ -16,6 +26,12 @@ class UserAccountsController < ApplicationController
   # GET /user_accounts/new
   def new
     @user_account = UserAccount.new
+
+    #use on select options
+    @constant_user_acounts = ApplicationHelper::USER_ACCOUTNS.dup
+    current_user.user_accounts.find_each do |ua|
+      @constant_user_acounts.reject!{|a| a[-1] == ua.name}
+    end
   end
 
   # GET /user_accounts/1/edit

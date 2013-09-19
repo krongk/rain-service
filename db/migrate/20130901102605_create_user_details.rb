@@ -22,12 +22,6 @@ class CreateUserDetails < ActiveRecord::Migration
       t.string :company_reg_code
       t.string :company_keywords
       t.text :company_description
-      t.string :fu_gmail_name
-      t.string :fu_gmail_pwd
-      t.string :fu_qmail_name
-      t.string :fu_qmail_pwd
-      t.string :fu_user_name
-      t.string :fu_user_pwd
 
       t.timestamps
     end

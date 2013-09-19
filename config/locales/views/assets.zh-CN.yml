@@ -2,19 +2,19 @@
 zh-CN:
   assets:
     index:
-      title: Assets
+      title: 资源
     show:
-      title: Asset
+      title: 资源
     edit:
-      title: Editing Asset
+      title: 编辑资源
     new:
-      title: New Asset
+      title: 创建资源
   flash:
     assets:
       create:
-        notice: '%{resource_name} was successfully created.'
+        notice: '%{resource_name} 成功添加.'
       update:
-        notice: '%{resource_name} was successfully updated.'
+        notice: '%{resource_name} 修改成功。'
       destroy:
-        notice: '%{resource_name} was successfully deleted.'
-        alert: '%{resource_name} could not be deleted.'
+        notice: '%{resource_name} 删除成功.'
+        alert: '%{resource_name} 无法删除.'

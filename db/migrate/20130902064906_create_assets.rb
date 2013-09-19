@@ -4,7 +4,6 @@ class CreateAssets < ActiveRecord::Migration
     create_table :assets do |t|
       t.references :user, index: true
       t.string :asset_type, default: '默认'
-      t.string :bucket
 
     end
   end
