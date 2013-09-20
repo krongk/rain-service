@@ -30,15 +30,15 @@ class MailSendWorker
         password: UserAccount.get(current_user_id, 'mailgun_password'),
         domain: UserAccount.get(current_user_id, 'domain'),
       }
-      Gmailer.smtp_settings.merge!(smtp_settings)
-      
+      GunMailer.smtp_settings.merge!(smtp_settings)
+
       GunMailer.marketing(mail_tmp_id, to_emails).deliver
     else
       puts 'conflict cate'
     end
     puts "install mail sender: -> #{to_emails}"
     t = 120 + rand(300)
-    #sleep(t)
+    sleep(t)
     puts "sleep...#{t}"
   end
 end

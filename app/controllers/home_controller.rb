@@ -13,9 +13,9 @@ class HomeController < ApplicationController
   end
 
   def sms
-  	if params[:processed].nil? #all
+  	if params[:status].nil? #all
       @phone_items = current_user.phone_items.page(params[:page]).order("updated_at DESC")
-    elsif params[:processed] == 'true' #processed
+    elsif params[:status] == 'processed' #processed
       @phone_items = current_user.phone_items.processed.page(params[:page]).order("updated_at DESC")
     else #not processed
       @phone_items = current_user.phone_items.no_processed.page(params[:page]).order("updated_at DESC")
@@ -23,9 +23,9 @@ class HomeController < ApplicationController
   end
 
   def email
-    if params[:processed].nil? #all
-      @mail_items = current_user.mail_items.page(params[:page]).order("updated_at DESC")
-    elsif params[:processed] == 'true' #processed
+    if params[:status].nil? #all
+      @mail_items = current_user.mail_items.no_processed.page(params[:page]).order("updated_at DESC")
+    elsif params[:status] == 'processed' #processed
       @mail_items = current_user.mail_items.processed.page(params[:page]).order("updated_at DESC")
     else #not processed
       @mail_items = current_user.mail_items.no_processed.page(params[:page]).order("updated_at DESC")
