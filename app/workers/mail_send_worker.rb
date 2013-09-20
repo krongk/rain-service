@@ -5,6 +5,7 @@ class MailSendWorker
     case cate
     when 'qq'
       smtp_settings = {
+        from: UserAccount.get(current_user_id, 'qmail_name'),
         user_name: UserAccount.get(current_user_id, 'qmail_name'),
         password: UserAccount.get(current_user_id, 'qmail_password'),
         domain: UserAccount.get(current_user_id, 'domain'),
