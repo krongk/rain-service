@@ -13,8 +13,8 @@
         </div>
     </div>
     <div class='box-content'>
-      <input id="cate" name="cate" type="radio" value="mailgun" checked ="true">MailGun
-      <input id="cate" name="cate" type="radio" value="gmail" checked ="true">Gmail
+      <input id="cate" name="cate" type="radio" value="mailgun" checked ="true">MailGun &nbsp;&nbsp;
+      <input id="cate" name="cate" type="radio" value="gmail" checked ="true">Gmail &nbsp;&nbsp;
       <input id="cate" name="cate" type="radio" value="qq" checked ="true">QQMail
     </div>
   </div>
@@ -70,30 +70,25 @@
 </div>
 <div class='box-content box-no-padding'>
 
-  <div class="tabbable">
-    <ul class="nav nav-tabs nav-tabs-centered">
-        <li class="active">
-            <a data-toggle="tab" href="#tabcenter1">
-                <i class="icon-indent-left text-red"></i>
-                未发送
-            </a>
-        </li>
-        <li class="">
-            <a data-toggle="tab" href="#tabcenter2">
-                已发送
-                <i class="icon-indent-right text-red"></i>
-            </a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane active" id="tabcenter1">
-           <%= render :partial => 'mail_items/list', :locals => {:mail_items => @mail_items_no_processed} %>
-        </div>
-        <div class="tab-pane" id="tabcenter2">
-           <%= render :partial => 'mail_items/list', :locals => {:mail_items => @mail_items_processed} %>
-        </div>
-    </div>
+  <div class="btn-group">
+    <a href="/home/email?processed=false">
+      <button class="btn">
+        <i class="icon-align-left"></i> 未发送
+      </button>
+    </a>
+    <a href="/home/email?processed=true">
+      <button class="btn">
+        <i class="icon-align-left"></i> 已发送
+      </button>
+    </a>
+    <a href="/home/email">
+      <button class="btn">
+        <i class="icon-align-left"></i> 全部
+      </button>
+    </a>
   </div>
+
+  <%= render :partial => 'mail_items/list', :locals => {:mail_items => @mail_items} %>
 
 </div>
 </div>

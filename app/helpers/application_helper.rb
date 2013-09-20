@@ -1,11 +1,16 @@
 module ApplicationHelper
 
   USER_ACCOUTNS =[
+    ['网站域名', 'domain'],
+
     ['Google邮箱账户', 'gmail_name'],
     ['Google邮箱密码', 'gmail_password'],
     
     ['QQ邮箱账户', 'qmail_name'],
     ['QQ邮箱密码', 'qmail_password'],
+
+    ['MailGun邮箱账户', 'mailgun_name'],
+    ['MailGun邮箱密码', 'mailgun_password'],
 
     ['七牛云存储账户', 'qiniu_name'],
     ['七牛云存储密码', 'qiniu_password'],

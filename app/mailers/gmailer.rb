@@ -1,20 +1,18 @@
 class Gmailer < ActionMailer::Base
-  default from: ENV["QMAIL_USERNAME"]
+  default from: UserAccount.get('gmail_name')
 
   Gmailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    domain: ENV["DOMAIN_NAME"],
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
+    user_name: UserAccount.get('gmail_name'),
+    password: UserAccount.get('gmail_password'),
+    domain: UserAccount.get('domain')
   }
 
-  def marketing(mail_tmp_id, from_email, to_email) 
-    sleep(120 + rand(600)) 
+  def marketing(mail_tmp_id, to_email) 
     @mail_tmp = MailTmp.find(mail_tmp_id)
     mail to: to_email, subject: @mail_tmp.title
   end
-
 end

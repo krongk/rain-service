@@ -4,69 +4,50 @@ class MailItemsController < ApplicationController
 
   #POST
   def mail_send
-    if params[:mail_tmp_id].nil?
-      flash[:error] = "没有选择邮件模版"
-      redirect_to "/home/email"
-      return
-    end
-    
-    if params[:mail_item_ids].nil?
-      flash[:error] = "没有选择任何要发送的邮箱"
-      redirect_to "/home/email"
-      return
-    end
-
-    # if ENV['MAILGUN_USERNAME'].nil? || ENV['MAILGUN_PASSWORD'].nil?
-    #   flash[:error] = "请配置短信发送接口的环境变量"
-    #   redirect_to "/home/email" and return
-    # end
     cate = params[:cate] || 'gmail'
-
     mail_tmp = MailTmp.find(params[:mail_tmp_id])
-    return if mail_tmp.nil? || params[:mail_item_ids].empty?
-
-    #fetch from email
-    current_user = User.find(mail_tmp.user_id)
-    if cate == 'qq'
-      from_email = current_user.user_detail.fu_qmail_name
-    else
-      from_email = current_user.user_detail.website
-      unless from_email.nil?
-        from_email = 'admin@' + from_email.sub(/^http(s)?(:)?(\/\/)?(www)?(\.)?/i, '')
-      end
-      from_email ||= current_user.email
-    end
-    if from_email.nil?
-      puts "error: blank from_email"
+    if mail_tmp.nil? || params[:mail_item_ids].nil? || params[:mail_item_ids].empty?
+      flash[:error] = "没有选择任何邮件模版或要发送的邮箱"
+      redirect_to "/home/email"
       return
     end
 
+    #邮件按照10个分组，每次群发10个。
     per_emails = []
-    MailItem.where(:id => params[:mail_item_ids]).each do |item|
-      #一次群发10个
-      if per_emails.size == 10
-        MailSendWorker.perform_async(cate, mail_tmp.id, from_email, per_emails.join(";"))
-        per_emails = []
+    tmp_arr = []
+    params[:mail_item_ids].to_a.each do |id|
+      tmp_arr << id
+      if tmp_arr.size == 10
+        per_emails << tmp_arr
+        tmp_arr = []
       end
-      per_emails << item.email
+    end
+    per_emails << tmp_arr unless tmp_arr.empty?
 
-      status = 'y'
-      item.is_processed = item.is_processed == 'n' ? "#{mail_tmp.id},#{status}" : "#{mail_tmp.id},#{status}|" + item.is_processed
-      item.save!
-      
-      billing_count = 1
-      MailLog.create!(
-          :user_id => item.user_id, 
-          :mail_item_id => item.id, 
-          :mail_tmp_id => mail_tmp.id, 
-          :status => status,
-          :billing_count => billing_count)
+    per_emails.each do |mail_item_ids|
+      #Workder一次发送10个
+      MailSendWorker.perform_async(cate, mail_tmp.id, mail_item_ids)
 
-      #increment billing count
-      Keystore.increment_value_for("user:#{item.user_id}:mail_billing_count", billing_count)
+      #状态处理
+      MailItem.where(:id => mail_item_ids).each do |item|
+        status = 'y'
+        item.is_processed = item.is_processed == 'n' ? "#{mail_tmp.id},#{status}" : "#{mail_tmp.id},#{status}|" + item.is_processed
+        item.save!
+        
+        billing_count = 1
+        MailLog.create!(
+            :user_id => item.user_id, 
+            :mail_item_id => item.id, 
+            :mail_tmp_id => mail_tmp.id, 
+            :status => status,
+            :billing_count => billing_count)
 
-      #increment send count(per phone per send)
-      Keystore.increment_value_for("user:#{item.user_id}:mail_send_count", 1)
+        #increment billing count
+        Keystore.increment_value_for("user:#{item.user_id}:mail_billing_count", billing_count)
+
+        #increment send count(per phone per send)
+        Keystore.increment_value_for("user:#{item.user_id}:mail_send_count", 1)
+      end
     end
 
     respond_to do |format|

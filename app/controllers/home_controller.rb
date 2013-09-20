@@ -13,16 +13,23 @@ class HomeController < ApplicationController
   end
 
   def sms
-  	@sms_tmp = SmsTmp.new
-    @phone_item = PhoneItem.new
-    
-    @phone_items_processed = current_user.phone_items.processed.page(params[:page]).order("updated_at DESC")
-    @phone_items_no_processed = current_user.phone_items.no_processed.page(params[:page]).order("updated_at DESC")
+  	if params[:processed].nil? #all
+      @phone_items = current_user.phone_items.page(params[:page]).order("updated_at DESC")
+    elsif params[:processed] == 'true' #processed
+      @phone_items = current_user.phone_items.processed.page(params[:page]).order("updated_at DESC")
+    else #not processed
+      @phone_items = current_user.phone_items.no_processed.page(params[:page]).order("updated_at DESC")
+    end
   end
 
-  def email  
-    @mail_items_processed = current_user.mail_items.processed.page(params[:page]).order("updated_at DESC")
-    @mail_items_no_processed = current_user.mail_items.no_processed.page(params[:page]).order("updated_at DESC")
+  def email
+    if params[:processed].nil? #all
+      @mail_items = current_user.mail_items.page(params[:page]).order("updated_at DESC")
+    elsif params[:processed] == 'true' #processed
+      @mail_items = current_user.mail_items.processed.page(params[:page]).order("updated_at DESC")
+    else #not processed
+      @mail_items = current_user.mail_items.no_processed.page(params[:page]).order("updated_at DESC")
+    end
   end
 
   def qq

@@ -20,11 +20,11 @@ class Asset < ActiveRecord::Base
   def init_paperclip
     paperclip_options = {
       :qiniu_credentials => {
-        :access_key => User.current_user.user_accounts.find{|a| a.name == 'qiniu_access_key'}.value,
-        :secret_key => User.current_user.user_accounts.find{|a| a.name == 'qiniu_secret_key'}.value,
+        :access_key => UserAccount.get('qiniu_access_key'),
+        :secret_key => UserAccount.get('qiniu_secret_key'), 
       },
-      :bucket => User.current_user.user_accounts.find{|a| a.name == 'qiniu_bucket'}.value,
-      :qiniu_host => User.current_user.user_accounts.find{|a| a.name == 'qiniu_host'}.value,
+      :bucket => UserAccount.get('qiniu_bucket'),
+      :qiniu_host => UserAccount.get('qiniu_host'),
     }
     Paperclip::Attachment.default_options.merge!(paperclip_options)
   end
