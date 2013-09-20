@@ -27,7 +27,7 @@ class MailItemsController < ApplicationController
     per_emails.each do |mail_item_ids|
       mail_items = MailItem.where(:id => mail_item_ids)
       #Workder一次发送10个
-      MailSendWorker.perform_async(cate, mail_tmp.id, mail_items.map(&:email).join(";"))
+      MailSendWorker.perform_async(current_user.id, cate, mail_tmp.id, mail_items.map(&:email).join(";"))
 
       #状态处理
       mail_items.each do |item|

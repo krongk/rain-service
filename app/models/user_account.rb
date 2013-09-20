@@ -3,12 +3,11 @@ class UserAccount < ActiveRecord::Base
 
   validates_presence_of :name, :value
 
-  def self.get(name)
+  def self.get(user_id, name)
     puts "__________________________"
-    User.current_user.id
-    puts "__________________________"
+
     begin
-      self.where("user_id = ? and name = ?", User.current_user.id, name).first.value
+      self.where("user_id = ? and name = ?", user_id, name).first.value
     rescue => ex
       puts ex.message
       raise

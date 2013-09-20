@@ -11,7 +11,10 @@ class QqMailer < ActionMailer::Base
   }
 
   def marketing(mail_tmp_id, to_email)
+    puts '...........................'
     puts QqMailer.smtp_settings
+    puts '...........................'
+    
     puts '...........................'
     @mail_tmp = MailTmp.find(mail_tmp_id)
     mail to: to_email, subject: @mail_tmp.title

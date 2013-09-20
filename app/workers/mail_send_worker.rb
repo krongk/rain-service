@@ -1,9 +1,16 @@
 class MailSendWorker
   include Sidekiq::Worker
 
-  def perform(cate, mail_tmp_id, to_emails)
+  def perform(current_user_id, cate, mail_tmp_id, to_emails)
     case cate
     when 'qq'
+      smtp_settings = {
+        user_name: UserAccount.get(current_user_id, 'qmail_name'),
+        password: UserAccount.get(current_user_id, 'qmail_password'),
+        domain: UserAccount.get(current_user_id, 'domain'),
+      }
+      QqMailer.smtp_settings.merge!(smtp_settings)
+      
       QqMailer.marketing(mail_tmp_id, to_emails).deliver
     when 'gmail'
       Gmailer.marketing(mail_tmp_id, to_emails).deliver
