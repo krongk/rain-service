@@ -1,16 +1,11 @@
 module ApplicationHelper
 
   USER_ACCOUTNS =[
+    #required
     ['网站域名', 'domain'],
 
-    ['Google邮箱账户', 'gmail_name'],
-    ['Google邮箱密码', 'gmail_password'],
-    
     ['QQ邮箱账户', 'qmail_name'],
     ['QQ邮箱密码', 'qmail_password'],
-
-    ['MailGun邮箱账户', 'mailgun_name'],
-    ['MailGun邮箱密码', 'mailgun_password'],
 
     ['七牛云存储账户', 'qiniu_name'],
     ['七牛云存储密码', 'qiniu_password'],
@@ -18,6 +13,12 @@ module ApplicationHelper
     ['七牛云存储SECRET_KEY', 'qiniu_secret_key'],
     ['七牛云存储空间名', 'qiniu_bucket'],
     ['七牛云存储访问地址', 'qiniu_host'],
+
+    #not required
+    ['MailGun邮箱账户', 'mailgun_name'],
+    ['MailGun邮箱密码', 'mailgun_password'],
+    ['Google邮箱账户', 'gmail_name'],
+    ['Google邮箱密码', 'gmail_password']
   ]
 
   SMS_SEND_STATUS = {
