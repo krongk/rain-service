@@ -14,7 +14,7 @@ class MailSendWorker
     end
     puts "install mail sender: -> #{to_emails}"
     t = 120 + rand(300)
-    sleep(t)
+    #sleep(t)
     puts "sleep...#{t}"
   end
 end
