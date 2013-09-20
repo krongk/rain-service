@@ -14,7 +14,15 @@ class MailSendWorker
 
       QqMailer.marketing(mail_tmp_id, to_emails).deliver
     when 'gmail'
-      #Gmailer.marketing(mail_tmp_id, to_emails).deliver
+      smtp_settings = {
+        from: UserAccount.get(current_user_id, 'gmail_name'),
+        user_name: UserAccount.get(current_user_id, 'gmail_name'),
+        password: UserAccount.get(current_user_id, 'gmail_password'),
+        domain: UserAccount.get(current_user_id, 'domain'),
+      }
+      Gmailer.smtp_settings.merge!(smtp_settings)
+
+      Gmailer.marketing(mail_tmp_id, to_emails).deliver
     when 'mailgun'
       #GunMailer.marketing(mail_tmp_id, to_emails).deliver
     else
