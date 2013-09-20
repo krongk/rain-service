@@ -11,7 +11,8 @@ class Gmailer < ActionMailer::Base
     domain: UserAccount.get('domain')
   }
 
-  def marketing(mail_tmp_id, to_email) 
+  def marketing(mail_tmp_id, to_email)
+    puts Gmailer.smtp_settings
     @mail_tmp = MailTmp.find(mail_tmp_id)
     mail to: to_email, subject: @mail_tmp.title
   end

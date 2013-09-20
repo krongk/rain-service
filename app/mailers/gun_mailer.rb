@@ -11,6 +11,8 @@ class GunMailer < ActionMailer::Base
   }
 
   def marketing(mail_tmp_id, to_email) 
+    puts GunMailer.smtp_settings
+    puts '..........................'
     @mail_tmp = MailTmp.find(mail_tmp_id)
     mail to: to_email, subject: @mail_tmp.title
   end
