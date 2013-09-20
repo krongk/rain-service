@@ -1,12 +1,12 @@
 class GunMailer < ActionMailer::Base
-  default from: UserAccount.get('mailgun_name')
+  #default from: UserAccount.get('mailgun_name')
 
   GunMailer.smtp_settings = {
     :port           => 587, 
     :address        => 'smtp.mailgun.org',
-    :user_name      => UserAccount.get('mailgun_name'),
-    :password       => UserAccount.get('mailgun_passwrod'),
-    :domain         => UserAccount.get('domain'),
+    # :user_name      => UserAccount.get('mailgun_name'),
+    # :password       => UserAccount.get('mailgun_passwrod'),
+    # :domain         => UserAccount.get('domain'),
     :authentication => :plain,
   }
 

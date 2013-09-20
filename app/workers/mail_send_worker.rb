@@ -10,12 +10,12 @@ class MailSendWorker
         domain: UserAccount.get(current_user_id, 'domain'),
       }
       QqMailer.smtp_settings.merge!(smtp_settings)
-      
+
       QqMailer.marketing(mail_tmp_id, to_emails).deliver
     when 'gmail'
-      Gmailer.marketing(mail_tmp_id, to_emails).deliver
+      #Gmailer.marketing(mail_tmp_id, to_emails).deliver
     when 'mailgun'
-      GunMailer.marketing(mail_tmp_id, to_emails).deliver
+      #GunMailer.marketing(mail_tmp_id, to_emails).deliver
     else
       puts 'conflict cate'
     end
