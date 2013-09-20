@@ -10,7 +10,7 @@ class UserAccount < ActiveRecord::Base
       self.where("user_id = ? and name = ?", user_id, name).first.value
     rescue => ex
       puts ex.message
-      raise
+
     end
   end
 
