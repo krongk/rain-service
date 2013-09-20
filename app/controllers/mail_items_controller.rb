@@ -25,11 +25,12 @@ class MailItemsController < ApplicationController
     per_emails << tmp_arr unless tmp_arr.empty?
 
     per_emails.each do |mail_item_ids|
+      mail_items = MailItem.where(:id => mail_item_ids)
       #Workder一次发送10个
-      MailSendWorker.perform_async(cate, mail_tmp.id, mail_item_ids)
+      MailSendWorker.perform_async(cate, mail_tmp.id, mail_items.map(&:email).join(";"))
 
       #状态处理
-      MailItem.where(:id => mail_item_ids).each do |item|
+      mail_items.each do |item|
         status = 'y'
         item.is_processed = item.is_processed == 'n' ? "#{mail_tmp.id},#{status}" : "#{mail_tmp.id},#{status}|" + item.is_processed
         item.save!
