@@ -1,5 +1,5 @@
 class QqMailer < ActionMailer::Base
-  default from: UserAccount.get('qmail_name')
+  #default from: UserAccount.get('qmail_name')
 
   QqMailer.smtp_settings = {
     address: "smtp.qq.com",
