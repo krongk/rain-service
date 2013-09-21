@@ -1,5 +1,7 @@
 module ApplicationHelper
 
+  THEME_CATES = [['博客型超级换肤型', 'bootswatch'], ['企业超级定制型', 'bootsbiz']]
+  
   USER_ACCOUTNS =[
     #required
     ['网站域名', 'domain'],
