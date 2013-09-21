@@ -4,7 +4,7 @@ class MailItemsController < ApplicationController
 
   #POST
   def mail_send
-    render text: params and return
+    #render text: params and return
 
     cate = params[:cate]
     mail_tmp = MailTmp.find(params[:mail_tmp_id])
