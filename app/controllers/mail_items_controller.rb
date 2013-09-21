@@ -4,18 +4,34 @@ class MailItemsController < ApplicationController
 
   #POST
   def mail_send
-    cate = params[:cate] || 'gmail'
+    #render text: params and return
+
+    cate = params[:cate]
     mail_tmp = MailTmp.find(params[:mail_tmp_id])
-    if mail_tmp.nil? || params[:mail_item_ids].nil? || params[:mail_item_ids].empty?
-      flash[:error] = "没有选择任何邮件模版或要发送的邮箱"
+    if cate.nil? || mail_tmp.nil? || params[:mail_item_ids].nil? || params[:mail_item_ids].empty? || params[:mail_select_val].blank?
+      flash[:error] = "没有选择任何发送渠道、邮件模版或要发送的邮箱"
       redirect_to "/home/email"
       return
+    end
+
+    #如果选择了，就按照选择的发送，否则按照条件选择的发送。
+    #一次只能执行最多600条， 其余的默认不执行。
+    send_mail_item_ids = if params[:mail_item_ids]
+      params[:mail_item_ids]
+    elsif params[:mail_select_val] == 'no_processed'
+      MailItem.no_processed(current_user.id).limit(600).map(&:id)
+    elsif params[:mail_select_val] == 'processed'
+      MailItem.processed(current_user.id).limit(600).map(&:id)
+    elsif params[:mail_select_val] == 'all'
+      current_user.mail_items.map(&:id)
+    else
+      []
     end
 
     #邮件按照10个分组，每次群发10个。
     per_emails = []
     tmp_arr = []
-    params[:mail_item_ids].to_a.each do |id|
+    send_mail_item_ids.each do |id|
       tmp_arr << id
       if tmp_arr.size == 10
         per_emails << tmp_arr
@@ -25,15 +41,24 @@ class MailItemsController < ApplicationController
     per_emails << tmp_arr unless tmp_arr.empty?
 
     step_minutes = 0 #发送分钟间隔
-    per_emails.each do |mail_item_ids|
+    per_emails.each_with_index do |mail_item_ids, index|
+      #如果通道是选择的‘全部’则按次序每次发送一个通道。
+      if cate == 'all'
+        per_cate = ['mailgun', 'gmail', 'qq'][index%3]
+      else
+        per_cate = cate
+      end
+      
+      #获得邮件列表
       mail_items = MailItem.where(:id => mail_item_ids)
+
       #Workder一次发送10个
       # MyWorker.perform_in(3.hours, 'mike', 1)
       # MyWorker.perform_at(3.hours.from_now, 'mike', 1)
       # MailSendWorker.perform_async(current_user.id, cate, mail_tmp.id, mail_items.map(&:email).join(";"))
       step_minutes += 5
       t = step_minutes + rand(3)
-      MailSendWorker.perform_at(t.minutes.from_now, current_user.id, cate, mail_tmp.id, mail_items.map(&:email).join(";"))
+      MailSendWorker.perform_at(t.minutes.from_now, current_user.id, per_cate, mail_tmp.id, mail_items.map(&:email).join(";"))
 
       #状态处理
       mail_items.each do |item|
@@ -69,7 +94,16 @@ class MailItemsController < ApplicationController
   # GET /mail_items
   # GET /mail_items.json
   def index
-    @mail_items = current_user.mail_items.paginate(:page => params[:page] || 1, :per_page => 100).order("updated_at DESC")
+    @mail_item = MailItem.new #use for search form
+
+    @mail_items = if params[:mail_item] && (query = params[:mail_item][:email])
+      MailItem.where(:user_id => current_user.id)
+      .where('email like ? OR source_name like ? OR name like ?', "%#{query}%", "%#{query}%", "%#{query}%")
+      .paginate(:page => params[:page] || 1, :per_page => 50).order("updated_at DESC")
+    else
+      MailItem.where(:user_id => current_user.id)
+      .paginate(:page => params[:page] || 1, :per_page => 50).order("updated_at DESC")
+    end
   end
 
   # GET /mail_items/1

@@ -23,13 +23,7 @@ class HomeController < ApplicationController
   end
 
   def email
-    if params[:status].nil? #all
-      @mail_items = current_user.mail_items.no_processed.page(params[:page]).order("updated_at DESC")
-    elsif params[:status] == 'processed' #processed
-      @mail_items = current_user.mail_items.processed.page(params[:page]).order("updated_at DESC")
-    else #not processed
-      @mail_items = current_user.mail_items.no_processed.page(params[:page]).order("updated_at DESC")
-    end
+    @mail_items = MailItem.no_processed(current_user.id).page(params[:page]).order("updated_at DESC")
   end
 
   def qq

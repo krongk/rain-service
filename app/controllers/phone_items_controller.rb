@@ -35,11 +35,11 @@ class PhoneItemsController < ApplicationController
     
     @phone_item = PhoneItem.new #use for search_form
 
-    if params[:phone_item] && (mobi = params[:phone_item][:mobile_phone]) =~ /\d+/
-      mobi = mobi.gsub(/[^0-9]/, '')
+    if params[:phone_item] && (mobi = params[:phone_item][:mobile_phone])
+      mobi = mobi.gsub(/[^0-9]/, '') if mobi =~ /\d+/
       @phone_items = PhoneItem
         .where(:user_id => current_user.id)
-        .where('mobile_phone like ?', "%#{mobi}%")
+        .where('mobile_phone like ? OR source_name like ? OR name like ?', "%#{mobi}%", "%#{mobi}%", "%#{mobi}%")
         .paginate(:page => params[:page]|| 1, :per_page => 50)
         .order("updated_at DESC")
     else

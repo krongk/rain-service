@@ -1,9 +1,11 @@
-<%= simple_form_for @mail_item, action: "/mail_items", :method => :get do |f| %>
-<div class='row-fluid text-right'>
-    <div class='span12'>
-       <%= f.input :email, placeholder: '输入电子邮件' %>
-       <%= f.button :submit, '搜索', data: { disable_with: '正在提交...'}, class: 'btn btn-mini' %>
-       <%= link_to "显示全部", mail_items_url, class: 'btn btn-mini btn-white' %>
-    </div>
-</div>
+<%= simple_form_for(@mail_item, action: "/mail_items", :method => :get, class: 'form form-horizontal') do |f| %>
+  <%= f.error_notification %>
+
+  <div class="control-group">
+    <div class="controls controls-row">
+       <%= f.input :email, placeholder: '输入电子邮件/来源/姓名', label: false, wrapper: false, input_html: { class: 'span4 offset1'} %>
+       <%= f.button :submit, '搜索', data: { disable_with: '正在提交...'}, class: 'btn btn-mini btn-warning span2' %>
+       <%= link_to "显示全部", mail_items_url, class: 'btn btn-mini btn-white span2' %>
+      </div>
+  </div>
 <% end %>

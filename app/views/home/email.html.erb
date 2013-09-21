@@ -1,4 +1,4 @@
-<%= page_header('邮件通', {'发送日志' => '/mail_items', '添加邮件' => new_mail_item_path, '添加模板' => new_mail_tmp_path, '批量导入' => '/mail_import'}) %>
+<%= page_header('邮件通', {'发送日志' => '/mail_items', '邮件列表' => mail_items_url, '模板列表' => mail_tmps_url, '添加邮件' => new_mail_item_path, '添加模板' => new_mail_tmp_path, '批量导入' => '/mail_import'}) %>
 
 <!-- send mail start -->
 <%= form_tag "/mail_send", :method => :post do |f| %>
@@ -13,9 +13,14 @@
         </div>
     </div>
     <div class='box-content'>
-      <input id="cate" name="cate" type="radio" value="mailgun" checked ="true">MailGun &nbsp;&nbsp;
-      <input id="cate" name="cate" type="radio" value="gmail" checked ="true">Gmail &nbsp;&nbsp;
-      <input id="cate" name="cate" type="radio" value="qq" checked ="true">QQMail
+      <div class="btn-group" data-toggle="buttons-radio" id="cate_select">
+        <button type="button" class="btn btn-warning" value="mailgun">MailGun服务</button>
+        <button type="button" class="btn btn-warning" value="gmail">谷歌邮箱</button>
+        <button type="button" class="btn btn-warning" value="qq">QQ邮箱</button>
+        <button type="button" class="btn btn-warning" value="all">全部</button>
+      </div>
+      <input type="hidden" id="cate" name="cate" value="all" />
+
     </div>
   </div>
 </div>
@@ -71,16 +76,20 @@
 <div class='box-content box-no-padding'>
 
   <div class="btn-group">
-    <a href="/home/email">
-      <button class="btn">
-        <i class="icon-align-left"></i> 未发送
-      </button>
+    <a onClick="javascript: ToggleCheck();" href="javascript: void(0);"  class="btn btn-info">
+      <i class="icon-align-left"></i> 选择以下所有
     </a>
-    <a href="/home/email?status=processed">
-      <button class="btn">
-        <i class="icon-align-left"></i> 已发送
-      </button>
-    </a>
+  </div>
+
+  <div class="btn-group" data-toggle="buttons-radio" id="mail_select">
+    <button type="button" class="btn btn-warning" value="no_processed">选择未发送的(<%=MailItem.no_processed(current_user.id).count %>)</button>
+    <button type="button" class="btn btn-warning" value="processed">选择已发送的(<%=MailItem.processed(current_user.id).count %>)</button>
+    <button type="button" class="btn btn-warning" value="all">选择全部(<%=current_user.mail_items.count %>)</button>
+  </div>
+  <input type="hidden" id="mail_select_val" name="mail_select_val" value="" />
+
+  <div class="btn-group">
+    <%= submit_tag "发送邮件", class: 'btn btn-primary' %>
   </div>
 
   <%= render :partial => 'mail_items/list', :locals => {:mail_items => @mail_items} %>
@@ -89,10 +98,6 @@
 </div>
 </div><!-- end datatable -->
 
-  <div class="form-actions">
-     <a onClick="javascript: ToggleCheck();" href="javascript:void(0);">全选</a> &nbsp;|&nbsp;
-    <%= submit_tag "发送邮件", class: 'btn btn-primary btn-large' %>
-  </div>
 <% end %>
 
 
@@ -114,4 +119,16 @@
        
       }
     }
+    //select mail items
+    $(document).ready(function() {
+      $("#mail_select button").click(function () {
+        $("#mail_select_val").val($(this).val());
+      });
+    });
+    //select mail cate
+    $(document).ready(function() {
+      $("#cate_select button").click(function () {
+        $("#cate").val($(this).val());
+      });
+    });
 </script>

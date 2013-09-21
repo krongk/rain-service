@@ -4,39 +4,52 @@
   <div class='span12 box box-nomargin'>
     <%= box_title(@mail_item.email) %>
     <div class='box-content'>
-      <p>
-        <strong>来源:</strong>
-        <%= @mail_item.source_name %>
-      </p>
 
-      <p>
-        <strong>姓名:</strong>
-        <%= @mail_item.name %>
-      </p>
+      <div class='row-fluid'>
+        <div class='span7'>
+          <div class="pull-right">
+            <%= link_to "修改", edit_mail_item_path(@mail_item), class: 'btn btn-primary' %>
+            <%= link_to '删除', @mail_item, method: :delete, data: { confirm: '确定要删除?' }, class: 'btn btn-inverse' %>
+          </div>
+          <p>
+            <strong>来源:</strong>
+            <%= @mail_item.source_name %>
+          </p>
 
-      <p>
-        <strong>城市:</strong>
-        <%= @mail_item.city %>
-      </p>
+          <p>
+            <strong>姓名:</strong>
+            <%= @mail_item.name %>
+          </p>
 
-      <p>
-        <strong>区域:</strong>
-        <%= @mail_item.area %>
-      </p>
+          <p>
+            <strong>城市:</strong>
+            <%= @mail_item.city %>
+          </p>
 
-      <p>
-        <strong>描述:</strong>
-        <%= @mail_item.description %>
-      </p>
+          <p>
+            <strong>区域:</strong>
+            <%= @mail_item.area %>
+          </p>
 
-      <p>
-        <strong>执行情况:</strong>
-        <%= show_send_status(@mail_item.is_processed) %> 
-      </p>
+          <p>
+            <strong>描述:</strong>
+            <%= @mail_item.description %>
+          </p>
 
-      <div class="pull-right">
-        <%= link_to "修改", edit_mail_item_path(@mail_item), class: 'btn btn-primary' %>
-        <%= link_to '删除', @mail_item, method: :delete, data: { confirm: '确定要删除?' }, class: 'btn btn-inverse' %>
+          <p>
+            <strong>执行情况:</strong>
+            <%= show_send_status(@mail_item.is_processed) %> 
+          </p>          
+        </div>
+        <div class='span4 offset1' style="background: #eee; border: 1px solid #ccc; padding: 4px;">
+          <%= form_tag "/mail_send", :method => :post do |f| %>
+            <input type="hidden" id="cate" name="cate" value="gmail" />
+            <input type="hidden" id="mail_item_ids" name="mail_item_ids[]" value="<%= @mail_item.id %>" />
+            <%=select_tag 'mail_tmp_id', options_for_select(current_user.mail_tmps.collect{ |u| [u.title, u.id] }) %>
+            <br>
+            <%= submit_tag "发送邮件", class: 'btn btn-primary' %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

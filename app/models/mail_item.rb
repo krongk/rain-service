@@ -8,8 +8,9 @@ class MailItem < ActiveRecord::Base
   after_create :increment_total_count
   after_destroy :decrement_total_count
 
-  scope :processed, -> {where("is_processed != ?", 'n')}
-  scope :no_processed, -> {where(is_processed: 'n')}
+  scope :processed, -> (user_id) {where("user_id = ? AND is_processed != ?", user_id, 'n')}
+  scope :no_processed, ->(user_id) {where("user_id = ? AND is_processed = ?", user_id, 'n')}
+  # scope :created_before, ->(time) { where("created_at < ?", time) }
   
   validates_presence_of :email
   validate do
