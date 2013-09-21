@@ -4,11 +4,12 @@ class MailItemsController < ApplicationController
 
   #POST
   def mail_send
-    #render text: params and return
+    render text: params and return
 
     cate = params[:cate]
     mail_tmp = MailTmp.find(params[:mail_tmp_id])
-    if cate.nil? || mail_tmp.nil? || params[:mail_item_ids].nil? || params[:mail_item_ids].empty? || params[:mail_select_val].blank?
+
+    if cate.nil? || mail_tmp.nil? || (params[:mail_item_ids].empty? && params[:mail_select_val].blank?)
       flash[:error] = "没有选择任何发送渠道、邮件模版或要发送的邮箱"
       redirect_to "/home/email"
       return
