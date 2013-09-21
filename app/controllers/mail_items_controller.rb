@@ -24,10 +24,16 @@ class MailItemsController < ApplicationController
     end
     per_emails << tmp_arr unless tmp_arr.empty?
 
+    step_minutes = 0 #发送分钟间隔
     per_emails.each do |mail_item_ids|
       mail_items = MailItem.where(:id => mail_item_ids)
       #Workder一次发送10个
-      MailSendWorker.perform_async(current_user.id, cate, mail_tmp.id, mail_items.map(&:email).join(";"))
+      # MyWorker.perform_in(3.hours, 'mike', 1)
+      # MyWorker.perform_at(3.hours.from_now, 'mike', 1)
+      # MailSendWorker.perform_async(current_user.id, cate, mail_tmp.id, mail_items.map(&:email).join(";"))
+      step_minutes += 5
+      t = step_minutes + rand(3)
+      MailSendWorker.perform_at(t.minutes.from_now, current_user.id, cate, mail_tmp.id, mail_items.map(&:email).join(";"))
 
       #状态处理
       mail_items.each do |item|
