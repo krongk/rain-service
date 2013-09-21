@@ -28,7 +28,7 @@ RainService::Application.routes.draw do
   resources :assets
 
   get "home/index"
-  get "home/site"
+  get "home/theme"
   get "home/sms"
   get "home/email"
   get "home/data"
@@ -50,7 +50,8 @@ RainService::Application.routes.draw do
   get "mail_import" => "mail_items#mail_import"
   post "/phone_send" => "phone_items#phone_send", :via => :post
   post "/mail_send" => "mail_items#mail_send", :via => :post
-  
+  get "/like_theme" => "themes#like_theme"
+
   resources :mail_tmps
 
   resources :mail_items

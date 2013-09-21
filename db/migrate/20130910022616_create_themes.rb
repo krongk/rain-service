@@ -12,6 +12,8 @@ class CreateThemes < ActiveRecord::Migration
       t.text :header
       t.text :body
       t.text :footer
+
+      t.timestamps
     end
   end
 end

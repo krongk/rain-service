@@ -1,0 +1,13 @@
+---
+en:
+  active_record:
+    models:
+      user_theme: User theme
+    attributes:
+      user_theme:
+        user: User
+        theme: Theme
+    errors:
+      user_theme: 
+  helpers:
+    user_theme: 

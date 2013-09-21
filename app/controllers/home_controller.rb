@@ -8,8 +8,13 @@ class HomeController < ApplicationController
   def asset
   end
   
-  #网站通
-  def site
+  #网站模板
+  def theme
+    @themes = if params[:cate]
+      Theme.where(:cate => params[:cate]).page(params[:page]).order("updated_at DESC")
+    else
+      Theme.page(params[:page]).order("updated_at DESC")
+    end
   end
 
   def sms

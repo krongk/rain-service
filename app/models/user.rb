@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   has_many :sites, :dependent => :destroy
   has_many :site_posts, :dependent => :destroy
   has_many :site_pages, :dependent => :destroy
+  has_many :user_themes
+  has_many :themes, :through => :user_themes
   
   before_create :set_default_roles
   after_create :create_user_detail

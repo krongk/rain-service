@@ -35,7 +35,12 @@
 <div class='span12'>
 <div class='gallery'>
 <ul class='unstyled inline'>
-<% Theme.all.each do |theme| %>
+<% if @themes.empty? %>
+  <div class="alert alert-info">
+    还没有喜欢的任何模板， 请在<a href="/home/theme">模板库</a>中选择你喜欢的模板。然后再进入这里创建网站。
+  </div>
+<% end %>
+<% @themes.each do |theme| %>
 <li>
     <div class='picture' style="border: 2px solid #ccc;">
         <div class='tags'>
@@ -66,8 +71,14 @@
 </div></div>
   <div class='form-actions' style='margin-bottom: 0;'>
     <div class='text-right'>
-      <%= button_tag(type: 'submit', class: "btn btn-primary btn-large") do %>
-        <i class='icon-arrow-right'></i> 下一步
+      <% if @themes.empty? %>
+        <%= button_tag(type: 'submit', class: "btn btn-primary btn-large", disabled: "disabled") do %>
+          <i class='icon-arrow-right'></i> 下一步
+        <% end %>
+      <% else %>
+        <%= button_tag(type: 'submit', class: "btn btn-primary btn-large") do %>
+          <i class='icon-arrow-right'></i> 下一步
+        <% end %>
       <% end %>
     </div>
   </div>                  

@@ -1,6 +1,21 @@
 class ThemesController < ApplicationController
   before_action :set_theme, only: [:show, :edit, :update, :destroy]
 
+  def like_theme
+    puts "lllllll#{params}"
+    @theme_id = params[:theme_id]
+    UserTheme.create(:user_id => current_user.id, :theme_id => @theme_id)
+    respond_to do |format|
+      if true
+        format.html {}
+        format.js   {}
+        format.json {}
+      else
+        format.html {}
+        format.json {}
+      end
+    end
+  end
   # GET /themes
   # GET /themes.json
   def index

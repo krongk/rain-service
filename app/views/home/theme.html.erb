@@ -1,0 +1,62 @@
+<%= page_header('网站模板', {'网站通' => sites_url, '控制面板' => root_path}) %>
+
+<div class="row-fluid">
+  <div class="span12 box">
+      <div class="box-content">
+        <div class="btn-group">
+          <a href="/home/theme">
+            <button class="btn btn-info">
+              <i class="icon-align-left"></i> 显示全部
+            </button>
+          </a>
+          <% ApplicationHelper::THEME_CATES.each do |theme_cate| %>
+            <a href="/home/theme?cate=<%= theme_cate[-1]%>">
+              <button class="btn">
+                <i class="icon-align-left"></i> <%= theme_cate[0]%>
+              </button>
+            </a>
+          <% end %>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class='row-fluid'>
+  <div class='span12'>
+    <div class='gallery'>
+      <ul class='unstyled inline'>
+        <% @themes.each do |theme| %>
+          <li>
+              <div class='picture' style="border: 2px solid #ccc;">
+                  <div class='tags'>
+                      <% theme.tags.split(/[，,]+/).each do |tag| %>
+                          <div class='label label-'<%= rand_flag %> ><%=tag %></div>
+                      <% end %>
+                  </div>
+                  <div class='actions' style="background: #ccc; color: #fff;">
+                      <div class='pull-left'>
+                          <i class='icon-user'></i>
+                          <%= theme.name %>
+                          &nbsp;&nbsp;
+                          <%= link_to theme.templete_url, target: '_blank', class: 'btn btn-info' do %>
+                            <i class='icon-share'></i>预览效果
+                          <% end %>
+                      </div>
+                      <div class='pull-right'>
+                        <% if UserTheme.has?(current_user.id, theme.id) %>
+                          <span class="btn btn-inverse">已标记</span>
+                        <% else %>
+                          <%=link_to "喜欢", "/like_theme?theme_id=#{theme.id}", id: "like_theme#{theme.id}", remote: true, class: 'btn btn-primary' %>
+                        <% end %>
+                      </div>
+                  </div>
+                  <%= image_tag  theme.templete_image, :width => '300px' %>
+          <!--         <img alt="250x150" src="http://placehold.it/250x150" />
+           -->    </div>
+          </li>
+        <% end %>
+      </ul>
+      <%= will_paginate @themes %>
+    </div>
+  </div>
+</div>

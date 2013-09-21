@@ -19,6 +19,7 @@ class SitesController < ApplicationController
   # GET /sites/new
   def new
     @site = Site.new
+    @themes = current_user.themes
   end
 
   # GET /sites/1/edit

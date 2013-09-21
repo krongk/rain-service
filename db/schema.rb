@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130918074138) do
+ActiveRecord::Schema.define(version: 20130921140212) do
 
   create_table "assets", force: true do |t|
     t.integer  "user_id"
     t.string   "asset_type",         default: "默认"
-    t.string   "bucket"
     t.string   "asset_file_name"
     t.string   "asset_content_type"
     t.integer  "asset_file_size"
@@ -238,17 +237,19 @@ ActiveRecord::Schema.define(version: 20130918074138) do
     t.string   "company_reg_code",    limit: 128
     t.string   "company_keywords"
     t.text     "company_description"
-    t.string   "fu_gmail_name"
-    t.string   "fu_gmail_pwd"
-    t.string   "fu_qmail_name"
-    t.string   "fu_qmail_pwd"
-    t.string   "fu_user_name"
-    t.string   "fu_user_pwd"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "user_details", ["user_id"], name: "index_user_details_on_user_id", using: :btree
+
+  create_table "user_themes", force: true do |t|
+    t.integer "user_id"
+    t.integer "theme_id"
+  end
+
+  add_index "user_themes", ["theme_id"], name: "index_user_themes_on_theme_id", using: :btree
+  add_index "user_themes", ["user_id"], name: "index_user_themes_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
