@@ -2,20 +2,21 @@ RainService::Application.routes.draw do
   
   resources :user_accounts
 
-  # /s/short_id
-  get "/s/:id" => "s#show"
-  #
-  get "/s/:id/blog" => "s#blog"
-  
-  # /s/short_id/p/page_id
-  get "/s/:id/p/:page_id" => "s#page"
-  get "s/:id/p-:page_id" => "s#page"
+  constraints(Subdomain) do
+    get "/" => "s#show"
+    # /s/short_id
+    get "/s/:id" => "s#show"
+    #
+    get "/s/:id/blog" => "s#blog"
+    
+    # /s/short_id/p/page_id
+    get "/s/:id/p/:page_id" => "s#page"
+    get "s/:id/p-:page_id" => "s#page"
 
-  # /s/short_id/b/post_id
-  get "/s/:id/b/:post_id" => "s#post"
-  get "s/:id/b-:post_id" => "s#post" #all in s/:id/ can do cache.
-
-  
+    # /s/short_id/b/post_id
+    get "/s/:id/b/:post_id" => "s#post"
+    get "s/:id/b-:post_id" => "s#post" #all in s/:id/ can do cache.
+  end
 
   resources :themes
 

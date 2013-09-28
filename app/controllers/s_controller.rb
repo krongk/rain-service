@@ -1,6 +1,25 @@
 class SController < ApplicationController
+  before_filter :load_site
   layout 's'
-  before_action :set_site, only: [:show, :page, :post, :blog]
+  #before_action :set_site, only: [:show, :page, :post, :blog]
+
+  #Sub domain tutors：http://blog.xdite.net/posts/2013/07/21/implement-subdomain-custom-domain
+  def load_site
+    case request.host
+    when "www.#{Rails.application.domain}", Rails.application.domain, nil
+    else     
+      if request.host.index(Rails.application.domain)
+        @site = Site.find_by(short_id: request.host.split('.').first)
+      else
+        @site = Site.find_by(short_id: request.host)
+      end
+
+      if !@site
+        redirect_to Rails.application.domain
+      end
+
+    end
+  end
 
   def index
   end

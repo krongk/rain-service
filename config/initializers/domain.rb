@@ -3,7 +3,7 @@
 class << Rails.application
   def domain
     if Rails.env == 'development'
-       "localhost:3000"
+       "65960.com"
     else
       "www.yufuwu.cn"
     end
