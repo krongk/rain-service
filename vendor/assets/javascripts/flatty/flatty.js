@@ -1,5 +1,9 @@
 //
+//= require flatty/jquery/jquery.min
 //= require flatty/plugins/mobile_events/jquery.mobile-events.min
+//= require flatty/jquery/jquery-migrate.min
+//= require flatty/jquery_ui/jquery-ui.min
+//= require jquery.turbolinks
 //= require flatty/bootstrap/bootstrap.min
 //= require flatty/plugins
 

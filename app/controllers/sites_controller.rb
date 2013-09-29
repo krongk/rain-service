@@ -24,6 +24,7 @@ class SitesController < ApplicationController
 
   # GET /sites/1/edit
   def edit
+    @themes = current_user.themes
   end
 
   # POST /sites

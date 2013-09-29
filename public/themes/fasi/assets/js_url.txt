@@ -1,0 +1,3 @@
+/themes/fasi/js/respond.min.js
+/themes/fasi/js/html5shiv.js
+/themes/fasi/js/custom.js

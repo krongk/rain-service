@@ -15,7 +15,17 @@ zh-CN:
         body: 内容部分
         footer: 页脚部分
         is_published: 发布状态
+        contact_name: 联系人
+        mobile_phone: 手机号码
+        tel_phone: 电话号码
+        qq: QQ号码
+        email: 电子邮箱
+        website: 网站地址
+        address: 公司地址
+        company_name: 公司名称
     errors:
       site: 网站
   helpers:
     site: 网站
+
+

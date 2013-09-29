@@ -15,9 +15,9 @@
   <div class='form-actions' style='margin-bottom: 0;'>
     <div class='text-right'>
       <% unless step.to_s == 'theme' %>
-        <%= link_to "上一步", previous_wizard_path, :class => "btn btn-primary btn-large"  %> &nbsp;
+        <%= link_to "上一步", previous_wizard_path, :class => "btn btn-primary btn-large", data: { disable_with: "正在提交..." }  %> &nbsp;
       <% end %> 
-      <%= button_tag(type: 'submit', class: "btn btn-primary btn-large") do %>
+      <%= button_tag(type: 'submit', class: "btn btn-primary btn-large", data: { disable_with: "正在提交..." }) do %>
         <i class='icon-arrow-right'></i> 下一步
       <% end %>
     </div>

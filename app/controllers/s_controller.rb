@@ -7,6 +7,7 @@ class SController < ApplicationController
   def load_site
     case request.host
     when "www.#{Rails.application.domain}", Rails.application.domain, nil
+      set_site
     else     
       if request.host.index(Rails.application.domain)
         @site = Site.find_by(short_id: request.host.split('.').first)
