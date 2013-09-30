@@ -7,10 +7,6 @@ class Site < ActiveRecord::Base
   has_many :site_comments, :dependent => :destroy
 
   liquid_methods :site_posts, :title, :contact_name, :mobile_phone, :tel_phone, :qq, :email, :website, :address, :company_name
-  
-  def site_posts
-    SitePost.all
-  end
 
   validates_presence_of :theme_id
   before_validation :assign_short_id,
@@ -57,9 +53,13 @@ class Site < ActiveRecord::Base
       sp.save!
     end 
   end
-  #将模版内容中的变量(short_id)替换
+  #将模版内容中的路径变量替换
+  # {url_for(/)} => http://xdjb.65960.com:3000/
+  # {url_for(/p/about)} => http://xdjb.65960.com:3000/p/about
   def get_theme_content(content)
-    return content.to_s.gsub(/\(short_id\)/, self.short_id)
+    domain = Rails.application.domain.dup.sub(/^www./, '')
+    #return content.to_s.gsub(/\{url_for\((.*)\)\}/, ["http://#{self.short_id}.#{domain}", '\1'].join('/') )
+    return content.to_s.gsub(/\{url_for\((.*)\)\}/, '\1' )
   end
 
   #将模板下面的文件内容拷到对应的页面中， 

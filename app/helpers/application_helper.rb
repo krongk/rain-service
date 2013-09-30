@@ -106,6 +106,13 @@ module ApplicationHelper
     return url
   end
 
+  # 65960.com => http://www.65960.com
+  # site.65960.com => http://site.65960.com
+  def get_url(url, subdomain = false)
+    path = url.sub(/^http(s)?:\/\//, '').sub(/^www./, '')
+    return subdomain ? ['http://', path].join.strip : ['http://', 'www.', path].join.strip
+  end
+
   #On admin page title, e.g. /home/sms
   # <%= page_header('短信通', {'发送日志' => '/phone_items',}) %>
   def page_header(title, opts = {})

@@ -17,7 +17,7 @@
         <td><%= theme.name %></td>
         <td><%= theme.tags %></td>
         <td><%= image_tag(theme.templete_image, width: '60px', height: '60px') %></td>
-        <td><%= link_to theme.templete_url.to_s.truncate(20), theme.templete_url %></td>
+        <td><%= link_to theme.templete_url.to_s.truncate(20), theme.templete_url, target: '_blank' %></td>
         <td><%= link_to '查看', theme %></td>
         <td><%= link_to '编辑', edit_theme_path(theme) %></td>
         <td><%= link_to '删除', theme, method: :delete, data: { confirm: '确定添加?' } %></td>

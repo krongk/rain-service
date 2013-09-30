@@ -76,7 +76,7 @@
           <i class='icon-arrow-right'></i> 下一步
         <% end %>
       <% else %>
-        <%= button_tag(type: 'submit', class: "btn btn-primary btn-large") do %>
+        <%= button_tag(type: 'submit', class: "btn btn-primary btn-large", data: { disable_with: "正在提交..." } ) do %>
           <i class='icon-arrow-right'></i> 下一步
         <% end %>
       <% end %>

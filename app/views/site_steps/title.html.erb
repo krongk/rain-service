@@ -81,7 +81,7 @@
       <%= f.input :tel_phone, :input_html => {value: @site.user.user_detail.tel_phone, class: "span12 icon-over-input"}, wrapper_html: { class: 'row-fluid' }  %>
       <%= f.input :qq, :input_html => {value: @site.user.user_detail.qq, class: "span12 icon-over-input"}, wrapper_html: { class: 'row-fluid' }  %>
       <%= f.input :email, :input_html => {value: @site.user.user_detail.email, class: "span12 icon-over-input"}, wrapper_html: { class: 'row-fluid' }  %>
-      <%= f.input :website, :input_html => {value: @site.user.user_detail.website, class: "span12 icon-over-input"}, wrapper_html: { class: 'row-fluid' }  %>
+      <%= f.input :website, :input_html => {value: get_url(@site.user.user_detail.website), class: "span12 icon-over-input"}, wrapper_html: { class: 'row-fluid' }  %>
       <%= f.input :address, :input_html => {value: [@site.user.user_detail.region, @site.user.user_detail.city, @site.user.user_detail.district, @site.user.user_detail.address].join, class: "span12 icon-over-input"}, wrapper_html: { class: 'row-fluid' }  %>
 
   </fieldset>
