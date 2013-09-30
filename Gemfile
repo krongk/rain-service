@@ -24,6 +24,9 @@ gem 'simple_form', '>= 3.0.0.rc'
 # end
 # gem 'puma'
 
+#Liquid templete html
+gem 'liquid'
+
 #Excel processing
 gem 'roo', '>=1.11.2' 
 gem 'rubyzip', "~> 0.9.9" #fix the error: cannot load such file -- zip/zipfilesystem

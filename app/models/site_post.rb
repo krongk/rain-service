@@ -3,6 +3,8 @@ class SitePost < ActiveRecord::Base
   belongs_to :user
   belongs_to :site
 
+  liquid_methods :title, :content, :update_at
+
   validates_presence_of :user_id, :site_id, :cate_id, :title, :content
 
   #cate

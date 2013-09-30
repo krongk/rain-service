@@ -6,6 +6,12 @@ class Site < ActiveRecord::Base
   has_many :site_posts, :dependent => :destroy
   has_many :site_comments, :dependent => :destroy
 
+  liquid_methods :site_posts, :title, :contact_name, :mobile_phone, :tel_phone, :qq, :email, :website, :address, :company_name
+  
+  def site_posts
+    SitePost.all
+  end
+
   validates_presence_of :theme_id
   before_validation :assign_short_id,
     :on => :create

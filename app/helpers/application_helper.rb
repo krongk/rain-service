@@ -88,6 +88,10 @@ module ApplicationHelper
     content_for(:meta_description){ meta_description}
   end
 
+  def liquidize(content, arguments)
+    Liquid::Template.parse(content).render(arguments, :filters => [LiquidFilters])
+  end
+
   #on sites/index to get site short url
   #e.g. 
   # /s/short_id

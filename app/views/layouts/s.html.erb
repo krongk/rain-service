@@ -16,12 +16,12 @@
     <%= csrf_meta_tags %>
   </head>
   <body class="theme">
-    <%= raw @site.header %>
+    <%= raw liquidize(@site.header, 'site' => @site )%>
 
 		<%= render 'layouts/messages' %>
 		<%= yield %>
 
-	  <%= raw @site.footer %>
+	  <%= raw liquidize(@site.footer, 'site' => @site )%>
   </body>
 </html>
 

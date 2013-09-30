@@ -2,4 +2,5 @@
 <% meta_keywords "#{@site.title}, #{@site_post.title}" %>
 <% meta_description "#{@site.title}, #{@site_post.title}" %>
 
-<%= raw @site_post.content %>
+<%#= raw @site_post.content %>
+<%= raw( liquidize( @site_post.content, 'site' => @site )) %>
