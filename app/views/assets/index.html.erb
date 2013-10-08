@@ -32,6 +32,10 @@
   </div>
 </div>
 
+<div class="row-fluid">
+  <div class="span12 box">
+    <div class="box-content">
+    <!--start content-->
 <% if params[:asset_type].nil? || params[:asset_type] == 'image' %>
   <div class='row-fluid'>
     <div class='span12 box box-transparent'>
@@ -78,3 +82,5 @@
 
 <%= will_paginate @assets %>
 <br>
+<!--end content-->
+</div></div></div>

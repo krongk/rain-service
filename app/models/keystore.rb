@@ -42,3 +42,21 @@ end
 
 #useage:
 #    Keystore.increment_value_for("user:#{self.user_id}:comments_posted")
+
+=begin
+  :phone_items_count
+  :sms_tmps_count
+  :sms_logs_count
+  :sms_billing_count
+  :sms_send_count
+
+  :mail_items_count
+  :mail_tmps_count
+  :mail_logs_count
+  :mail_billing_count
+  :mail_send_count
+
+  :sites_count
+  :site_posts_count
+  
+=end

@@ -1,83 +1,89 @@
 <%= page_header(t('assets.show.title'), {'添加资源' => new_asset_path, '资源列表' => assets_url}) %>
 
+<div class="row-fluid">
+  <div class="span12 box">
+    <div class="box-content">
+    <!--start content-->
+
 <div class="text-right">
   <%= link_to '删除', @asset, method: :delete, data: { confirm: '确定要删除吗?' }, class: 'btn btn-inverse' %>
 </div>
 
-<div class="row-fluid">
-  <div class="span12">
-    <% if @asset.asset_type == 'image' %>
-      <p>
-        原图地址：<br>
-        <%= link_to  @asset.asset.url,  @asset.asset.url, target: '_blank' %>
-      </p>
 
-      <p>
-        缩略图：80X: <input type="input" value="<%= qiniu_image_path(@asset.asset.url, :thumbnail => '80x80>', :quality => 100) %>"/>
-        <br>
-        <%#= qiniu_image_tag @asset.asset.url, :thumbnail => '300x300>', :quality => 80 %><br>
-        <%= image_tag qiniu_image_path(@asset.asset.url, :thumbnail => '80x80>', :quality => 80) %>
-      </p>
-      <p>
-        缩略图：300X: <input type="input" value="<%= qiniu_image_path(@asset.asset.url, :thumbnail => '300x300>', :quality => 100) %>"/>
-        <br>
-        <%= image_tag qiniu_image_path(@asset.asset.url, :thumbnail => '300x300>', :quality => 80) %>
-      </p>
-      <p>
-        缩略图：600X: <input type="input" value="<%= qiniu_image_path(@asset.asset.url, :thumbnail => '600x600>', :quality => 100) %>"/>
-        <br>
-        <%= image_tag qiniu_image_path(@asset.asset.url, :thumbnail => '600x600>', :quality => 80) %>
-      </p>
-    <% elsif @asset.asset_type == 'video' %>
-      <!-- 视频预览 -->
-      <%= content_for :head do %>
-        <link href="http://vjs.zencdn.net/4.2/video-js.css" rel="stylesheet">
-        <script src="http://vjs.zencdn.net/4.2/video.js"></script>
-        <style type="text/css">
-          .vjs-default-skin { color: #8f0c0c }
-          .vjs-play-progress, .vjs-volume-level { background-color: #0a141a }
-          .vjs-control-bar, .vjs-big-play-button { background: rgba(97,5,5,0.7) }
-          .vjs-slider { background: rgba(97,5,5,0.2333333333333333) }
-          .vjs-control-bar { font-size: 176% }
-        </style>
-      <% end %>
-      <video id="my_video_1" class="video-js vjs-default-skin" controls
-        preload="auto" width="640" height="264" poster="/assets/video.jpg"
-        data-setup="{}">
-        <source src="<%= @asset.asset.url %>" type='video/mp4'>
-        <source src="<%= @asset.asset.url %>" type='video/webm'>
-      </video>
-      <br>
-      视频地址：<input type="input" value="<%= @asset.asset.url %>" class="span8">
-      <hr>
-      <!-- 视频使用教程 -->
-      将下面的代码嵌入页头(<head>部分)：
-      <pre><code>
-        &lt;link href="http://vjs.zencdn.net/4.2/video-js.css" rel="stylesheet"&gt;
-        &lt;script src="http://vjs.zencdn.net/4.2/video.js"&gt;&lt;/script&gt;
-        &lt;style type="text/css"&gt;
-          .vjs-default-skin { color: #8f0c0c }
-          .vjs-play-progress, .vjs-volume-level { background-color: #0a141a }
-          .vjs-control-bar, .vjs-big-play-button { background: rgba(97,5,5,0.7) }
-          .vjs-slider { background: rgba(97,5,5,0.2333333333333333) }
-          .vjs-control-bar { font-size: 176% }
-        &lt;/style&gt;
-      </code></pre>
+<% if @asset.asset_type == 'image' %>
+  <p>
+    原图地址：<br>
+    <%= link_to  @asset.asset.url,  @asset.asset.url, target: '_blank' %>
+  </p>
+  <hr>
+  <p>
+    缩略图：80X: <input type="input" value="<%= qiniu_image_path(@asset.asset.url, :thumbnail => '80x80>', :quality => 100) %>"/>
+    <br>
+    <%#= qiniu_image_tag @asset.asset.url, :thumbnail => '300x300>', :quality => 80 %><br>
+    <%= image_tag qiniu_image_path(@asset.asset.url, :thumbnail => '80x80>', :quality => 80) %>
+  </p>
+  <hr>
+  <p>
+    缩略图：300X: <input type="input" value="<%= qiniu_image_path(@asset.asset.url, :thumbnail => '300x300>', :quality => 100) %>"/>
+    <br>
+    <%= image_tag qiniu_image_path(@asset.asset.url, :thumbnail => '300x300>', :quality => 80) %>
+  </p>
+  <hr>
+  <p>
+    缩略图：600X: <input type="input" value="<%= qiniu_image_path(@asset.asset.url, :thumbnail => '600x600>', :quality => 100) %>"/>
+    <br>
+    <%= image_tag qiniu_image_path(@asset.asset.url, :thumbnail => '600x600>', :quality => 80) %>
+  </p>
+<% elsif @asset.asset_type == 'video' %>
+  <!-- 视频预览 -->
+  <%= content_for :head do %>
+    <link href="http://vjs.zencdn.net/4.2/video-js.css" rel="stylesheet">
+    <script src="http://vjs.zencdn.net/4.2/video.js"></script>
+    <style type="text/css">
+      .vjs-default-skin { color: #8f0c0c }
+      .vjs-play-progress, .vjs-volume-level { background-color: #0a141a }
+      .vjs-control-bar, .vjs-big-play-button { background: rgba(97,5,5,0.7) }
+      .vjs-slider { background: rgba(97,5,5,0.2333333333333333) }
+      .vjs-control-bar { font-size: 176% }
+    </style>
+  <% end %>
+  <video id="my_video_1" class="video-js vjs-default-skin" controls
+    preload="auto" width="640" height="264" poster="/assets/video.jpg"
+    data-setup="{}">
+    <source src="<%= @asset.asset.url %>" type='video/mp4'>
+    <source src="<%= @asset.asset.url %>" type='video/webm'>
+  </video>
+  <br>
+  视频地址：<input type="input" value="<%= @asset.asset.url %>" class="span8">
+  <hr>
+  <!-- 视频使用教程 -->
+  将下面的代码嵌入页头(<head>部分)：
+  <pre><code>
+    &lt;link href="http://vjs.zencdn.net/4.2/video-js.css" rel="stylesheet"&gt;
+    &lt;script src="http://vjs.zencdn.net/4.2/video.js"&gt;&lt;/script&gt;
+    &lt;style type="text/css"&gt;
+      .vjs-default-skin { color: #8f0c0c }
+      .vjs-play-progress, .vjs-volume-level { background-color: #0a141a }
+      .vjs-control-bar, .vjs-big-play-button { background: rgba(97,5,5,0.7) }
+      .vjs-slider { background: rgba(97,5,5,0.2333333333333333) }
+      .vjs-control-bar { font-size: 176% }
+    &lt;/style&gt;
+  </code></pre>
 
-      将下面的代码嵌入播放视频的地方(<body>内)：
-      <pre><code>
-        &lt;video id="my_video_1" class="video-js vjs-default-skin" controls
-          preload="auto" width="640" height="264" poster="my_video_poster.png"
-          data-setup="{}"&gt;
-          &lt;source src="&lt;%= @asset.asset.url %&gt;" type='video/mp4'&gt;
-          &lt;source src="&lt;%= @asset.asset.url %&gt;" type='video/webm'&gt;
-        &lt;/video&gt;
-      </code></pre>
-      更多教程参考：<a href="http://www.videojs.com/" target="_blank">VideoJS</a>
-    <% else %>
-      资源名称：<%= @asset.asset_file_name %>
-      <br>
-      资源公共路径：<input class="input-block-level" value="<%= @asset.asset.url %>">
-    <% end %>
-  </div>
-</div>
+  将下面的代码嵌入播放视频的地方(<body>内)：
+  <pre><code>
+    &lt;video id="my_video_1" class="video-js vjs-default-skin" controls
+      preload="auto" width="640" height="264" poster="my_video_poster.png"
+      data-setup="{}"&gt;
+      &lt;source src="&lt;%= @asset.asset.url %&gt;" type='video/mp4'&gt;
+      &lt;source src="&lt;%= @asset.asset.url %&gt;" type='video/webm'&gt;
+    &lt;/video&gt;
+  </code></pre>
+  更多教程参考：<a href="http://www.videojs.com/" target="_blank">VideoJS</a>
+<% else %>
+  资源名称：<%= @asset.asset_file_name %>
+  <br>
+  资源公共路径：<input class="input-block-level" value="<%= @asset.asset.url %>">
+<% end %>
+<!--end content-->
+</div></div></div>
