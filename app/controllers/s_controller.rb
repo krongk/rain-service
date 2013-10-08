@@ -5,8 +5,12 @@ class SController < ApplicationController
 
   #Sub domain tutors：http://blog.xdite.net/posts/2013/07/21/implement-subdomain-custom-domain
   def load_site
+    puts request.host
+    puts request.port
+
     case request.host
-    when "www.#{Rails.application.domain}", Rails.application.domain, nil
+    when "www.#{Rails.application.domain}", Rails.application.domain, 
+      "www.#{Rails.application.domain}:#{request.port}", "#{Rails.application.domain}:#{request.port}", nil
       set_site
     else     
       if request.host.index(Rails.application.domain)

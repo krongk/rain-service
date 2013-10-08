@@ -46,12 +46,12 @@ class ApplicationController < ActionController::Base
         ['Google邮箱密码', 'gmail_password']
       ].include?(ua)}
     
-    if params[:controller] != 'user_accounts'  &&
-      current_user.sites.any? &&
-      current_user.user_accounts.size < required_user_accounts.size
+    # if params[:controller] != 'user_accounts'  &&
+    #   current_user.sites.any? &&
+    #   current_user.user_accounts.size < required_user_accounts.size
       
-      redirect_to user_accounts_url, :alert => "请在做其他操作前，在这里将账户信息完善了。账户信息绑定到每个应用的功能。" and return
-    end
+    #   redirect_to user_accounts_url, :alert => "请在做其他操作前，在这里将账户信息完善了。账户信息绑定到每个应用的功能。" and return
+    # end
   end
 
 end
