@@ -89,7 +89,8 @@ module ApplicationHelper
   end
 
   def liquidize(content, arguments)
-    Liquid::Template.parse(content).render(arguments, :filters => [LiquidFilters])
+    #Liquid::Template.parse(content).render(arguments, :filters => [LiquidFilters])
+    Liquid::Template.parse(content).render(arguments)
   end
 
   #on sites/index to get site short url

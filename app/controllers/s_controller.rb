@@ -38,7 +38,7 @@ class SController < ApplicationController
     @site_page ||= @site.site_pages.find_by(id: params[:page_id]) if params[:page_id] =~ /^\d+$/
     #Blog page
     if @site_page.short_id == 'blog'
-      @site_posts = @site.site_posts.page(params[:page]).order("updated_at DESC")
+      @site_posts = @site.site_posts.paginate(:page => params[:page], :per_page => 2).order("updated_at DESC")
     end
     if @site_page.nil?
       render 'show'
@@ -46,6 +46,7 @@ class SController < ApplicationController
   end
 
   def post
+    @site_page = @site.site_pages.find_by(short_id: 'post')
     @site_post = @site.site_posts.find_by(id: params[:post_id])
     if @site_post.nil?
       render 'show'

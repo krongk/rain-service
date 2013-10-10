@@ -7,21 +7,24 @@
     <title><%= yield(:title) %></title>
     <meta name="keywords" content= "<%= yield(:meta_keywords) %>">
     <meta name="description" content="<%= yield(:meta_description) %>">
-
+    <!--include common global css-->
     <%= stylesheet_link_tag "s" %>
-
+    <!--include common js-->
     <%= javascript_include_tag "jquery", "turbolinks" %>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <!--include site theme css/js-->
     <%= raw @site.head %>
+
     <%= csrf_meta_tags %>
   </head>
   <body class="theme">
-    <%= raw liquidize(@site.header, 'site' => @site )%>
+    <!--if has @site_page the liqu {{page.title}} will be render, otherwise will be set null-->
+    <%= raw liquidize(@site.header, 'site' => @site, 'page' => @site_page )%>
 
 		<%= render 'layouts/messages' %>
 		<%= yield %>
 
-	  <%= raw liquidize(@site.footer, 'site' => @site )%>
+	  <%= raw liquidize(@site.footer, 'site' => @site, 'page' => @site_page )%>
   </body>
 </html>
 

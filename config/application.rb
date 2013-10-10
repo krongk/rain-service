@@ -51,3 +51,6 @@ module RainService
     config.encoding = "utf-8"
   end
 end
+
+#register LiquidPaginate
+require "#{Rails.root}/extras/shopify/liquid"

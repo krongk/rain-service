@@ -3,4 +3,4 @@
 <% meta_description "#{@site.title}, #{@site_post.title}" %>
 
 <%#= raw @site_post.content %>
-<%= raw( liquidize( @site_post.content, 'site' => @site )) %>
+<%= raw( liquidize( @site_page.content, 'site' => @site, 'site_post' => @site_post )) %>
