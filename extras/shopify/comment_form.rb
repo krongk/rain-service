@@ -1,4 +1,5 @@
 class CommentForm < Liquid::Block
+  include ActionView::Helpers::FormHelper
   Syntax = /(#{Liquid::VariableSignature}+)/
 
   def initialize(tag_name, markup, tokens)
@@ -6,28 +7,31 @@ class CommentForm < Liquid::Block
       @variable_name = $1
       @attributes = {}
     else
-      raise SyntaxError.new("Syntax Error in 'comment_form' - Valid syntax: comment_form [article]")
+      raise SyntaxError.new("Syntax Error in 'comment_form' - Valid syntax: comment_form [post]")
     end
 
     super
   end
 
   def render(context)
-    article = context[@variable_name]
+    post = context[@variable_name]
 
     context.stack do
       context['form'] = {
         'posted_successfully?' => context.registers[:posted_successfully],
-        'errors' => context['comment.errors'],
-        'author' => context['comment.author'],
-        'email'  => context['comment.email'],
-        'body'   => context['comment.body']
+        'errors' => context['site_comment.errors'],
+        'mobile_phone' => context['site_comment.mobile_phone'],
+        'email'  => context['site_comment.email'],
+        'content'   => context['site_comment.content']
       }
-      wrap_in_form(article, render_all(@nodelist, context))
+      wrap_in_form(post, render_all(@nodelist, context))
     end
   end
 
-  def wrap_in_form(article, input)
-    %Q{<form id="article-#{article.id}-comment-form" class="comment-form" method="post" action="">\n#{input}\n</form>}
+  def wrap_in_form(post, input)
+    %Q{<form accept-charset="UTF-8" id="post-#{post.id}-comment-form" class="form-horizontal" method="post" action="/site_comments">
+      <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+      \n#{input}\n</form>
+    }
   end
 end

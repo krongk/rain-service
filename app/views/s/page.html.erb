@@ -2,5 +2,6 @@
 <% meta_keywords "#{@site.title}, #{@site_page.title}" %>
 <% meta_description "#{@site.title}, #{@site_page.title}" %>
 
-<%= raw( liquidize( @site_page.content, 'site' => @site, 'page' => @site_page, 'site_posts' => @site_posts )) %>
-
+<%= raw( liquidize( @site_page.content, 'site' => @site, 'page' => @site_page, 
+  'site_posts' => @site_posts, 'site_post' => @site_post, 'site_comment' => @site_comment, 
+  'authenticity_token' => session[:_csrf_token], 'redirect_url' => request.original_url )) %>

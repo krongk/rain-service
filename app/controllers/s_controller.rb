@@ -1,5 +1,6 @@
 class SController < ApplicationController
   before_filter :load_site
+  protect_from_forgery only: :post
   layout 's'
   #before_action :set_site, only: [:show, :page, :post, :blog]
 
@@ -36,10 +37,12 @@ class SController < ApplicationController
   def page
     @site_page = @site.site_pages.find_by(short_id: params[:page_id])
     @site_page ||= @site.site_pages.find_by(id: params[:page_id]) if params[:page_id] =~ /^\d+$/
+    @site_page ||= @site.site_pages.first
     #Blog page
     if @site_page.short_id == 'blog'
       @site_posts = @site.site_posts.paginate(:page => params[:page], :per_page => 2).order("updated_at DESC")
     end
+    @site_comment = @site.site_comments.build
     if @site_page.nil?
       render 'show'
     end
@@ -48,6 +51,7 @@ class SController < ApplicationController
   def post
     @site_page = @site.site_pages.find_by(short_id: 'post')
     @site_post = @site.site_posts.find_by(id: params[:post_id])
+    @site_comment = @site.site_comments.build
     if @site_post.nil?
       render 'show'
     end

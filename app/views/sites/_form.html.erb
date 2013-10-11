@@ -35,43 +35,56 @@
 <div class='span12'>
 <div class='gallery'>
 <ul class='unstyled inline'>
-<% if @themes.empty? %>
+<% if @themes.nil? || @themes.empty? %>
   <div class="alert alert-info">
     还没有喜欢的任何模板， 请在<a href="/home/theme">模板库</a>中选择你喜欢的模板。然后再进入这里创建网站。
   </div>
+<% else %>
+  <% @themes.each do |theme| %>
+  <li>
+      <div class='picture' style="border: 2px solid #ccc;">
+          <div class='tags'>
+              <% theme.tags.split(/[，,]+/).each do |tag| %>
+                  <div class='label label-'<%= rand_flag %> ><%=tag %></div>
+              <% end %>
+          </div>
+          <div class='actions' style="background: #ccc; color: #fff;">
+              <div class='pull-left'>
+                  <i class='icon-user'></i>
+                  <%= theme.name %>
+                  &nbsp;&nbsp;
+                  <%= link_to theme.templete_url, target: '_blank', class: 'btn btn-primary' do %>
+                    <i class='icon-share'></i>预览效果
+                  <% end %>
+              </div>
+              <div class='pull-right btn btn-primary'> 
+                  选择<input id="site_theme_id_<%=theme.id%>" name="site[theme_id]" type="radio" value="<%= theme.id %>" <% if theme.id == @site.theme_id then%> checked="true"<% end %> >
+              </div>
+          </div>
+          <%= image_tag  theme.templete_image, :width => '300px' %>
+          <!-- <img alt="250x150" src="http://placehold.it/250x150" />-->    
+      </div>
+  </li>
+  <% end %>
 <% end %>
-<% @themes.each do |theme| %>
 <li>
     <div class='picture' style="border: 2px solid #ccc;">
         <div class='tags'>
-            <% theme.tags.split(/[，,]+/).each do |tag| %>
-                <div class='label label-'<%= rand_flag %> ><%=tag %></div>
-            <% end %>
+            
         </div>
         <div class='actions' style="background: #ccc; color: #fff;">
-            <div class='pull-left'>
-                <i class='icon-user'></i>
-                <%= theme.name %>
-                &nbsp;&nbsp;
-                <%= link_to theme.templete_url, target: '_blank' do %>
-                  <i class='icon-share'></i>预览效果
-                <% end %>
-            </div>
-            <div class='pull-right'> 
-                选择<input id="site_theme_id_<%=theme.id%>" name="site[theme_id]" type="radio" value="<%= theme.id %>" <% if theme.id == @site.theme_id then%> checked="true"<% end %> >
-            </div>
+        &nbsp;&nbsp;<a href="/home/theme" class="btn btn-primary">选择更多模版...</a>
         </div>
-        <%= image_tag  theme.templete_image, :width => '300px' %>
-<!--         <img alt="250x150" src="http://placehold.it/250x150" />
- -->    </div>
+        <img alt="250x150" src="http://placehold.it/300x188" />
+   </div>
 </li>
-<% end %>
+
 </ul>
 </div>
 </div></div>
   <div class='form-actions' style='margin-bottom: 0;'>
     <div class='text-right'>
-      <% if @themes.empty? %>
+      <% if !@themes.nil? && @themes.empty? %>
         <%= button_tag(type: 'submit', class: "btn btn-primary btn-large", disabled: "disabled") do %>
           <i class='icon-arrow-right'></i> 下一步
         <% end %>

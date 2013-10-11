@@ -52,6 +52,9 @@ gem 'slodown'
 #Send Mail
 gem 'mailgun'
 
+#Pinyin.t('中国', splitter: '-') => "zhong-guo"
+gem 'chinese_pinyin'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]

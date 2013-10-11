@@ -1,0 +1,36 @@
+    <!-- Comment Form -->
+    <div id="comment-form">
+      {% form site_comment %}
+        <input name="authenticity_token" type="hidden" value="{{ authenticity_token }}" />
+        <input name="site_comment[site_id]" type="hidden" value="{{ site.id }}" />
+        <input name="site_comment[redirect_url]" type="hidden" value="{{ redirect_url }}" />
+
+        <h3>用户留言</h3>
+
+        <!-- Check if a comment has been submitted in the last request, and if yes display an appropriate message -->
+        {% if form.posted_successfully? %}
+          <div class="notice">留言成功，我们会尽快与您取得联系.</div>
+        {% endif %}
+
+        {% if form.errors %}
+          <div class="notice error">留言失败，请检查是否输入有误!</div>
+        {% endif %}
+
+        <dl>
+          <dt class="{% if form.errors contains 'name' %}error{% endif %}"><label for="comment_name">姓名</label></dt>
+          <dd><input type="text" id="comment_name" name="site_comment[name]" size="40" value="{{form.name}}" class="{% if form.errors contains 'name' %}input-error{% endif %}" /></dd>
+
+          <dt class="{% if form.errors contains 'mobile_phone' %}error{% endif %}"><label for="comment_mobile_phone">电话号码</label></dt>
+          <dd><input type="text" id="comment_mobile_phone" name="site_comment[mobile_phone]" size="40" value="{{form.mobile_phone}}" class="{% if form.errors contains 'mobile_phone' %}input-error{% endif %}" /></dd>
+
+          <dt class="{% if form.errors contains 'email' %}error{% endif %}"><label for="comment_email">电子邮箱</label></dt>
+          <dd><input type="text" id="comment_email" name="site_comment[email]" size="40" value="{{form.email}}" class="{% if form.errors contains 'email' %}input-error{% endif %}" /></dd>
+
+          <dt class="{% if form.errors contains 'content' %}error{% endif %}"><label for="comment_content">留言内容</label></dt>
+          <dd><textarea id="comment_content" name="site_comment[content]" cols="40" rows="5" class="{% if form.errors contains 'content' %}input-error{% endif %}">{{form.content}}</textarea></dd>
+        </dl>
+
+        <input type="submit" value="提交留言" id="comment-submit" />
+      {% endform %}
+    </div>
+    <!-- END Comment Form -->

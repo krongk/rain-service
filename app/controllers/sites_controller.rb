@@ -22,9 +22,11 @@ class SitesController < ApplicationController
     @themes = current_user.themes
   end
 
-  # GET /sites/1/edit
+  # 跳过第一步： 模板选择 
   def edit
     @themes = current_user.themes
+    session[:site_id] ||= Site.find(params[:id]).id
+    redirect_to site_steps_path
   end
 
   # POST /sites

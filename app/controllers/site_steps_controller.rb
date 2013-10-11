@@ -9,7 +9,6 @@ class SiteStepsController < ApplicationController
   end
   
   def update
-  
     @site = Site.find(session[:site_id])
     @site.update(site_params)
     render_wizard @site

@@ -2,7 +2,7 @@ class SitePage < ActiveRecord::Base
   belongs_to :user
   belongs_to :site
 
-  liquid_methods :title
+  liquid_methods :id, :short_id, :title, :content
   
   before_validation :assign_short_id, :on => :create
   validates_presence_of :user_id, :site_id

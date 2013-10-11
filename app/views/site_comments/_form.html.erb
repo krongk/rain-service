@@ -1,4 +1,4 @@
-<%= simple_form_for(@site_comment) do |f| %>
+<%= simple_form_for(@site_comment, authenticity_token: false) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">

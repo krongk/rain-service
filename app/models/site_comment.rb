@@ -1,12 +1,10 @@
 #encoding: utf-8
 class SiteComment < ActiveRecord::Base
   belongs_to :site
+  liquid_methods :id, :name, :mobile_phone, :email, :content
+  attr_accessor :redirect_url
 
-  validates_presence_of :mobile_phone
-  validate do
-    (m = !self.mobile_phone.to_s.strip.match(/^(1(([35][0-9])|(47)|[8][01236789]))\d{8}$/)) &&
-      errors.add(:base, "手机号格式错误, 请填写正确的手机号，如：15928661802")
-  end
+  validates_presence_of :content
 
   #count
   after_create :increment_total_count

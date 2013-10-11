@@ -30,7 +30,8 @@ module RainService
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
-
+    config.time_zone = 'Beijing'
+    
     #xj: I found out that for i18n to work with cache_classes set to true i have to declare this in application.rb or respective environment.rb
     # fix that nasty i18n bug!
     config.before_configuration do
@@ -52,5 +53,5 @@ module RainService
   end
 end
 
-#register LiquidPaginate
+#register Liquid
 require "#{Rails.root}/extras/shopify/liquid"

@@ -14,27 +14,31 @@
     <div class="row">
       <div class="col-md-6 col-sm-6">
         <div class="formdetails well">
-          <form class="form-horizontal" role="form" action="{url_for(/site_comments/new)}" method="post" accept-charset="UTF-8">
+
+          {% form site_comment %}
+            <input name="authenticity_token" type="hidden" value="{{ authenticity_token }}" />
+            <input name="site_comment[site_id]" type="hidden" value="{{ site.id }}" />
+            <input name="site_comment[redirect_url]" type="hidden" value="{{ redirect_url }}" />
 
             <fieldset>
               <legend>联系我们</legend>
               <div class="form-group">
                 <label for="inputName" class="col-lg-3 control-label">姓名</label>
                 <div class="col-lg-9">
-                  <input class="form-control" id="site_comment_name" name="site_comment[name]" type="text">
+                <input type="text" id="site_comment_name" name="site_comment[name]" size="40" value="{{form.name}}" class=" form-control{% if form.errors contains 'name' %}input-error{% endif %}" />
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail" class="col-lg-3 control-label">Email</label>
                 <div class="col-lg-9">
-                  <input class="form-control" id="site_comment_email" name="site_comment[email]" type="text">
+                <input type="text" id="comment_email" name="site_comment[email]" size="40" value="{{form.email}}" class="form-control {% if form.errors contains 'email' %}input-error{% endif %}" />
                 </div>
               </div>
               
               <div class="form-group">
                 <label for="inputComment" class="col-lg-3 control-label">内容</label>
                 <div class="col-lg-9">
-                  <textarea class="form-control" rows="3" id="site_comment_content" name="site_comment[content]"></textarea>
+                <textarea id="comment_content" name="site_comment[content]" rows="3" class="form-control {% if form.errors contains 'content' %}input-error{% endif %}">{{form.content}}</textarea>
                 </div>
               </div>
               <div class="form-group">
@@ -44,7 +48,7 @@
                 </div>
               </div>
             </fieldset>
-          </form>
+          {% endform %}
         </div>
       </div>
       <div class="col-md-6 col-sm-6">
