@@ -6,22 +6,22 @@ class SController < ApplicationController
 
   #Sub domain tutors：http://blog.xdite.net/posts/2013/07/21/implement-subdomain-custom-domain
   def load_site
-    puts request.host
-    puts request.port
-
     case request.host
     when "www.#{Rails.application.domain}", Rails.application.domain, 
       "www.#{Rails.application.domain}:#{request.port}", "#{Rails.application.domain}:#{request.port}", nil
       set_site
-    else     
-      if request.host.index(Rails.application.domain)
-        @site = Site.find_by(short_id: request.host.split('.').first)
+    else
+      #custom domain
+      puts request.host
+      @site = if Site.find_by(:domain: request.host)
+      elsif request.host.index(Rails.application.domain)
+        Site.find_by(short_id: request.host.split('.').first)
       else
-        @site = Site.find_by(short_id: request.host)
+        Site.find_by(short_id: request.host)
       end
 
       if !@site
-        redirect_to Rails.application.domain
+        redirect_to "http://www." + Rails.application.domain
       end
 
     end

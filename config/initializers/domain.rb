@@ -3,14 +3,14 @@
 class << Rails.application
   def domain
     if Rails.env == 'development'
-       "65960.com"
+       "yufuwu.org"
     else
-      "www.yufuwu.cn"
+      "65960.com"
     end
   end
 
   def name
-    "雨服务"
+    "雨服务智能营销系统"
    end
 end
 
