@@ -15,7 +15,8 @@ class SController < ApplicationController
       puts request.host
       if @site = Site.find_by(domain: request.host)
         puts "find host:#{request.host} refer to site: #{@site.short_id}"
-        redirect_to "http://#{short_id}." + Rails.application.domain
+        redirect_to "http://#{@site.short_id}." + Rails.application.domain + ":#{request.port}"
+        return
       elsif request.host.index(Rails.application.domain)
         @site = Site.find_by(short_id: request.host.split('.').first)
       else
