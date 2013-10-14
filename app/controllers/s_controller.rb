@@ -13,7 +13,7 @@ class SController < ApplicationController
     else
       #custom domain
       puts request.host
-      @site = if Site.find_by(:domain: request.host)
+      @site = if Site.find_by(domain: request.host)
       elsif request.host.index(Rails.application.domain)
         Site.find_by(short_id: request.host.split('.').first)
       else
