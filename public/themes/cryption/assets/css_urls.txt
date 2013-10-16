@@ -1,0 +1,6 @@
+<link rel="stylesheet" type="text/css" href="/themes/cryption/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/themes/cryption/css/prettyPhoto.css">
+<link rel="stylesheet" type="text/css" href="/themes/cryption/css/style.css">
+<link rel="stylesheet" type="text/css" href="/themes/cryption/css/layerslider.css">
+<link rel="stylesheet" type="text/css" href="/themes/cryption/css/skin.css">
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>

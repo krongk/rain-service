@@ -1,0 +1,620 @@
+/* General
+================================================== */
+.mainthemebgcolor {}
+.mainthemetextcolor{}
+.wowhideme{display:none;}
+
+/* Buttons
+================================================== */
+/* Shortcode  Buttons Set ---------------------- */
+.sbutton {
+display: inline-block;
+-webkit-transition: opacity 1s ease-in-out;
+-moz-transition: opacity 1s ease-in-out;
+-o-transition: opacity 1s ease-in-out;
+transition: opacity 1s ease-in-out;
+margin-bottom: 18px;
+text-decoration: none;
+border: 0px;
+cursor: pointer;
+position: relative;
+-webkit-transition: all 0.5s ease-in-out;
+-moz-transition: all 0.5s ease-in-out;
+-o-transition: all 0.5s ease-in-out;
+-ms-transition: all 0.5s ease-in-out;
+transition: all 0.5s ease-in-out;
+}
+
+.sbutton:hover {background:#555 !Important;}
+
+.sbutton.mainthemebgcolor, a.sbutton.mainthemebgcolor, .sbutton.mainthemebgcolor a, .sbutton.mainthemebgcolor a:hover {color:#fff;}
+
+.sbutton.round {
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+border-radius: 8px;
+-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);}
+
+.sbutton.square {
+-moz-border-radius: 0px;
+-webkit-border-radius: 0px;
+border-radius: 0px;}
+
+.sbutton.shadow{
+-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);}
+
+.sbutton.noshadow{
+-moz-box-shadow: none;
+-webkit-box-shadow:none;
+box-shadow: none;}
+
+.sbutton.big {font-size:23px;
+padding: 14px 35px 16px;}
+
+.sbutton.medium {font-size:17px;
+padding: 10px 30px 12px;}
+
+.sbutton.small {font-size:15px;
+padding:5px 15px 7px;}
+
+.sbutton.default {
+color: white;
+opacity:1 !Important;
+/* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !Important;
+  }
+
+.sbutton.black {
+background: #333;
+color: white;
+opacity:1 !Important;
+/* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !Important;
+  }
+  
+.sbutton.blue {
+background: #2BA6CB;
+color: white;
+opacity:1 !Important;
+/* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !Important;
+}
+
+.sbutton.teal {
+background: #3C9091;
+color: white;
+opacity:1 !Important;
+/* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !Important;
+}
+.sbutton.green {
+background: #8ea145;
+color: white;
+opacity:1 !Important;
+/* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !Important;
+}
+
+.sbutton.orange {
+background: #da6f29;
+color: white;
+opacity:1 !Important;
+/* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !Important;
+}
+
+.sbutton.violet {
+background: #8a4466;
+color: white;
+opacity:1 !Important;
+/* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !Important;
+}
+
+.sbutton.red {
+background: #f2615c;
+color: white;
+opacity:1 !Important;
+/* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !Important;
+}
+
+.sbutton.yellow {
+background: #f0b70d;
+color: #fff;
+text-shadow: none;
+opacity:1 !Important;
+/* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !Important;
+}
+
+.ei-title p {
+/* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !Important;
+  }
+
+/* Clear Floats
+================================================== */
+.wow-clear-floats {
+	clear: both;
+}
+
+.wow-clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+/* Spacing
+================================================== */
+.wow-spacing {
+	display: block;
+	height: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+	background: none !important;
+	border: none !important;
+	outline: none !important;
+}
+
+/* Admin Icon
+================================================== */
+.mceIcon.mce_mygallery_button {
+	background:url(../img/shortcodes.png) no-repeat !important;
+	width:20px;
+	height:20px;
+	cursor: pointer;
+}
+/* WOW Accordion
+================================================== */
+.wow-accordion h3.wow-accordion-trigger {
+	display:block;
+	color:#333;
+	display:block;
+	padding:15px 15px 15px 37px;
+	border:1px solid #ddd;
+	background:#f6f6f6 url(../img/plus.png) no-repeat 15px center;
+	outline:0;
+	text-transform:none;
+	letter-spacing:normal;
+	font-weight:normal;
+	font-size:1em;
+	line-height:1.5em;
+	margin:-1px 0 0 !important;
+	cursor:pointer;
+}
+.wow-accordion h3.wow-accordion-trigger a {
+	color:#333;
+	text-decoration:none !important;
+	text-transform:uppercase;
+}
+.wow-accordion .ui-state-focus {
+	outline:none;
+}
+.wow-accordion .wow-accordion-trigger:hover {
+	text-decoration:none;
+}
+.wow-accordion .wow-accordion-trigger.ui-state-active {
+		background:#fff url("../img/minus.png") no-repeat 15px center;
+	text-decoration:none;
+	border-top:3px solid #333;
+	border-bottom:0px;
+}
+.wow-accordion .wow-accordion-trigger.ui-state-active a {
+	color:#000;
+}
+.wow-accordion .ui-accordion-content {
+	background-color:#fff;
+	padding:0px 15px 15px 15px;
+	border:1px solid #ddd;
+	border-top:0px;
+}
+.wow-accordion .ui-accordion-content p:last-child {
+	margin:0px;
+}
+.wow-accordion .ui-icon {
+	margin-right:5px;
+}
+.wow-accordion {
+	margin-bottom:20px;
+}
+
+/* WOW Colored Boxes
+================================================== */
+.coloredbox {	
+	display:block;	
+	margin-bottom:20px;	
+}
+.coloredbox.pull-left {
+	margin-right:15px;
+}
+.coloredbox.pull-right {
+	margin-left:15px;
+}
+.boxolive {
+	background:#EEF4D4;
+	border:1px solid #8FAD3D;
+	color:#596C26;
+}
+.boxblue {
+	background:#E1EBEB;
+	border:1px solid #A8C6C6;
+	color:#555;
+}
+.boxgreen {
+	background:#E9FFD2;
+	border:1px solid #ACFF59;
+	color:#596C26;
+}
+.boxred {
+	background:#FCE2D4;
+	border:1px solid #F1C0A8;
+	color:#000;
+}
+.boxgray {
+	background:#f5f5f5;
+	border:1px solid #DDD;
+	color:#596C26;
+}
+.boxyellow {
+	background:#Fffdf3;
+	border:1px solid #F2DFA4;
+	color:#C4690E;
+}
+.boxwhite {
+	background:#fff;
+	border: 1px solid #e5e5e5;
+}
+.padding15 {padding:15px;}
+
+
+
+/* WOW Fancy Box 1
+================================================== */
+.box1 {background: #fff;
+border: 1px solid #eee;
+padding: 22px;
+margin-bottom: 20px;
+margin-top:5px;
+position:relative;}
+
+.box1 h6 {
+font-size: 16px;
+text-transform: uppercase;
+margin-top: -31px;
+margin-bottom: 31px;
+}
+
+.striped {
+background: url(../img/stripes.png) repeat;
+min-height: 40px;
+margin-top: -20px;
+padding-left: 20px;
+margin-left: -20px;
+margin-right: -20px;
+border-bottom: 1px solid #f3f3f3;
+}
+.boxlink {
+text-align: right;
+right: 0px;
+position: absolute;
+bottom: 3px;
+}
+.boxlink .defaultbutton {
+padding: 7px 13px 7px;
+-moz-box-shadow: none;
+-webkit-box-shadow: none;
+box-shadow: none;
+color: #fff;
+}
+
+/* WOW Fancy Box 2
+================================================== */
+
+.fancybox2{
+padding-top: 20px;
+border: 1px solid #eee;
+padding: 20px;
+border-top: 0px;
+margin-top:5px;
+margin-bottom: 20px;
+}
+.fancybox2.title {
+color:#444;
+font-size:15px;
+padding-bottom:13px;
+line-height:0;
+padding-top:13px;
+background:#f9f9f9;
+padding-left:20px;
+padding-right:20px;
+margin-bottom:-18px;
+border:1px solid #f1f1f1;
+}
+
+
+/* WOW Pricing Table
+================================================== */
+.wow-pricing-table {
+	list-style:none;
+	margin:0px 0 20px 0;
+	padding:0;
+	font-size:16px;
+	-webkit-transition:0.3s;
+	-moz-transition:0.3s;
+	transition:0.3s;
+}
+.wow-pricing-table div {
+	list-style:none;
+}
+.wow-pricing-table>div {
+	list-style:none;
+	text-shadow:none;
+	margin-bottom:0px;
+	box-shadow:0 0 10px rgba(0,0,0,0.05);
+	-moz-box-shadow:0 0 10px rgba(0,0,0,0.05);
+	-webkit-box-shadow:0 0 10px rgba(0,0,0,0.05);
+	border:1px solid #eee;
+	border-top:#333 3px solid;
+}
+.wow-pricing-table:hover,.wow-pricing-table>div.featured {
+	webkit-box-shadow:0 0 20px 0 rgba(0,0,0,0.4);
+	-moz-box-shadow:0 0 20px 0 rgba(0,0,0,0.4);
+	box-shadow:0 0 20px 0 rgba(0,0,0,0.4);
+	z-index:1;
+}
+.wow-pricing-table .wow-pricing-header {
+	text-align:center;
+	padding:20px 0;
+}
+.wow-pricing-table .wow-pricing-header h5 {
+	color:#333;
+	font-size:1.313em;
+	margin:0;
+	padding:0 20px 20px;
+	font-weight:bold;
+}
+.wow-pricing-table .wow-pricing-cost {
+	color:#fff;
+	font-size:1.500em;
+	line-height:1em;
+	padding-top:20px;
+	background:#333;
+}
+.wow-pricing-table .wow-pricing-per {
+	font-size:0.786em;
+	color:#fff;
+	background:#333;
+	padding-bottom:10px;
+}
+.wow-pricing-table .wow-pricing-content {
+	background:#fff;
+	font-size:0.857em;
+	text-align:center;
+}
+.wow-pricing-table .wow-pricing-content ul {
+	margin:0 !important;
+	list-style:none !important;
+}
+.wow-pricing-table .wow-pricing-content ul li {
+	margin:0 !important;
+	padding:10px 20px !important;
+	border-bottom:1px solid #eee;
+	list-style:none !important;
+}
+.wow-pricing-table .wow-pricing-content ul li:nth-child(2n+2) {
+	background:#F9F9F9;
+}
+.wow-pricing-table .wow-pricing-button {
+	background:#fff;
+	text-align:center;
+	border-top:1px solid #fff;
+	padding:20px 20px 23px;
+}
+.wow-pricing-table .wow-pricing-button .wow-button {
+	float:none;
+	margin:0 auto;
+	background:#333;
+	color:#fff;
+	padding: 5px 18px 7px;
+}
+
+/* Toggle
+================================================== */
+.wow-toggle .wow-toggle-trigger {
+	display: block;
+	color: #555;
+	display: block;
+	padding: 13px 15px 13px 37px;
+	border: 1px solid #eee;
+	background: #f9f9f9 url("../img/plus.png") no-repeat 15px center;
+	outline: 0;
+	text-transform: none;
+	letter-spacing: normal;
+	font-weight: normal;
+	font-size: 1em;
+	line-height: 1.5em;
+	margin: 0;
+	margin-top: 10px;
+	cursor: pointer;
+	-webkit-transition: all 0.5s ease-in-out;
+-moz-transition: all 0.5s ease-in-out;
+-o-transition: all 0.5s ease-in-out;
+-ms-transition: all 0.5s ease-in-out;
+transition: all 0.5s ease-in-out;
+}
+
+.wow-toggle .wow-toggle-trigger:hover {
+	background-color: #eee;
+	text-decoration: none;
+}
+.wow-toggle .wow-toggle-trigger.active,
+.wow-toggle .wow-toggle-trigger.active:hover {
+	color: #000;
+	background-color: #f6f6f6;
+	background-image: url("../img/minus.png");
+	text-decoration: none;
+}
+
+.wow-toggle .wow-toggle-container {
+	display: none;
+	overflow: hidden;
+	padding: 15px;
+	border: 1px solid #eee;
+	border-top: 0px;
+}
+
+/* WOW Toggle Simple
+================================================== */
+.toggle { background: url(../img/plus-minus.png) no-repeat; padding:6px 0px 6px 22px; background-position:left 12px;color:#3a3a3a;}
+.toggle:hover {cursor:pointer;}
+.toggle_content {clear:both; margin:0px; overflow:hidden; position:relative; display:none;}
+.toggle_content .tc {	padding:10px 20px 13px 20px; display:block;}
+
+/* WOW Action Panel
+* ===============================================*/
+.info-box {
+background:#EEEEEE !important;
+border:1px solid #e4e4e4;
+padding:6px;
+margin-bottom:30px;
+margin-top:30px;
+}
+.info-box-inner {
+background-image:linear-gradient(bottom,#fafafa 0%,#fff 100%);
+background-image:-o-linear-gradient(bottom,#fafafa 0%,#fff 100%);
+background-image:-moz-linear-gradient(bottom,#fafafa 0%,#fff 100%);
+background-image:-webkit-linear-gradient(bottom,#fafafa 0%,#fff 100%);
+background-image:-ms-linear-gradient(bottom,#fafafa 0%,#fff 100%);
+-webkit-border-radius:3px;
+-moz-border-radius:3px;
+border-radius:3px;
+border:1px solid #e4e4e4;
+padding:25px;
+background:#fff;
+}
+.info-box p {
+margin:0;
+}
+.info-box h4 {
+font-size:20px;
+line-height:26px;
+margin:0;
+font-family:open_sansregular;
+}
+.info-box a {
+margin:0;
+}
+.info-content {
+float: left;
+}
+/*info-box-2*/
+.info-box-2 {
+margin:0 0 10px 0;
+}
+.info-box-inner-2 {
+background-image:linear-gradient(bottom,#fafafa 0%,#fff 100%);
+background-image:-o-linear-gradient(bottom,#fafafa 0%,#fff 100%);
+background-image:-moz-linear-gradient(bottom,#fafafa 0%,#fff 100%);
+background-image:-webkit-linear-gradient(bottom,#fafafa 0%,#fff 100%);
+background-image:-ms-linear-gradient(bottom,#fafafa 0%,#fff 100%);
+-webkit-border-radius:0 0 3px 3px;
+-moz-border-radius:0 0 3px 3px;
+border-radius:0 0 3px 3px;
+border-top:0 none;
+border-right:1px solid #e4e4e4;
+border-left:1px solid #e4e4e4;
+border-bottom:1px solid #e4e4e4;
+padding:17px;
+}
+.info-box-2 p {
+margin:0;
+}
+.info-box-2 h4 {
+color:#2778C8;
+font-size:24px;
+line-height:26px;
+margin:0;
+}
+.info-box-2 a {
+margin:6px 0 0;
+}
+.info-content-2 {
+float: left;
+}
+
+
+/*================================================== * 
+Panels
+* ===============================================*/
+.panel h1,.panel1 h1 {
+font-size:18px;
+margin-top:0;
+line-height:24px;
+}
+.panel ul,.panel1 ul {
+margin-left:55px;
+list-style:square;
+}
+.panel,.panel1 {
+padding:20px;
+background-color:#f7f7f7;
+border-left:8px solid #e7402f;
+position:relative;
+margin-bottom:15px;
+margin-top: 10px;
+}
+.panel1:after {
+z-index:-1;
+position:absolute;
+content:"";
+bottom:15px;
+left:10px;
+width:50%;
+top:80%;
+max-width:300px;
+background:#777;
+-webkit-box-shadow:0 15px 10px #777;
+-moz-box-shadow:0 15px 10px #777;
+box-shadow:0 15px 10px #777;
+-webkit-transform:rotate(-3deg);
+-moz-transform:rotate(-3deg);
+-o-transform:rotate(-3deg);
+-ms-transform:rotate(-3deg);
+transform:rotate(-3deg);
+}
+.panel1:after {
+-webkit-transform:rotate(3deg);
+-moz-transform:rotate(3deg);
+-o-transform:rotate(3deg);
+-ms-transform:rotate(3deg);
+transform:rotate(3deg);
+right:10px;
+left:auto;
+clear:both;
+float: none;
+}
+.panel h4, .panel1 h4 {}
+
+/* WOW Misc
+================================================== */
+.notice {background: #FFF6BF; border-top: 2px solid #FFD324; border-bottom: 2px solid #FFD324; text-align: center; margin: 10px auto; padding: 5px 20px; color:#000000;}
+span.highlight {background:#F9F1ED none repeat scroll 0 0; color:#F75342; font-style:italic;}
+span.highlight-bold {font-size:120%; line-height:150%;}
+span.inset-left, span.inset-right {border:1px solid #Eee; display:block; font-size:100%; margin-top:25px; padding:12px 8px 8px; position:relative; text-align:center; width:30%;}
+span.inset-right-title, span.inset-left-title {background:#FFFFFF none repeat scroll 0 0; color:#F75342; display:block; font-size:100%; font-weight:bold; left:10px; padding:3px 8px; position:absolute; top:-15px;}
+span.inset-right {float:right; margin-left:15px;}
+span.inset-left {float:left; margin-right:15px;}
+.important {border:1px solid #E5E5E5; margin:25px 0 10px;padding:15px; position:relative;}
+span.important-title {background:#FFFFFF none repeat scroll 0 0; color:#F75342; display:block; font-size:120%; left:10px; padding:3px 8px; position:absolute; top:-0.8em;}
+.top-shortcode {font-size:8px; line-height:10px; margin-bottom:40px; position:relative; text-align:right;}
+.top-shortcode a {background:#F9F9F9; color:#BBBBBB; height:20px; position:absolute; right:0; text-shadow:1px 1px 0 #FFFFFF; top:15px; width:20px;}
+.divider {clear:both; display:block; margin-bottom:20px; padding-top:20px; width:100%; border-bottom:1px solid #E5E5E5;}
+form {margin:0px;}

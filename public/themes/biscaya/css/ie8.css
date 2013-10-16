@@ -1,0 +1,12 @@
+.box, .effect2,.effect3, .effect4, .effect5, .effect6, .effect7, .effect8, 
+.panel1, .panel1:after,
+.effect2:before, .effect2:after,
+.effect3:before, .effect3:after,
+.effect4:before, .effect4:after,
+.effect5:before, .effect5:after,
+.effect6:before, .effect6:after,
+.effect7:before, .effect7:after,
+.effect8:before, .effect8:after
+ {position:static;}
+.captionicons {padding:13px 13px 26px 13px;}
+.multi-sidebar .entry-thumbnail img {display:none;}

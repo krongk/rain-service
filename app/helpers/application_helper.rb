@@ -102,7 +102,7 @@ module ApplicationHelper
   def get_short_url(site, page = nil, post = nil)
     return '/' if site.nil?
     #url = "/s/#{site.short_id}"
-    url = "#{request.protocol}#{site.short_id}.#{request.host_with_port}" #http://short_id.65960.com:3000
+    url = "#{request.protocol}#{site.short_id}.#{request.host_with_port.sub(/^www\./i, '')}" #http://short_id.65960.com:3000
     url << "/p/#{page.short_id}" unless page.nil?
     url << "/b/#{post.id}" unless post.nil?
     return url

@@ -65,13 +65,42 @@ class Site < ActiveRecord::Base
     #return content.to_s.gsub(/\{url_for\((.*)\)\}/, '\1' )
   end
 
-  #将模板下面的文件内容拷到对应的页面中， 
-  #即 if(page.name == 'about'){/publc/themes/clean_canvas/关于.html => page.content}
-  #即 if(page.name == 'about'){/publc/themes/clean_canvas/guan-yu.html => page.content}
+  #将模板下面的文件内容拷到对应的页面中，
+  # 在模板中， [首页, index, shouye, shou-ye] 几个名字是等价的，等价的存储到'首页' 的 site_page中。
+  # 页面的扩展名是[htm, html]都可以
   def get_site_page_content(theme_name, page_name)
-    if File.exist?( f = File.join(Rails.root, 'public', 'themes', theme_name, page_name + '.html')) ||
-       File.exist?( f = File.join(Rails.root, 'public', 'themes', theme_name, Pinyin.t(page_name, splitter: '-') + '.html'))
-      return File.read(f)
+    name_hash = {
+      '首页' => 'index',
+      '关于' => 'about',
+      '关于我们' => 'about',
+      '联系' => 'contact',
+      '联系我们' => 'contact',
+      '服务' => 'service',
+      '服务项目' => 'service',
+      '博客' => 'blog',
+      '在线帮助' => 'faq',
+      '帮助问答' => 'help',
+      '帮助说明' => 'help',
+      '投资组合' => 'portfolio',
+      '产品介绍' => 'product',
+      '项目介绍' => 'project',
+      '活动' => 'event',
+      '新闻' => 'news',
+      '新闻报道' => 'news',
+      '案例' => 'case',
+      '案例展示' => 'case',
+    }
+    [
+      name_hash[page_name], #index
+      Pinyin.t(page_name, splitter: ''), #shouye
+      Pinyin.t(page_name, splitter: '-'), #shou-ye
+      page_name, #首页
+    ].each do |p_name|
+      next if p_name.nil?
+      if File.exist?( f = File.join(Rails.root, 'public', 'themes', theme_name, p_name + '.html')) ||
+         File.exist?( f = File.join(Rails.root, 'public', 'themes', theme_name, p_name + '.htm'))
+        return File.read(f)
+      end
     end
     return ''
   end

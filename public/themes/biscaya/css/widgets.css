@@ -1,0 +1,109 @@
+/* Widget-Tabbed*/
+.multi-sidebar a {
+color:#777;
+}
+.multi-sidebar li {
+margin-bottom:15px;
+}
+.multi-sidebar-container .entry-title{
+font-family: open_sansbold;
+}
+.multi-sidebar-container  small{
+font-family: 'open_sansitalic'; 
+color:#999;
+}
+.multi-sidebar-container .widget ul {
+padding: 0;
+border: 0;
+
+}
+
+.hide,.ui-tabs-hide {
+display:none;
+}
+.multi-sidebar .tabs {
+list-style:none;
+margin:0;
+padding:0;
+overflow:hidden;
+border-bottom:0px;
+background:#333;
+
+}
+.multi-sidebar .tabs li {
+float:left;
+margin:0 .25em -0.20px 0;
+}
+.multi-sidebar .widget {
+margin:0 0 1.5em;
+border: 1px solid #eee;
+padding: 15px;
+border-top:0;
+}
+
+.multi-sidebar .widget ul,ul.featured-stories,ul.related-posts {
+list-style:none;
+margin:0;
+}
+.multi-sidebar .widget li,.featured-stories li,.related-posts li {
+border-bottom:1px dotted #ddd;
+padding:0 0 .75em;
+margin:0 0 .75em;
+clear:both;
+}
+.multi-sidebar .widget li:last-child {
+border-bottom:0;
+padding-bottom: 0;
+margin-bottom: 0;
+}
+.multi-sidebar .entry-thumbnail,.featured-stories .entry-thumbnail {
+float:left;
+margin:0;
+padding:2px;
+line-height:1;
+height: 50px;
+}
+.multi-sidebar .entry-thumbnail img,.multi-sidebar .recentcomments .avatar img,.featured-stories .entry-thumbnail img {
+margin-bottom:20px;
+width:60px;
+height:50px;
+float:none;
+}
+.multi-sidebar .recentcomments .avatar {
+float:left;
+border:1px solid #CCC;
+margin:0 10px 0 0;
+background:#FFF;
+padding:2px;
+line-height:1;
+}
+.multi-sidebar .recentcomments .avatar img {
+width:36px;
+height:auto;
+}
+.multi-sidebar .tabs a:link,.multi-sidebar .tabs a:visited {
+font-size:90%;
+color:#fff;
+text-decoration:none;
+padding:6px 9px;
+display:block;
+text-transform:uppercase;
+font-family: open_sansbold;
+}
+.multi-sidebar .tabs a:hover {
+
+}
+.multi-sidebar .tabs .ui-tabs-selected a {
+border-bottom:4px solid #c1c1c1;
+}
+.multi-sidebar .tabs .ui-tabs-selected a:link,.multi-sidebar .tabs .ui-tabs-selected a:visited {
+color:#666;
+}
+.multi-sidebar .entry-author {
+color:#666;
+font-size:90%;
+}
+.ui-tabs-active {
+background: #c1c1c1;
+color: #fff;
+}
