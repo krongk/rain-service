@@ -4,7 +4,7 @@ class SitePost < ActiveRecord::Base
   belongs_to :user
   belongs_to :site
 
-  liquid_methods :id, :title, :content, :update_at, :formated_content
+  liquid_methods :id, :title, :content, :update_at, :key_words, :formated_content
 
   validates_presence_of :user_id, :site_id, :cate_id, :title, :content
 

@@ -13,7 +13,7 @@ zh-CN:
         css_url: CSS文件组
         js_url: JS文件组
         header: 页头模版
-        body: 内容模版
+        body: 首页内容部分
         footer: 页脚模版
     errors:
       theme: 网址模板

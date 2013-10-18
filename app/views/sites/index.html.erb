@@ -17,7 +17,7 @@
         <td><%= site.short_id %></td>
         <td><%= site.title %></td>
         <td><%= site.domain %></td>
-        <td><%= Theme.find(site.theme_id).name %></td>
+        <td><%= Theme.find_by(id: site.theme_id).try(:name) %></td>
         <td>
           <div class="text-right">
             <%= link_to '预览', get_short_url(site), target: '_blank', class: 'btn btn-primary' %>

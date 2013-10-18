@@ -2,13 +2,13 @@
 zh-CN:
   site_posts:
     index:
-      title: Site posts
+      title: 新闻博客
     show:
-      title: Site post
+      title: 新闻博客
     edit:
-      title: Editing Site post
+      title: 修改新闻博客
     new:
-      title: New Site post
+      title: 新建新闻博客
   flash:
     site_posts:
       create:

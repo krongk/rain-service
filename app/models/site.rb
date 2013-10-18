@@ -1,5 +1,27 @@
 #encoding: utf-8
 class Site < ActiveRecord::Base
+  PAGE_TITLE_HASH = {
+    '首页' => 'index',
+    '关于' => 'about',
+    '关于我们' => 'about',
+    '联系' => 'contact',
+    '联系我们' => 'contact',
+    '服务' => 'service',
+    '服务项目' => 'service',
+    '博客' => 'blog',
+    '在线帮助' => 'faq',
+    '帮助问答' => 'help',
+    '帮助说明' => 'help',
+    '投资组合' => 'portfolio',
+    '产品介绍' => 'product',
+    '项目介绍' => 'project',
+    '活动' => 'event',
+    '新闻' => 'news',
+    '新闻报道' => 'news',
+    '案例' => 'case',
+    '案例展示' => 'case',
+  }
+
   belongs_to :user
   belongs_to :theme
   has_many :site_pages, :dependent => :destroy
@@ -32,10 +54,9 @@ class Site < ActiveRecord::Base
   def assign_theme_content
     theme = Theme.find_by_id(self.theme_id)
     return if theme.nil?
-    self.head = theme.css_url.to_s.split(/\n+/).map{|c| %(<link rel="stylesheet" type="text/css" href="#{c.strip}">)}.join("\n")
+    self.head = theme.css_url
     self.head << "\n"
-    self.head << theme.js_url.to_s.split(/\n+/).map{|j| %(<script src="#{j.strip}"></script>)}.join("\n")
-
+    self.head << theme.js_url
     self.header = get_theme_content(theme.header)
     self.body   = get_theme_content(theme.body)
     self.footer = get_theme_content(theme.footer)
@@ -46,9 +67,13 @@ class Site < ActiveRecord::Base
   def create_default_site_pages
     theme = Theme.find_by_id(self.theme_id)
     return if theme.nil?
-    theme.default_pages.split('|').map{|p| p.strip}.each do |p|
+    default_pages = theme.default_pages.split('|').map{|p| p.strip}
+    default_pages << 'blog' #*必须项：博客页面，默认添加进来
+    default_pages << 'post' #*必须项：博客详细页面，默认添加进来
+    default_pages.each do |p|
       next if p.nil?
-      en_title = Pinyin.t(p, splitter: '-')
+      en_title = PAGE_TITLE_HASH[p]
+      en_title ||= Pinyin.t(p, splitter: '-')
       sp = SitePage.find_or_initialize_by(user_id: self.user_id, site_id: self.id, short_id: en_title)
       sp.title = p
       sp.content = get_site_page_content(theme.name, p)
@@ -69,36 +94,16 @@ class Site < ActiveRecord::Base
   # 在模板中， [首页, index, shouye, shou-ye] 几个名字是等价的，等价的存储到'首页' 的 site_page中。
   # 页面的扩展名是[htm, html]都可以
   def get_site_page_content(theme_name, page_name)
-    name_hash = {
-      '首页' => 'index',
-      '关于' => 'about',
-      '关于我们' => 'about',
-      '联系' => 'contact',
-      '联系我们' => 'contact',
-      '服务' => 'service',
-      '服务项目' => 'service',
-      '博客' => 'blog',
-      '在线帮助' => 'faq',
-      '帮助问答' => 'help',
-      '帮助说明' => 'help',
-      '投资组合' => 'portfolio',
-      '产品介绍' => 'product',
-      '项目介绍' => 'project',
-      '活动' => 'event',
-      '新闻' => 'news',
-      '新闻报道' => 'news',
-      '案例' => 'case',
-      '案例展示' => 'case',
-    }
     [
-      name_hash[page_name], #index
+      PAGE_TITLE_HASH[page_name], #index
       Pinyin.t(page_name, splitter: ''), #shouye
       Pinyin.t(page_name, splitter: '-'), #shou-ye
       page_name, #首页
     ].each do |p_name|
       next if p_name.nil?
-      if File.exist?( f = File.join(Rails.root, 'public', 'themes', theme_name, p_name + '.html')) ||
-         File.exist?( f = File.join(Rails.root, 'public', 'themes', theme_name, p_name + '.htm'))
+      puts "#{page_name}: #{p_name}"
+      if File.exist?( f = File.join(Rails.root, 'public', 'themes', theme_name, 'pages', p_name + '.html')) ||
+         File.exist?( f = File.join(Rails.root, 'public', 'themes', theme_name, 'pages', p_name + '.htm'))
         return File.read(f)
       end
     end

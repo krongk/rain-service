@@ -2,7 +2,6 @@ class SController < ApplicationController
   before_filter :load_site
   protect_from_forgery only: :post
   layout 's'
-  #before_action :set_site, only: [:show, :page, :post, :blog]
 
   #Sub domain tutors：http://blog.xdite.net/posts/2013/07/21/implement-subdomain-custom-domain
   def load_site
@@ -11,23 +10,16 @@ class SController < ApplicationController
       "www.#{Rails.application.domain}:#{request.port}", "#{Rails.application.domain}:#{request.port}", nil
       set_site
     else
-      #custom domain
-      puts request.host
-      if @site = Site.find_by(domain: request.host)
-        puts "find host:#{request.host} refer to site: #{@site.short_id}"
-        redirect_to "http://#{@site.short_id}." + Rails.application.domain + ":#{request.port}"
-        return
-      elsif request.host.index(Rails.application.domain)
+      #The sequences will be : subdomain => custom domain => Not Found
+      if request.host.index(Rails.application.domain)
         @site = Site.find_by(short_id: request.host.split('.').first)
       else
         @site = Site.find_by(short_id: request.host)
       end
 
       if !@site
-        puts "no site......."
-        redirect_to "http://www." + Rails.application.domain
+        redirect_to redirect_to "http://www." + Rails.application.domain
       end
-
     end
   end
 
@@ -62,11 +54,10 @@ class SController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_site
-      @site = Site.find_by(short_id: params[:id])
-      @site ||= Site.find_by(id: params[:id]) if params[:id] =~ /^\d+$/
-      @site ||= Site.first
-    end
-
+  # Use callbacks to share common setup or constraints between actions.
+  def set_site
+    @site = Site.find_by(short_id: params[:id])
+    @site ||= Site.find_by(id: params[:id]) if params[:id] =~ /^\d+$/
+    @site ||= Site.first
+  end
 end

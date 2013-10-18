@@ -1,0 +1,96 @@
+<!--container-->
+<section id="container">
+<div class="breadcrumbs">
+    <div class="container">
+        <h2>{{ post.title }}</h2>
+    </div>
+</div>
+
+<div class="container">
+        <div class="row">
+        <section id="page-sidebar" class="alignrleft span9">
+                <article class="blog-post">
+                    <h1>{{ post.title }}</h1>
+                    <ul class="meta clearfix">
+                        <li>{{ post.updated_at }}</li>
+                        <li>By: <a href="#">DXThemes</a></li>
+                        <li>Comments: <a href="#">3</a></li>
+                        <li>Posted in: <a href="#">News</a> | <a href="#">Business</a></li>
+                    </ul>
+                    <img src="example/blog2.jpg" alt="photo"/>
+                    {{ post.formated_content }}
+                </article>  
+
+                <hr />
+
+                <!--comments-->
+               
+
+                <hr />
+                
+                <!--commetns form-->
+                多说评论
+            </section>
+            <!--sidebar-->
+            <aside id="sidebar" class="alignright span3">
+     <!--            <section>
+                    <div class="title-divider">
+                        <div class="divider-arrow"></div>                               
+                        <h4>Blog Category</h4>             
+                    </div>
+                    <ul class="ul-col2 clearfix">
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Quotes</a></li>
+                        <li><a href="#">Video</a></li>
+                        <li><a href="#">Link</a></li>
+                    </ul>
+                </section>
+                 -->
+                <section class="post-widget">
+                    <div class="title-divider">
+                        <div class="divider-arrow"></div>                               
+                        <h4>Popular Post Widget</h4>             
+                    </div>
+                    <ul class="clearfix">
+                     {% paginate site.site_posts by 3 %}
+                        {% for post in site_posts %}  
+                        <li>
+                            <a href="#"><img src="example/sidebar1.jpg" alt="photo"/></a>
+                            <a href="/b/{{post.id}}">{{ post.title}}</a>
+                            <p>comments 2</p>
+                            <div class="clear"></div>
+                        </li>
+                       {% endfor %}
+                      {% endpaginate %}
+                    </ul>
+                </section>
+                <!--twitter -->
+                <section id="twitter-sidebar">
+                    <div class="title-divider">
+                        <div class="divider-arrow"></div>                               
+                        <h4>Twitter</h4>             
+                    </div>
+                    <div class="twitter"></div> 
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                           //twitter
+                            $(".twitter").tweet({
+                                  join_text: "auto",
+                                  username: "twitter",
+                                  avatar_size:40,
+                                  count: 5,
+                                  auto_join_text_default: "we said,",
+                                  auto_join_text_ed: "we",
+                                  auto_join_text_ing: "we were",
+                                  auto_join_text_reply: "we replied",
+                                  auto_join_text_url: "we were checking out",
+                                  loading_text: "loading tweets..."
+                            });
+                        });
+                    </script>
+                </section>
+            </aside>
+        </div>
+    </div>    
+</section>
+
