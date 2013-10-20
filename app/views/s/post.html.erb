@@ -1,7 +1,0 @@
-<% title "#{@site_post.title} - #{@site.title}" %>
-<% meta_keywords "#{@site.title}, #{@site_post.title}" %>
-<% meta_description "#{@site.title}, #{@site_post.title}" %>
-
-<%#= raw @site_post.content %>
-<%= raw( liquidize( @site_post.formated_content, 'site' => @site, 'site_post' => @site_post, 
-  'site_comment' => @site_comment, 'authenticity_token' => session[:_csrf_token], 'redirect_url' => request.original_url )) %>

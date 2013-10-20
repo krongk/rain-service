@@ -5,16 +5,14 @@ RainService::Application.routes.draw do
   #for subdomain
   constraints(Subdomain) do
     get "/" => "s#show"
-  
-    get "/blog" => "s#blog"
-    
-    # /p/page_id
+
+    #page: /p/:page_id
     get "/p/:page_id" => "s#page"
     get "/p-:page_id" => "s#page"
-
-    # /b/post_id
-    get "/b/:post_id" => "s#post"
-    get "/b-:post_id" => "s#post" #all in s/:id/ can do cache.
+    #post: /p/:page_id/:post_id
+    get "/p/:page_id/:post_id" => "s#page"
+    #blog pagination: /p/:page_id/:page => /p/blog?page=3 || /p/blog/page/2
+    get "/p/:page_id/page/:page" => "s#page"
   end
 
   #for dev

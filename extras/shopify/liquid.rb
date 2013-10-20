@@ -18,5 +18,3 @@ Liquid::Template.register_filter MoneyFilter
 Liquid::Template.register_filter WeightFilter
 Liquid::Template.register_filter ShopFilter
 Liquid::Template.register_filter TagFilter
-
-puts "required liquid"

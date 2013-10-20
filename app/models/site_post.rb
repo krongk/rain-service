@@ -3,8 +3,9 @@ class SitePost < ActiveRecord::Base
   include ActionView::Helpers
   belongs_to :user
   belongs_to :site
+  self.per_page = 3
 
-  liquid_methods :id, :title, :content, :update_at, :key_words, :formated_content
+  liquid_methods :id, :title, :update_at, :key_words, :content
 
   validates_presence_of :user_id, :site_id, :cate_id, :title, :content
 

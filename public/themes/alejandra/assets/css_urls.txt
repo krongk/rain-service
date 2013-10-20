@@ -1,0 +1,12 @@
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  
+<!-- Stylesheets -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="css/isotype.css">
+<link rel="stylesheet" href="css/prettyPhoto.css"> 
+<link href="css/style.css" rel="stylesheet">
+
+
+<!-- Favicon -->
+<link rel="shortcut icon" href="img/favicon/favicon.png">

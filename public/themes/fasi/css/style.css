@@ -54,7 +54,7 @@ hr{
 
 
 .top{
-	background:#555 url('/themes/fasi/img/back.jpg') repeat;
+	background:#555 url('../img/back.jpg') repeat;
 	border-bottom:1px solid #000;
 
 }
@@ -565,7 +565,7 @@ margin-bottom:0px;
 /* Features */
 
 .features{
-	background:#eee url('/themes/fasi/img/featureback1.png') repeat;
+	background:#eee url('../img/featureback1.png') repeat;
 	padding-top:40px;
 	padding-bottom:60px;
 	border-bottom:1px solid #ddd;
@@ -708,7 +708,7 @@ margin-bottom:0px;
 
 footer{
 	padding-top:30px;
-	background:#000 url('/themes/fasi/img/3.png') repeat;
+	background:#000 url('../img/3.png') repeat;
 	color:#ccc;
 }
 

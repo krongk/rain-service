@@ -11,6 +11,7 @@ class CreateSites < ActiveRecord::Migration
       t.string :website
       t.string :address
       t.string :company_name
+      t.string :duoshuo #the account name of http://www.duoshuo.com/
       #site info
       t.string :short_id, index: true, null: false #story the unique short_id
       t.string :title, null: false

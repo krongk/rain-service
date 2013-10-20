@@ -82,6 +82,6 @@ class SitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
-      params.require(:site).permit(:user_id, :short_id, :title, :domain, :theme_id, :head, :header, :body, :footer, :is_published, :contact_name, :mobile_phone, :tel_phone, :qq, :email, :website, :address, :company_name)
+      params.require(:site).permit(:user_id, :short_id, :title, :domain, :theme_id, :head, :header, :body, :footer, :is_published, :contact_name, :mobile_phone, :tel_phone, :qq, :email, :website, :address, :company_name, :duoshuo)
     end
 end

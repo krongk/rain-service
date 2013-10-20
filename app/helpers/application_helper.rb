@@ -95,16 +95,18 @@ module ApplicationHelper
 
   #on sites/index to get site short url
   #e.g. 
-  # /s/short_id => short_id.domain.com
-  # /s/short_id/p/page_short_id
-  # /s/short_id/b/post_short_id
-  # page and post can not act at same time.
+  # => short_id.domain.com
+  # => short_id.domain.com/p/page_id(or page.short_id)
+  # => => short_id.domain.com/p/page_id/post_id
+  #how to call:
+  # => get_short_url(@site, @site_page, nil)
+  # => get_short_url(@site, @site.site_pages.find_by(short_id: 'post'), @site_post)
   def get_short_url(site, page = nil, post = nil)
     return '/' if site.nil?
     #url = "/s/#{site.short_id}"
     url = "#{request.protocol}#{site.short_id}.#{request.host_with_port.sub(/^www\./i, '')}" #http://short_id.65960.com:3000
     url << "/p/#{page.short_id}" unless page.nil?
-    url << "/b/#{post.id}" unless post.nil?
+    url << "/#{post.id}" unless post.nil?
     return url
   end
 

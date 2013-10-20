@@ -2,7 +2,6 @@ class ThemesController < ApplicationController
   before_action :set_theme, only: [:show, :edit, :update, :destroy]
 
   def like_theme
-    puts "lllllll#{params}"
     @theme_id = params[:theme_id]
     UserTheme.create(:user_id => current_user.id, :theme_id => @theme_id)
     respond_to do |format|
@@ -40,10 +39,12 @@ class ThemesController < ApplicationController
   # POST /themes.json
   def create
     @theme = Theme.new(theme_params)
+    @theme.templete_image = "/themes/#{@theme.name}/preview.jpg" if @theme.templete_image.blank?
+    @theme.templete_url = "/themes/#{@theme.name}/demo.html" if @theme.templete_url.blank?
 
     respond_to do |format|
       if @theme.save
-        format.html { redirect_to themes_url, notice: 'Theme was successfully created.' }
+        format.html { redirect_to themes_url, notice: '模板添加成功.' }
         format.json { render action: 'show', status: :created, location: @theme }
       else
         format.html { render action: 'new' }
@@ -57,7 +58,11 @@ class ThemesController < ApplicationController
   def update
     respond_to do |format|
       if @theme.update(theme_params)
-        format.html { redirect_to themes_url, notice: 'Theme was successfully updated.' }
+        @theme.templete_image = "/themes/#{@theme.name}/preview.jpg" if @theme.templete_image.blank?
+        @theme.templete_url = "/themes/#{@theme.name}/demo.html" if @theme.templete_url.blank?
+        @theme.save!
+
+        format.html { redirect_to themes_url, notice: '模板更新成功.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

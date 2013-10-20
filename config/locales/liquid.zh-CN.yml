@@ -1,0 +1,22 @@
+---
+  errors:
+    syntax:
+      assign: "语法 错误 in 'assign' - Valid 语法: assign [var] = [source]"
+      capture: "语法 错误 in 'capture' - Valid 语法: capture [var]"
+      case: "语法 错误 in 'case' - Valid 语法: case [condition]"
+      case_invalid_when: "语法 错误 在标签 'case' - Valid when condition: {% when [condition] [or condition2...] %}"
+      case_invalid_else: "语法 错误 在标签 'case' - Valid else condition: {% else %} (no parameters) "
+      cycle: "语法 错误 in 'cycle' - Valid 语法: cycle [name :] var [, var2, var3 ...]"
+      for: "语法 错误 in 'for loop' - Valid 语法: for [item] in [collection]"
+      for_invalid_in: "For loops require an 'in' clause"
+      for_invalid_attribute: "Invalid attribute in for loop. Valid attributes are limit and offset"
+      if: "语法 错误 在标签 'if' - Valid 语法: if [expression]"
+      include: "错误 在标签 'include' - Valid 语法: include '[template]' (with|for) [object|collection]"
+      unknown_tag: "未知的标签 '%{tag}'"
+      invalid_delimiter: "'end' is not a valid delimiter for %{block_name} tags. use %{block_delimiter}"
+      unexpected_else: "%{block_name} tag does not expect else tag"
+      tag_termination: "标签 '%{token}' was not properly terminated with regexp: %{tag_end}"
+      variable_termination: "变量 '%{token}' was not properly terminated with regexp: %{tag_end}"
+      tag_never_closed: "'%{block_name}' tag was never closed"
+      meta_syntax_error: "模板语法错误: #{e.message}"
+      table_row: "语法 错误 in 'table_row loop' - Valid 语法: table_row [item] in [collection] cols=3"

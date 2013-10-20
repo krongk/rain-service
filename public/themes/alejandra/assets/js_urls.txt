@@ -1,0 +1,9 @@
+<!-- HTML5 Support for IE -->
+<!--[if lt IE 9]>
+  <script src="js/html5shim.js"></script>
+<![endif]-->
+<!-- JS -->
+<script src="js/bootstrap.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/isotope.js"></script>
+<script src="js/custom.js"></script>

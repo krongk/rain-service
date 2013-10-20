@@ -23,6 +23,7 @@ zh-CN:
         website: 网站地址
         address: 公司地址
         company_name: 公司名称
+        duoshuo: 多说评论账户
     errors:
       site: 网站
   helpers:

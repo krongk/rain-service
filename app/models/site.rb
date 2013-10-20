@@ -4,15 +4,29 @@ class Site < ActiveRecord::Base
     '首页' => 'index',
     '关于' => 'about',
     '关于我们' => 'about',
+
+    'contactus' => 'contact',
     '联系' => 'contact',
     '联系我们' => 'contact',
+    '联系方式' => 'contact',
+
     '服务' => 'service',
     '服务项目' => 'service',
+    'services' => 'service',
+
+    '价格方案' => 'pricing',
+
+    '招聘计划' => 'careers',
+    'jobs' => 'careers',
+    'job' => 'careers',
+
     '博客' => 'blog',
+    '新闻博客' => 'blog',
     '在线帮助' => 'faq',
     '帮助问答' => 'help',
     '帮助说明' => 'help',
-    '投资组合' => 'portfolio',
+    '项目展示' => 'portfolio',
+    '成功案例' => 'portfolio',
     '产品介绍' => 'product',
     '项目介绍' => 'project',
     '活动' => 'event',
@@ -28,7 +42,9 @@ class Site < ActiveRecord::Base
   has_many :site_posts, :dependent => :destroy
   has_many :site_comments, :dependent => :destroy
 
-  liquid_methods :id, :site_posts, :title, :contact_name, :mobile_phone, :tel_phone, :qq, :email, :website, :address, :company_name
+  liquid_methods :id, :site_posts, :title, :contact_name, :mobile_phone, :tel_phone, 
+    :qq, :email, :website, :address, :company_name, 
+    :duoshuo_place, :recent_posts
 
   validates_presence_of :theme_id
   before_validation :assign_short_id,
@@ -38,7 +54,34 @@ class Site < ActiveRecord::Base
   after_create  :assign_theme_content, :create_default_site_pages, :increment_total_count
   after_destroy :decrement_total_count
 
-  private
+  #用在liquid: recent_posts
+  def recent_posts(count = 5)
+    self.site_posts.order("updated_at DESC").limit(count)
+  end
+
+  #1. 在多说上注册一个账号，将账号名称提交的要绑定的网站即可。
+  #2. 在需要显示评论的地方调用：{{site.duoshuo_place}}
+  #Duoshuo Acount: 雨服务 yufuwu.doushuo.com  mail master@inruby.com QQ: 15928661802-->
+  #The admin addr: http://yufuwu.duoshuo.com/admin/tools/ -->
+  def duoshuo_place
+    return '<没有指定多说评论账户>' if self.duoshuo.nil?
+    %{
+      <!-- Duoshuo Comment BEGIN -->
+      <div class="ds-thread"></div>
+      <script type="text/javascript">
+      var duoshuoQuery = {short_name:"#{self.duoshuo}"};
+        (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0] 
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+        </script>
+      <!-- Duoshuo Comment END -->
+    }
+  end
 
   def increment_total_count
     Keystore.increment_value_for("user:#{self.user_id}:sites_count")
@@ -75,7 +118,7 @@ class Site < ActiveRecord::Base
       en_title = PAGE_TITLE_HASH[p]
       en_title ||= Pinyin.t(p, splitter: '-')
       sp = SitePage.find_or_initialize_by(user_id: self.user_id, site_id: self.id, short_id: en_title)
-      sp.title = p
+      sp.title = p.force_encoding("utf-8")
       sp.content = get_site_page_content(theme.name, p)
       sp.save!
     end 
@@ -101,13 +144,21 @@ class Site < ActiveRecord::Base
       page_name, #首页
     ].each do |p_name|
       next if p_name.nil?
-      puts "#{page_name}: #{p_name}"
       if File.exist?( f = File.join(Rails.root, 'public', 'themes', theme_name, 'pages', p_name + '.html')) ||
          File.exist?( f = File.join(Rails.root, 'public', 'themes', theme_name, 'pages', p_name + '.htm'))
-        return File.read(f)
+        return get_urls(File.read(f))
       end
     end
     return ''
+  end
+
+  # <link href="css/bootstrap.css" rel="stylesheet">
+  # => <link rel="stylesheet" type="text/css" href="/themes/cryption/css/bootstrap.css">
+  def get_urls(str)
+    #css url
+    str = str.force_encoding("utf-8").gsub(/(src|href)="(css|style|js|javascript|img|image|images)="(css|js|img)\//, '\1="/themes/<the_theme_name>/\2/')
+    str = str.gsub(/<the_theme_name>/, self.theme.name)
+    str
   end
 
 end

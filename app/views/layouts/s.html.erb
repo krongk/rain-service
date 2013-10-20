@@ -7,14 +7,16 @@
     <title><%= yield(:title) %></title>
     <meta name="keywords" content= "<%= yield(:meta_keywords) %>">
     <meta name="description" content="<%= yield(:meta_description) %>">
-    <!--include common global css-->
+    <!--include common global css: font-amazon -->
     <%= stylesheet_link_tag "s" %>
     <!--include common js-->
-    <%= javascript_include_tag "jquery" %>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <%= javascript_include_tag "jquery", "jquery.turbolinks" %>
+
     <!--include site theme css/js-->
     <%= raw @site.head %>
-
+    
+    <!--bugfix turbolinks: turbolinks must behand jquery -->
+    <%= javascript_include_tag "turbolinks" %>
     <%= csrf_meta_tags %>
   </head>
   <body class="theme">

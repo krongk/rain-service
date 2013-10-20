@@ -46,8 +46,8 @@ class Paginate < Liquid::Block
 
       pagination['items']      = collection_size
       pagination['pages']      = page_count -1
-      pagination['previous']   = link('&laquo; Previous', current_page-1 )  unless 1 >= current_page
-      pagination['next']       = link('Next &raquo;', current_page+1 )      unless page_count <= current_page+1
+      pagination['previous']   = link('&laquo; 上一页', current_page-1 )  unless 1 >= current_page
+      pagination['next']       = link('下一页 &raquo;', current_page+1 )  unless page_count <= current_page+1
       pagination['parts']      = []
 
       hellip_break = false
@@ -56,7 +56,7 @@ class Paginate < Liquid::Block
         1.upto(page_count-1) do |page|
 
           if current_page == page
-            pagination['parts'] << no_link(page)
+            pagination['parts'] << no_link(page) #xj: no_link(page)
           elsif page == 1
             pagination['parts'] << link(page, page)
           elsif page == page_count -1
@@ -85,10 +85,11 @@ class Paginate < Liquid::Block
   end
 
   def link(title, page)
-    { 'title' => title, 'url' => current_url + "?page=#{page}", 'is_link' => true}
+    #xj: chang "?page=#{page}" to "/page/#{page}", see routs.rb: get "/p/:page_id/page/:page" => "s#page"
+    { 'title' => title, 'url' => current_url + "/page/#{page}", 'is_link' => true}
   end
 
   def current_url
-    "" #xj
+    "/p/blog" #xj: the original: "/collections/frontpage"
   end
 end

@@ -13,10 +13,9 @@
 
             <section id="page-sidebar" class="alignleft span9">
                 {% paginate site.site_posts by 3 %}
-                  {% for post in site_posts %}  
+                  {% for post in posts %}  
                     <article class="blog-post">
-                        <a href="#"><img src="/themes/cryption/img/latest1.jpg" alt="photo"/></a>
-                        <h2 class="post-title"><a href="#">{{ post.title }}</a></h2>
+                        <h2 class="post-title"><a href="/p/post/{{post.id}}">{{ post.title }}</a></h2>
                         <p>
                             | <i class="icon-user"></i> <a href="#">{{post.id}}</a>
                             | <i class="icon-calendar"></i> {{post.updated_at}}
@@ -24,13 +23,13 @@
                             | <i class="icon-share"></i> <a href="#">39 Shares</a>
                         </p>
                         <p>
-                           {{ post.formated_content}}
+                           {{ post.content | strip_html | truncate: 60 }}
                         </p>
-                        <a href="/b/{{ post.id}}" class="read-more">阅读更多...</a>
+                        <a href="/p/post/{{ post.id}}" class="read-more">阅读更多...</a>
                     </article>
                     <hr />
                   {% endfor %}
-                  {{ paginate | default_pagination | replace: 'Previous', '上一页' | replace: 'Next', '下一页'}}
+                  {{ paginate | default_pagination}}
                 {% endpaginate %}
                 
             </section>

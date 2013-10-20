@@ -5,9 +5,9 @@
     <%= f.input :cate, collection: ApplicationHelper::THEME_CATES, hint: "*博客型支持更换皮肤，模板来自Bootswatch，*企业型不支持更改皮肤，模板来自wrapbootstrap" %>
     <%= f.input :name, input_html: { class: 'input-block-level'} %>
     <%= f.input :tags, placeholder: 'Responsive, One Page, Business', input_html: { class: 'input-block-level'} %>
-    <%= f.input :templete_image, placeholder: '图片地址', input_html: { class: 'input-block-level'} %>
-    <%= f.input :templete_url, placeholder: '模板预览地址', input_html: { class: 'input-block-level'} %>
-    <%= f.input :default_pages, input_html: { class: 'input-block-level'} %>
+    <%= f.input :templete_image, placeholder: '图片地址', hint: "预览图片地址为空，则默认指向：/themes/<theme_name>/preview.jpg", input_html: { class: 'input-block-level'} %>
+    <%= f.input :templete_url, placeholder: '模板预览地址', hint: "预览地址为空，则默认指向：/themes/<theme_name>/demo.html", input_html: { class: 'input-block-level'} %>
+    <%= f.input :default_pages, hint: "博客和博客列表（blog,post)默认已添加", input_html: { class: 'input-block-level'} %>
     <%= f.input :css_url, input_html: { class: 'input-block-level'} %>
     <%= f.input :js_url, input_html: { class: 'input-block-level'} %>
     <%= f.input :header, input_html: { class: 'input-block-level', rows: 4} %>
