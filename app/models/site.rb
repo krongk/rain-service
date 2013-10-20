@@ -146,7 +146,7 @@ class Site < ActiveRecord::Base
       next if p_name.nil?
       if File.exist?( f = File.join(Rails.root, 'public', 'themes', theme_name, 'pages', p_name + '.html')) ||
          File.exist?( f = File.join(Rails.root, 'public', 'themes', theme_name, 'pages', p_name + '.htm'))
-        return get_urls(File.read(f))
+        return get_urls(File.read(f).to_s)
       end
     end
     return ''
@@ -156,7 +156,7 @@ class Site < ActiveRecord::Base
   # => <link rel="stylesheet" type="text/css" href="/themes/cryption/css/bootstrap.css">
   def get_urls(str)
     #css url
-    str = str.force_encoding("utf-8").gsub(/(src|href)="(css|style|js|javascript|img|image|images)="(css|js|img)\//, '\1="/themes/<the_theme_name>/\2/')
+    str = str.force_encoding("utf-8").gsub(/(src|href)="(css|style|js|javascript|img|image|images)\//, '\1="/themes/<the_theme_name>/\2/')
     str = str.gsub(/<the_theme_name>/, self.theme.name)
     str
   end
