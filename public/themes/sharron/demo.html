@@ -1,0 +1,404 @@
+<!-- 程序自动提取模板固定目录中的代码填充到这里，生成一个预览网页-->
+<!-- 百度公共资源库：http://developer.baidu.com/wiki/index.php?title=docs/cplat/libs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <title>sharron</title>
+    <!--include common global css-->
+    <link href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <!--include common css-->
+    
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
+
+<!-- Stylesheets -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/prettyPhoto.css" rel="stylesheet">
+<link href="css/slider.css" rel="stylesheet">
+
+<link href="css/style.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+
+    <!--include common global js-->
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <!--include common js-->
+    <!-- HTML5 Support for IE -->
+  <!--[if lt IE 9]>
+  <script src="js/html5shim.js"></script>
+<![endif]-->
+
+<!-- JS -->
+<script src="js/bootstrap.js"></script>
+<script src="js/jquery.isotope.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/modernizr.custom.28468.js"></script>
+<script src="js/jquery.cslider.js"></script>
+<script src="js/custom.js"></script>
+
+  </head>
+  <body>
+    <!-- header -->
+    <div class="topbar">
+<div class="container">
+<div class="row">
+  <div class="span5">
+    <div class="social-icons">
+      <a href="#"><i class="icon-facebook"></i></a>
+      <a href="#"><i class="icon-twitter"></i></a>
+      <a href="#"><i class="icon-linkedin"></i></a>
+      <a href="#"><i class="icon-google-plus"></i></a>
+      <a href="#"><i class="icon-pinterest"></i></a>
+    </div>
+  </div>
+  <div class="span5 offset2">
+    <div class="links">
+      <a href="#p/contact">给我留言</a> | <a href="#">在线咨询</a> | <a href="#">联系QQ</a>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<header>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <div class="logo">
+        <h1><a href="index.html">{{site.title}}</a></h1>
+        <p class="lmeta">{{site.company_name}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+<div class="container">
+<div class="row">
+<div class="span12">
+     <div class="navbar">
+       <div class="navbar-inner">
+         <div class="container">
+           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span>导航</span>
+           </a>
+           <div class="nav-collapse collapse">
+             <ul class="nav">
+               <li><a href="#">首页</a></li>
+               <li><a href="#p/service.html">服务项目</a></li>
+               <li><a href="#p/about.html">关于我们</a></li>
+               <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">最新博文<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                  {% for post in site.recent_posts %}
+                    <li><a href="#p/post/{{post.id}}">{{post.title}}</a></li>
+                  {% endfor %}
+                  </ul>
+               </li>                  
+               <li><a href="#p/portfolio.html">成功案例</a></li>
+               <li><a href="#p/pricing.html">价格方案</a></li>
+               <li><a href="#p/faq.html">在线帮助</a></li>
+               <li><a href="#p/contact.html">联系我们</a></li>
+             </ul>
+
+               <form class="navbar-search pull-right">
+                <input type="text" class="search-query" placeholder="搜索...">
+              </form>
+           </div>
+          </div>
+       </div>
+     </div>
+    </div>
+  </div>
+</div>
+
+    <!-- end header -->
+
+    <!-- content -->
+    
+<div class="content">
+   <div class="container">
+      <div class="row">
+         <div class="span12">
+
+            <!-- Slider (Parallax Slider) -->
+            <div class="slider">                                 
+              <div id="da-slider" class="da-slider">
+                <div class="da-slide">
+                  <h2>Quality Control</h2>
+                  <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+                  <a href="#" class="da-link">Read more</a>
+                  <div class="da-img"><img src="img/parallax/1.png" alt="image01" /></div>
+                </div>
+                <div class="da-slide">
+                  <h2>Quality Control</h2>
+                  <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+                  <a href="#" class="da-link">Read more</a>
+                  <div class="da-img"><img src="img/parallax/2.png" alt="image01" /></div>
+                </div>
+                <div class="da-slide">
+                  <h2>Quality Control</h2>
+                  <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+                  <a href="#" class="da-link">Read more</a>
+                  <div class="da-img"><img src="img/parallax/3.png" alt="image01" /></div>
+                </div>
+                <nav class="da-arrows">
+                  <span class="da-arrows-prev"></span>
+                  <span class="da-arrows-next"></span>
+                </nav>
+              </div>
+            </div>
+
+            <div class="border"></div>
+
+            <!-- Colors boxes -->
+
+            <div class="navs">
+              <!-- Each navigation link should be enclosed inside "box" class. -->
+              <!-- Navigation #1 -->
+              <div class="box">
+                <div class="box-r">
+                  <a href="#">
+                    <p class="top"><i class="icon-gift"></i></p>
+                    <p class="bor"></p>
+                    <p class="bot">Fashion Designing</p>
+                  </a>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <!-- Navigation #2 -->
+              <div class="box">
+                <div class="box-g">
+                  <a href="#">
+                    <p class="top"><i class="icon-cloud"></i></p>
+                    <p class="bor"></p>
+                    <p class="bot">Dress Decoration</p>
+                  </a>              
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <!-- Navigation #3 -->
+              <div class="box">
+                <div class="box-b">
+                  <a href="#">
+                    <p class="top"><i class="icon-home"></i></p>
+                    <p class="bor"></p>
+                    <p class="bot">Interior Designing</p>
+                  </a>            
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <!-- Navigation #4 -->
+              <div class="box">
+                <div class="box-y">
+                  <a href="#">
+                    <p class="top"><i class="icon-camera"></i></p>
+                    <p class="bor"></p>
+                    <p class="bot">Graphic Designing</p>
+                  </a>              
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>   
+
+            <div class="clearfix"></div>         
+
+            <div class="border"></div>
+
+            <!-- Twitter feed -->
+
+            <div class="well">
+              <div class="tweet"></div>
+            </div>
+
+            <div class="border"></div>
+
+            <!-- Models, Recent posts and Testimonials -->
+
+            <div class="latest">
+              <div class="row">
+
+                <div class="span4">
+                  <div class="model">
+                    <!-- Model image -->
+                    <a href="#"><img src="img/parallax/1.png" /></a>
+                  </div>
+                  <div class="model-details">
+                    <!-- Model details -->
+                    <h3>Sonakshi Sinha</h3>
+                    <p>Duis eget risus ac orci vulputate  sit amet id orci. Etiam ac ante at lorem ultrices elementum.</p>
+                    <div>Twitter : <a href="#">@modely</a></div>
+                    <div>Facebook : <a href="#">ravikumar</a></div>
+                    <div>LinkedIn : <a href="#">professional</a></div>
+                    <div>Email : <a href="#">sansm@gmail.com</a></div>
+                  </div>
+                </div>
+
+                <div class="span4">
+
+                  <div class="big-block">
+                      <h3>Whats Up<span class="color">?</span>
+                      <h4 class="color">Etiam ac ante at lorem</h4>
+                      <p>Nullam in est urna. In vitae adipiscing enim. Curabitur rhoncus condimentum lorem, non convallis dolor faucibus eget. In ut nulla est.Vestibulum sit amet id orci.</p>
+                  </div>
+
+                  <div class="items">
+                    <h3>Recent Posts</h3>
+
+                    <!-- item #1 -->
+                    <div class="date">12.23.2012</div>
+                    <h4><a href="#">Integer porta erat ac eros porta ultrices</a></h4>
+                    <hr />
+
+                    <!-- item #2 -->
+                    <div class="date">12.23.2012</div>
+                    <h4><a href="#">Curabitur rhoncus condimentum lorem</a></h4>
+                    <hr />
+
+                    <div class="date">12.23.2012</div>
+                    <h4><a href="#">Integer porta erat ac eros porta ultrices</a></h4>
+                    <hr />
+
+                    <div class="date">12.23.2012</div>
+                    <h4><a href="#">Integer porta erat ac eros porta ultrices</a></h4>
+                                                                                
+                  </div>
+                </div>
+
+                <div class="span4">
+                  <div class="testimonials">
+                    <h3>Testimonials</h3>
+
+                    <div class="testimonial">
+                      <p>Nullam in est urna. In vitae adipiscing enim. Curabitur rhoncus condimentum lorem, non convallis dolor faucibus eget. In ut nulla est.Vestibulum sit amet id orci.</p>
+                      <div class="author pull-right"><span class="color"><i class="icon-user"></i></span>Ashok, <span class="color">CEO of Info</span></div>
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="testimonial">
+                      <p>Curabitur rhoncus non convallis dolor faucibus eget. In ut nulla est. Sed a  mauris. Duis eget risus ac orci vulputate vestibulum sit amet id orci.</p>
+                      <div class="author pull-right"><span class="color"><i class="icon-user"></i></span>Ashok, <span class="color">CEO of Info</span></div>
+                      <div class="clearfix"></div>
+                    </div>  
+
+                    <div class="testimonial">
+                      <p>Curabitur rhoncus non convallis dolor faucibus eget. In ut nulla est. Sed a  mauris. Duis eget risus ac orci vulputate vestibulum sit amet id orci.</p>
+                      <div class="author pull-right"><span class="color"><i class="icon-user"></i></span>Ashok, <span class="color">CEO of Info</span></div>
+                      <div class="clearfix"></div>
+                    </div>                                       
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Models, Recent Posts and Tesimonials ends -->
+
+            <div class="cta">
+              <div class="row">
+                 <div class="span5">
+                    <!-- Big title -->
+                    <h2>Want to Get Started<span class="color">?</span></h2>
+                    <div class="button">
+                      <a href="#">Downlaod Now</a> <a href="#">Try the Demo</a>
+                    </div>
+                 </div>
+                 <div class="span6">
+                    <h3>What are you going to do?</h3>
+                    <!-- Para -->
+                    <p>Duis eget risus ac orci vulputate vestibulum sit amet id orci. Etiam ac ante at lorem ultrices elementum.</p>
+                 </div>
+                 <div class="span5">
+                 </div>
+              </div>
+           </div> 
+
+           <!-- CTA -->
+
+          </div>
+        </div>
+      </div>
+  </div>
+  
+    <!-- end content-->
+    <!-- footer-->
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+
+          <div class="foot">
+            <div class="row">
+              <div class="span4">
+                <!-- "fwidget" class is important -->
+                <div class="fwidget">
+                  <h4>最新文章</h4>
+                  <ul>
+{% for post in site.recent_posts %}
+  <li><a href="#p/post/{{post.id}}">{{post.title}}</a></li>
+{% endfor %}
+                  </ul>
+                </div>
+              </div>
+              <div class="span4">
+                <div class="fwidget">
+                  <h4>Subscribe</h4>
+                  <p>Duis eget risus ac orci vulputate vestibulum sit amet id orci. Etiam ac ante at lorem ultrices elementum.</p>
+                      <form class="form-search">
+                        <input type="text" class="input-medium">
+                        <button type="submit" class="btn">Search</button>
+                      </form>
+                      <div class="social">
+                        <a href="#"><i class="icon-linkedin linkedin"></i></a>
+                        <a href="#"><i class="icon-facebook facebook"></i></a>
+                        <a href="#"><i class="icon-twitter twitter"></i></a>
+                        <a href="#"><i class="icon-google-plus google-plus"></i></a>                  
+                        <a href="#"><i class="icon-pinterest pinterest"></i></a>                  
+                      </div>
+                </div>
+              </div>
+              <div class="span2">
+                <div class="fwidget">
+                  <h4>Categories</h4>
+                  <ul>
+                    <li><a href="#">Condimentum</a></li>
+                    <li><a href="#">Etiam at</a></li>
+                    <li><a href="#">Fusce vel</a></li>
+                    <li><a href="#">Vivamus</a></li>
+                    <li><a href="#">Pellentesque</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="span2">
+                <div class="fwidget">
+                  <h4>Pages</h4>
+                  <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p>版权所有 &copy; <a href="#">{{site.title}}</a></p>
+      </div>
+    </div>
+  <div class="clearfix"></div>
+  </div>
+</footer>   
+
+    <!-- end footer-->
+  </body>
+</html>
+
+

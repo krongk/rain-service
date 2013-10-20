@@ -1,0 +1,12 @@
+
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>
+
+<!-- Stylesheets -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/prettyPhoto.css" rel="stylesheet">
+<link href="css/slider.css" rel="stylesheet">
+
+<link href="css/style.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+

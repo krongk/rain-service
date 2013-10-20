@@ -1,0 +1,121 @@
+<div class="content">
+ <div class="container">
+    <div class="row">
+       <div class="span12">
+
+          <div class="hero">
+            <div class="row">
+              <div class="span4">
+                <div class="htitle">
+                  <h2>{{page.title}}</h2>
+                  <h3>{{page.short_id}}</h3>
+                </div>
+              </div>
+              <div class="span8">
+                <div class="hpara">
+                  <p>Nullam in est urna. In vitae adipiscing enim. Curabitur rhoncus condimentum lorem, non convallis dolor faucibus eget. In ut nulla est. Sed a interdum mauris. Duis eget risus ac orci vulputate vestibulum sit amet id orci. </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="border"></div>
+
+          <div class="matter">
+            <!-- Blog starts -->
+          
+            <div class="blog">
+               <div class="row">
+                  <div class="span12">
+                     
+                     <!-- Blog Posts -->
+                     <div class="row">
+                        <div class="span8">
+                           <div class="posts">
+                           
+                              <!-- Each posts should be enclosed inside "entry" class" -->
+    <!-- Post one -->
+{% paginate site.site_posts by 3 %}
+  {% for post in posts %}
+    <div class="entry">
+       <h2><a href="/p/post/{{post.id}}">{{ post.title}}</a></h2>
+       
+       <!-- Meta details -->
+       <div class="meta">
+          <i class="icon-calendar"></i> {{post.updated_at}} <i class="icon-user"></i> Admin <i class="icon-folder-open"></i> <a href="#">{{post.key_words}}</a> <span class="pull-right"></span>
+       </div>
+       
+       <p>
+         {{post.content|strip_html|truncate 50}}
+       </p>
+       <div class="button"><a href="/p/post/{{post.id}}">阅读更多...</a></div>
+    </div>
+  {% endfor %}
+  {{ paginate | default_pagination}}
+{% endpaginate %}
+                              <div class="clearfix"></div>
+                              
+                           </div>
+                        </div>                        
+                        <div class="span4">
+                           <div class="sidebar">
+                              <!-- Widget -->
+                              <div class="widget">
+                                 <h4>搜索</h4>
+                                 <form method="get" id="searchform" action="#" class="form-search">
+                                    <input type="text" value="" name="s" id="s" class="input-medium"/>
+                                    <button type="submit" class="btn">提交</button>
+                                 </form>
+                              </div>
+                              <div class="widget">
+                                 <h4>最新文章</h4>
+                                 <ul>
+{% for post in site.recent_posts %}
+  <li><a href="/p/post/{{post.id}}">{{ post.title}}</a></li>
+{% endfor %}
+                                 </ul>
+                              </div>
+                              <div class="widget">
+                                 <h4>About</h4>
+                                 <p>关于公司的介绍。。。</p>
+                              </div>                              
+                           </div>                                                
+                        </div>
+                     </div>
+                     
+                     
+                     
+                  </div>
+               </div>
+            </div>
+          </div>
+
+          <div class="border"></div>
+          
+          <!-- Models, Recent Posts and Tesimonials ends -->
+
+          <div class="cta">
+            <div class="row">
+               <div class="span5">
+                  <!-- Big title -->
+                  <h2>Want to Get Started<span class="color">?</span></h2>
+                  <div class="button">
+                    <a href="#">Downlaod Now</a> <a href="#">Try the Demo</a>
+                  </div>
+               </div>
+               <div class="span6">
+                  <h3>What are you going to do?</h3>
+                  <!-- Para -->
+                  <p>Duis eget risus ac orci vulputate vestibulum sit amet id orci. Etiam ac ante at lorem ultrices elementum.</p>
+               </div>
+               <div class="span5">
+               </div>
+            </div>
+         </div> 
+
+         <!-- CTA -->
+
+        </div>
+      </div>
+    </div>
+</div>
