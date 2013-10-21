@@ -1,0 +1,59 @@
+<!--open header-->
+<header>
+  <!--open .wrapper-->
+  <div class="wrapper">
+    <a href="#intro"><div class="logo"></div></a>
+    <ul id="nav">
+      <li><a href="#intro" title="Next Section">首页</a></li>
+        <li><a href="#features" title="Next Section">产品特色</a></li>
+        <li><a href="#contact" title="Next Section">联系我们</a></li>
+    </ul>
+    <div id="menu"></div>
+    
+      <ul class="menu">
+        <li><a href="#intro" title="Next Section">首页</a></li>
+          <li><a href="#features" title="Next Section">产品特色</a></li>
+          <li><a href="#contact" title="Next Section">联系我们</a></li>
+      </ul>
+    
+  </div>
+  <!--close .wrapper-->
+</header>
+<!--close header-->
+
+<!--open #intro-->  
+<div id="intro">
+  <div class="grid-video">
+  <video src="/themes/coming_soon_video/img/video/matta.mp4" preload="auto"></video>
+  </div>
+  <!--open content of intro-->
+  <div class="intro-wrapper">
+    <div class="intro-text">
+      <div class="box" id="subscription">
+          <h2>Our app coming soon!</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper, turpis ac faucibus imperdiet, orci ligula convallis tellus, ac posuere arcu ligula at massa.</p>
+              <!-- Integration with MailChimp. See documentation -->
+              {% form comment %}
+                <input name="authenticity_token" type="hidden" value="{{ authenticity_token }}" />
+                <input name="site_comment[site_id]" type="hidden" value="{{ site.id }}" />
+                <input name="site_comment[redirect_url]" type="hidden" value="{{ redirect_url }}" />
+
+                {% if form.posted_successfully? %}
+                  <div class="notice">提交成功，我们会尽快与您取得联系.</div>
+                {% endif %}
+
+                {% if form.errors %}
+                  <div class="notice error">提交失败，请检查是否输入有误!</div>
+                {% endif %}
+                
+                <input type="text" style="width: 200px; display: inline; background-color: #eee;" id="comment_email" name="site_comment[email]" value="{{form.email}}" placeholder="输入您的电子邮箱"/>
+
+                <input type="submit" name="subscribe" id="submit" value="订阅营销策划方案" />
+              {% endform %}
+               <div class="clear"></div>
+            </div>
+        </div>
+  </div> 
+  <!--close content of intro-->
+</div> 
+<!--close #intro-->

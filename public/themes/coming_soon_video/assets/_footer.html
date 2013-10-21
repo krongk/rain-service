@@ -1,0 +1,66 @@
+<!-- open #contact-->
+<div id="contact">
+  <!-- open .wrapper-->
+  <div class="wrapper">
+    <h2>Contact</h2>
+    <!-- open .left-box-->
+    <div class="left-box">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id augue id lacus ultrices dapibus nec sed turpis. </p>
+
+{% form comment %}
+  <input name="authenticity_token" type="hidden" value="{{ authenticity_token }}" />
+  <input name="site_comment[site_id]" type="hidden" value="{{ site.id }}" />
+  <input name="site_comment[redirect_url]" type="hidden" value="{{ redirect_url }}" />
+
+  {% if form.posted_successfully? %}
+    <div class="notice">提交成功，我们会尽快与您取得联系.</div>
+  {% endif %}
+
+  {% if form.errors %}
+    <div class="notice error">提交失败，请检查是否输入有误!</div>
+  {% endif %}      
+  <input type="text" id="comment_name" name="site_comment[name]" value="{{form.name}}" placeholder="您的姓名"/>
+
+  <input type="text" id="comment_email" name="site_comment[email]" value="{{form.email}}" placeholder="您的电子邮箱"/>
+
+  <input type="text" id="comment_mobile_phone" name="site_comment[mobile_phone]" value="{{form.mobile_phone}}" placeholder="您的手机号码"/>
+
+  <textarea id="comment_content" name="site_comment[content]" rows="6" class=" {% if form.errors contains 'content' %}input-error{% endif %}">{{form.content}}</textarea>
+  <img src="/themes/coming_soon_video/img/ajax.gif" class="ajaxgif hide" />
+    <div class="msg"></div>
+  <input type="button" name="submit" id="submit-contact" value="提交" />
+ {% endform %}
+
+        </div>
+        <!-- close .left-box-->
+        <!-- open .right-box-->
+    <div class="right-box">
+      <p>Suspendisse cursus metus quis purus euismod tempus. Quisque non congue elit, quis posuere ante.</p>
+      <iframe height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://ditu.google.cn/maps?f=q&amp;source=s_q&amp;hl=zh-CN&amp;ll=30.681916,104.055977&amp;z=8&amp;output=embed"></iframe>
+        </div>
+        <!-- close .right-box-->
+        <div class="clear"></div>        
+    </div> 
+    <!--close .wrapper-->
+</div> 
+<!--close #contact-->
+
+<!--open footer-->
+  <footer>
+    <!--open .wrapper-->
+    <div class="wrapper">
+      <ul class="social">
+      <li><a href="#"><img src="img/social/white/googleplus.png" alt="" /></a></li>
+      <li><a href="#"><img src="img/social/white/twitter.png" alt="" /></a></li>
+      <li><a href="#"><img src="img/social/white/facebook.png" alt="" /></a></li>
+      <li><a href="#"><img src="img/social/white/linkedin.png" alt="" /></a></li>
+      <li><a href="#"><img src="img/social/white/pinterest.png" alt="" /></a></li>
+      <li><a href="#"><img src="img/social/white/vimeo.png" alt="" /></a></li>
+      <li><a href="#"><img src="img/social/white/dribbble.png" alt="" /></a></li>
+      </ul>
+    </div>
+    <!--close .wrapper-->
+    <p>65960.com 版权所有 ©2013.</p>
+  </footer>
+  <!--close footer-->
+  <script type="text/javascript" src="js/form_functions.js"></script>

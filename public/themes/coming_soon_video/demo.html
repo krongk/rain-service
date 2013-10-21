@@ -1,0 +1,208 @@
+<!-- 程序自动提取模板固定目录中的代码填充到这里，生成一个预览网页-->
+<!-- 百度公共资源库：http://developer.baidu.com/wiki/index.php?title=docs/cplat/libs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <title>coming_soon_video</title>
+    <!--include common global css-->
+    <link href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <!--include common css-->
+    
+<!-- CSS -->
+<link href="css/style-dark.css" rel="stylesheet" type="text/css" />
+<link href="css/responsive.css" rel="stylesheet" type="text/css" />
+<link href="css/form.css" rel="stylesheet" type="text/css" />
+
+<!-- Google Webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+
+    <!--include common global js-->
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  </head>
+  <body>
+    <!-- header -->
+    <!--open header-->
+<header>
+  <!--open .wrapper-->
+  <div class="wrapper">
+    <a href="#intro"><div class="logo"></div></a>
+    <ul id="nav">
+      <li><a href="#intro" title="Next Section">首页</a></li>
+        <li><a href="#features" title="Next Section">产品特色</a></li>
+        <li><a href="#contact" title="Next Section">联系我们</a></li>
+    </ul>
+    <div id="menu"></div>
+    
+      <ul class="menu">
+        <li><a href="#intro" title="Next Section">首页</a></li>
+          <li><a href="#features" title="Next Section">产品特色</a></li>
+          <li><a href="#contact" title="Next Section">联系我们</a></li>
+      </ul>
+    
+  </div>
+  <!--close .wrapper-->
+</header>
+<!--close header-->
+
+<!--open #intro-->  
+<div id="intro">
+  <div class="grid-video">
+  <video src="img/video/matta.mp4" preload="auto"></video>
+  </div>
+  <!--open content of intro-->
+  <div class="intro-wrapper">
+    <div class="intro-text">
+      <div class="box" id="subscription">
+          <h2>Our app coming soon!</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper, turpis ac faucibus imperdiet, orci ligula convallis tellus, ac posuere arcu ligula at massa.</p>
+              <!-- Integration with MailChimp. See documentation -->
+              {% form comment %}
+                <input name="authenticity_token" type="hidden" value="{{ authenticity_token }}" />
+                <input name="site_comment[site_id]" type="hidden" value="{{ site.id }}" />
+                <input name="site_comment[redirect_url]" type="hidden" value="{{ redirect_url }}" />
+
+                {% if form.posted_successfully? %}
+                  <div class="notice">提交成功，我们会尽快与您取得联系.</div>
+                {% endif %}
+
+                {% if form.errors %}
+                  <div class="notice error">提交失败，请检查是否输入有误!</div>
+                {% endif %}
+                
+                <input type="text" style="width: 200px; display: inline; background-color: #eee;" id="comment_email" name="site_comment[email]" value="{{form.email}}" placeholder="输入您的电子邮箱"/>
+
+                <input type="submit" name="subscribe" id="submit" value="订阅营销策划方案" />
+              {% endform %}
+               <div class="clear"></div>
+            </div>
+        </div>
+  </div> 
+  <!--close content of intro-->
+</div> 
+<!--close #intro-->
+
+    <!-- end header -->
+
+    <!-- content -->
+    <!--open #features-->
+<div id="features">
+  <!--open .wrapper--> 
+  <div class="wrapper">
+    <h2>Features</h2>
+    <!--open .column--> 
+        <div class="column">
+        <div class="featured-1"></div>
+            <h3>Design your landing page</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nibh erat, sagittis sit amet congue at, aliquam eu libero.</p>
+        </div>
+        <!--close .column--> 
+        <!--open .column--> 
+      <div class="column">
+        <div class="featured-2"></div>
+            <h3>Easy Customization</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nibh erat, sagittis sit amet congue at, aliquam eu libero. </p>
+        </div>
+        <!--close .column--> 
+        <!--open .column--> 
+      <div class="column">
+        <div class="featured-3"></div>
+            <h3>Responsive layout</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nibh erat, sagittis sit amet congue at, aliquam eu libero.</p>
+        </div>
+        <!--close .column--> 
+    </div> 
+    <!--close .wrapper-->  
+</div> 
+<!--close #features-->  
+
+
+
+    <!-- end content-->
+    <!-- footer-->
+    <!-- open #contact-->
+<div id="contact">
+  <!-- open .wrapper-->
+  <div class="wrapper">
+    <h2>Contact</h2>
+    <!-- open .left-box-->
+    <div class="left-box">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut id augue id lacus ultrices dapibus nec sed turpis. </p>
+
+{% form comment %}
+  <input name="authenticity_token" type="hidden" value="{{ authenticity_token }}" />
+  <input name="site_comment[site_id]" type="hidden" value="{{ site.id }}" />
+  <input name="site_comment[redirect_url]" type="hidden" value="{{ redirect_url }}" />
+
+  {% if form.posted_successfully? %}
+    <div class="notice">提交成功，我们会尽快与您取得联系.</div>
+  {% endif %}
+
+  {% if form.errors %}
+    <div class="notice error">提交失败，请检查是否输入有误!</div>
+  {% endif %}      
+  <input type="text" id="comment_name" name="site_comment[name]" value="{{form.name}}" placeholder="您的姓名"/>
+
+  <input type="text" id="comment_email" name="site_comment[email]" value="{{form.email}}" placeholder="您的电子邮箱"/>
+
+  <input type="text" id="comment_mobile_phone" name="site_comment[mobile_phone]" value="{{form.mobile_phone}}" placeholder="您的手机号码"/>
+
+  <textarea id="comment_content" name="site_comment[content]" rows="6" class=" {% if form.errors contains 'content' %}input-error{% endif %}">{{form.content}}</textarea>
+  <img src="img/ajax.gif" class="ajaxgif hide" />
+    <div class="msg"></div>
+  <input type="button" name="submit" id="submit-contact" value="提交" />
+ {% endform %}
+
+        </div>
+        <!-- close .left-box-->
+        <!-- open .right-box-->
+    <div class="right-box">
+      <p>Suspendisse cursus metus quis purus euismod tempus. Quisque non congue elit, quis posuere ante.</p>
+      <iframe height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://ditu.google.cn/maps?f=q&amp;source=s_q&amp;hl=zh-CN&amp;ll=30.681916,104.055977&amp;z=8&amp;output=embed"></iframe>
+        </div>
+        <!-- close .right-box-->
+        <div class="clear"></div>        
+    </div> 
+    <!--close .wrapper-->
+</div> 
+<!--close #contact-->
+
+<!--open footer-->
+  <footer>
+    <!--open .wrapper-->
+    <div class="wrapper">
+      <ul class="social">
+      <li><a href="#"><img src="img/social/white/googleplus.png" alt="" /></a></li>
+      <li><a href="#"><img src="img/social/white/twitter.png" alt="" /></a></li>
+      <li><a href="#"><img src="img/social/white/facebook.png" alt="" /></a></li>
+      <li><a href="#"><img src="img/social/white/linkedin.png" alt="" /></a></li>
+      <li><a href="#"><img src="img/social/white/pinterest.png" alt="" /></a></li>
+      <li><a href="#"><img src="img/social/white/vimeo.png" alt="" /></a></li>
+      <li><a href="#"><img src="img/social/white/dribbble.png" alt="" /></a></li>
+      </ul>
+    </div>
+    <!--close .wrapper-->
+    <p>65960.com 版权所有 ©2013.</p>
+  </footer>
+  <!--close footer-->
+  <script type="text/javascript" src="js/form_functions.js"></script>
+
+    <!-- end footer-->
+    <!--include common js-->
+    <!-- Scripts -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
+<!-- You can modify this file content with your classes -->
+
+<script type="text/javascript" src="js/parallax/jquery.parallax-1.1.3.js"></script>
+<script type="text/javascript" src="js/parallax/jquery.localscroll-1.2.7-min.js"></script>
+<script type="text/javascript" src="js/parallax/jquery.scrollTo-1.4.2-min.js"></script>
+<script type="text/javascript" src="js/slide/responsiveslides.min.js"></script>
+<script type="text/javascript" src="js/slide/slides.min.jquery.js"></script>
+
+  </body>
+</html>
+
+
