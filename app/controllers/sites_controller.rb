@@ -5,7 +5,7 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-    @sites = current_user.sites.page(params[:page])
+    @sites = current_user.sites.page(params[:page]).order("updated_at DESC")
   end
 
   # GET /sites/1

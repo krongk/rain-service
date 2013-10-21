@@ -27,8 +27,6 @@ class SController < ApplicationController
     #if @site_page.short_id == 'post'
     @site_post = @site.site_posts.find_by(id: params[:post_id])   
 
-    @site_comment = @site.site_comments.build
-    
   end
 
   private
@@ -53,6 +51,8 @@ class SController < ApplicationController
         redirect_to redirect_to "http://www." + Rails.application.domain
       end
     end
+    #comment anywhere
+    @site_comment = @site.site_comments.build
   end
 
   # Use callbacks to share common setup or constraints between actions.

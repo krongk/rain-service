@@ -1,0 +1,37 @@
+<!--start services header-->
+<section id="services-top">
+<!--start services-desktop header-->
+  <section id="services-top-desktop" class="visible-desktop" data-stellar-background-ratio="0.6" data-stellar-vertical-offset="20">
+    <h1 class="header">最新报道</h1>
+    <p class="header">精彩故事追踪报道中...</p>
+  </section>
+<!--start services-mobile header-->
+  <section id="services-top-mobile" class="hidden-desktop">
+    <h1 class="header">最新报道</h1>
+    <p class="header">How awesome can it be?</p>
+  </section>
+</section>
+<!--start services-->
+<section id="services">
+  <div class="container">
+    <div class="row divide">
+      <div class="span12">
+        <ul class="thumbnails">
+        {% paginate site.site_posts by 3 %}
+          {% for post in posts %}
+            <li class="span4">
+              <div class="thumbnail">
+                <i class="icon-cogs"></i>
+                <h4>{{post.title}}</h4>
+                <span>{{ post.key_words }}</span>
+                <p>{{ post.content|strip_html|truncate 60 }}.</p>
+              </div>
+            </li>
+          {% endfor %}
+          {{ paginate | default_pagination}}
+        {% endpaginate %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

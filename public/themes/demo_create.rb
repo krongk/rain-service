@@ -92,7 +92,12 @@ class DataExtractor
     demo_content = demo_content.force_encoding("utf-8").sub(/{{title}}/, @theme)
     demo_content = demo_content.force_encoding("utf-8").sub(/{{css_urls}}/, encoded(File.open(css_urls_path).read))
     demo_content = demo_content.force_encoding("utf-8").sub(/{{js_urls}}/, encoded(File.open(js_urls_path).read))
-    demo_content = demo_content.force_encoding("utf-8").sub(/{{header}}/, encoded(File.open(header_path).read))
+    header_content = encoded(File.open(header_path).read)
+    if header_content =~ /^\s*<body/i 
+      demo_content = demo_content.force_encoding("utf-8").sub(/<body>/, header_content)
+    else
+      demo_content = demo_content.force_encoding("utf-8").sub(/{{header}}/, header_content)
+    end
     demo_content = demo_content.force_encoding("utf-8").sub(/{{content}}/, encoded(File.open(index_content_path).read))
     demo_content = demo_content.force_encoding("utf-8").sub(/{{footer}}/, encoded(File.open(footer_path).read))
 

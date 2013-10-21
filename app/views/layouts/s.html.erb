@@ -19,14 +19,41 @@
     <%= javascript_include_tag "turbolinks" %>
     <%= csrf_meta_tags %>
   </head>
-  <body class="theme">
+
+  <%# maybe some theme's body has special style like <body data-offset='64' onLoad="$.stellar();"> 
+    # if body is special, will put <body> tag into _header.html
+  %>
+  <% if @site.header =~ /^\s*<body/i %>
+    <%= raw liquidize(@site.header, 
+      'site' => @site, 
+      'page' => @site_page, 
+      'comment' => @site_comment, 
+      'authenticity_token' => session[:_csrf_token], 
+      'redirect_url' => request.original_url
+    )%>
+  <% else %>
+    <body class="theme">
     <!--if has @site_page the liqu {{page.title}} will be render, otherwise will be set null-->
-    <%= raw liquidize(@site.header, 'site' => @site, 'page' => @site_page )%>
+    <%= raw liquidize(@site.header, 
+      'site' => @site, 
+      'page' => @site_page, 
+      'comment' => @site_comment, 
+      'authenticity_token' => session[:_csrf_token], 
+      'redirect_url' => request.original_url
+    )%>
+  <% end %>
 
 		<%= render 'layouts/messages' %>
 		<%= yield %>
 
-	  <%= raw liquidize(@site.footer, 'site' => @site, 'page' => @site_page )%>
+	  <%= raw liquidize(@site.footer, 
+      'site' => @site, 
+      'page' => @site_page, 
+      'comment' => @site_comment, 
+      'authenticity_token' => session[:_csrf_token], 
+      'redirect_url' => request.original_url
+    )%>
+
   </body>
 </html>
 
