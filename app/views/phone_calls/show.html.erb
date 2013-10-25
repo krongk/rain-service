@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @phone_call.user %>
+</p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @phone_call.domain %>
+</p>
+
+<p>
+  <strong>From ip:</strong>
+  <%= @phone_call.from_ip %>
+</p>
+
+<p>
+  <strong>From url:</strong>
+  <%= @phone_call.from_url %>
+</p>
+
+<p>
+  <strong>From phone:</strong>
+  <%= @phone_call.from_phone %>
+</p>
+
+<p>
+  <strong>Is processed:</strong>
+  <%= @phone_call.is_processed %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @phone_call.note %>
+</p>
+
+<%= link_to 'Edit', edit_phone_call_path(@phone_call) %> |
+<%= link_to 'Back', phone_calls_path %>

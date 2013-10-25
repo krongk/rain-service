@@ -49,7 +49,8 @@ class HomeController < ApplicationController
   def blog
   end
 
-  def qq
+  #来电通
+  def pcall
   end
 
   def map

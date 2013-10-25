@@ -1,0 +1,43 @@
+<%= page_header('来电通', {'控制面板' => root_path}) %>
+
+<div class='row-fluid timeline'>
+    <div class='span12'>
+        <ol class='unstyled'>
+            <li>
+                <div class='icon purple-background'>
+                    <i class='icon-plane'></i>
+                </div>
+                <div class='title'>
+                    来电通功能介绍
+                    <small class='muted'>to phone call</small>
+                </div>
+                <div class='content box'>
+                   <p><strong>来电通</strong>即通过在网站上提供一个让用户输入电话号码的接口，实现用户免费获得信息咨询的服务。</p>
+                   具体运作流程是：用户在网站输入手机号码并点击提交 --> 来电通收到信息，判定是否为垃圾信息，如果不是，则发送一条短信通知管理者 --> 管理者收到短信，获得用户手机号码，随即拨打过去，快速响应客户需求。
+                  <!-- content end -->
+                </div>
+            </li>
+            <li>
+                <div class='icon green-background'>
+                    <i class='icon-picture'></i>
+                </div>
+                <div class='title'>
+                    价格方案
+                    <small class='muted'></small>
+                </div>
+                <div class='content'>
+                  1200元/年（免费安装、无限量发送）
+                </div>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<hr class="hr-double">
+
+<div class='row-fluid'>
+    <div class='span12'>
+        <h2>来电通插件模版<em>将以下代码复制到需要添加来电通的网站</em></h2>
+        <textarea rows="6" cols="30"><%= get_pcall_form_code(current_user.id)%></textarea>
+    </div>
+</div>

@@ -1,5 +1,7 @@
 RainService::Application.routes.draw do
   
+  resources :phone_calls
+
   resources :user_accounts
 
   #for subdomain
@@ -26,6 +28,8 @@ RainService::Application.routes.draw do
 
   get "common/file_new"
   post "common/file_upload"
+  post "common/pcall"
+  
   resources :assets
 
   get "home/index"
@@ -36,6 +40,7 @@ RainService::Application.routes.draw do
   get "home/pay"
   get "home/blog"
   get "home/qq"
+  get "home/pcall"
   get "home/commerce"
   get "home/map"
   get "home/fenlei"

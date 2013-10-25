@@ -1,8 +1,12 @@
 class CommonController < ApplicationController
+  #因为pcall来电通是集成在其它网站上的，无法生成AuthenticityToken
+  #http://my.eoe.cn/guanmac/archive/15421.html
+  #rails4.0——ActionController::InvalidAuthenticityToken完美解决
+  skip_before_filter :verify_authenticity_token
+
+  #file upload ===============================
   def file_new
-
   end
-
   def file_upload
   	#render :text => params and return
     #upload file
@@ -61,4 +65,19 @@ class CommonController < ApplicationController
       index +=  1
     end     
   end
+  #file upload end===============================
+
+  #phone call ===============================
+  def pcall
+    strs = []
+    strs << "request.original_url: #{request.original_url}"
+    strs << "request.remote_ip: #{request.remote_ip}"
+    strs << "params: #{params}"
+    #render text: strs.join("<br>\n") and return
+    respond_to do |format|
+      format.html { redirect_to faq_cates_url, notice: 'Faq item was successfully created.' }
+      format.json { render text: strs.join("<br>\n") }
+    end
+  end
+
 end
