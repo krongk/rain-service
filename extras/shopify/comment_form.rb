@@ -29,7 +29,7 @@ class CommentForm < Liquid::Block
   end
 
   def wrap_in_form(post, input)
-    %Q{<form accept-charset="UTF-8" id="post-#{post.id}-comment-form" class="form-horizontal" method="post" action="/site_comments">
+    %Q{<form accept-charset="UTF-8" id="comment-form" class="form-horizontal" method="post" action="/site_comments">
       <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
       \n#{input}\n</form>
     }

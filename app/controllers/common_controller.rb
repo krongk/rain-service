@@ -68,16 +68,32 @@ class CommonController < ApplicationController
   #file upload end===============================
 
   #phone call ===============================
+  #参数：domain + ip + phone
+  #验证：domain 域名对应真实网站的IP名单
   def pcall
+    @phone_call = PhoneCall.new(phone_call_params)
+
     strs = []
     strs << "request.original_url: #{request.original_url}"
     strs << "request.remote_ip: #{request.remote_ip}"
     strs << "params: #{params}"
+    puts "pcall....#{rand(43)}: #{params[:callback]}"
     #render text: strs.join("<br>\n") and return
     respond_to do |format|
-      format.html { redirect_to faq_cates_url, notice: 'Faq item was successfully created.' }
-      format.json { render text: strs.join("<br>\n") }
+      if @phone_call.save
+        format.html { @str = strs.join("<br>\n") }
+        format.json { render :json => @str, :callback => params[:callback] }
+        format.js { render :json => 'ff', :callback => params[:callback] }
+      else
+        format.js { render :json => 'error', :status => 500 }
+      end
     end
   end
+
+  private
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def phone_call_params
+      params.require(:phone_call).permit(:domain, :from_ip, :from_url, :from_phone, :is_processed, :note)
+    end
 
 end

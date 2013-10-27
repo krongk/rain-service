@@ -1,9 +1,14 @@
 class ThemesController < ApplicationController
   before_action :set_theme, only: [:show, :edit, :update, :destroy]
 
+  #是一个toggler, 如果喜欢，则标记为‘已标记’，如果‘已标记’则标记为‘喜欢’。
   def like_theme
     @theme_id = params[:theme_id]
-    UserTheme.create(:user_id => current_user.id, :theme_id => @theme_id)
+    if ut = UserTheme.find_by(user_id: current_user.id, theme_id: @theme_id)
+      ut.destroy!
+    else
+      UserTheme.create(:user_id => current_user.id, :theme_id => @theme_id)
+    end
     respond_to do |format|
       if true
         format.html {}

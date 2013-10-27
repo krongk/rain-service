@@ -29,6 +29,7 @@ RainService::Application.routes.draw do
   get "common/file_new"
   post "common/file_upload"
   post "common/pcall"
+  get "common/pcall"
   
   resources :assets
 
