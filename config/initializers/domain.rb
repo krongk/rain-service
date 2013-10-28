@@ -3,7 +3,7 @@
 class << Rails.application
   def domain
     if Rails.env == 'development'
-       "yufuwu.org"
+       "121.199.46.174"
     else
       "yufuwu.org"
     end
