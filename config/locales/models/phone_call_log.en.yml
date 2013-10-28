@@ -1,0 +1,15 @@
+---
+en:
+  active_record:
+    models:
+      phone_call_log: Phone call log
+    attributes:
+      phone_call_log:
+        user: User
+        phone_call: Phone call
+        status: Status
+        billing_count: Billing count
+    errors:
+      phone_call_log: 
+  helpers:
+    phone_call_log: 

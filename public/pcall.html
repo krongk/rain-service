@@ -13,39 +13,38 @@
   </head>
   <body>
     <h1>来电通测试</h1>
-      <form accept-charset="UTF-8" action="http://www.yufuwu.org:3000/common/pcall" id="myform1" method="post" novalidate="novalidate">
-        
-        <input class="hidden" id="phone_call_domain" name="phone_call[domain]" type="hidden" value="www.abc.com" />
-        <input class="hidden" id="phone_call_user_id" name="phone_call[user_ip]" type="hidden" value="29" />
-        
-        <div class="control-group tel optional phone_call_from_phone">
-          <label class="tel optional control-label" for="phone_call_from_phone">请输入您的手机号</label>
-          <div class="controls">
-            <input class="string tel optional" id="phone_call_from_phone" name="phone_call[from_phone]" type="tel" />
-            <input class="btn btn-primary btn-large" data-disable-with="正在提交..." id="phone_call_commit" name="commit" type="submit" value="提交" />
-          </div>
-        </div>
-      </form>
-    
 
+  <form accept-charset="UTF-8" action="http://www.65960.com/page/pcall" id="pcall_form" method="post">
+    <input class="hidden" id="phone_call_domain" name="phone_call[domain]" type="hidden" value="www.abc.com" />
+    <input class="hidden" id="phone_call_user_id" name="phone_call[user_id]" type="hidden" value="29" />
+    
+    <div class="control-group tel optional phone_call_from_phone">
+      <label class="tel optional control-label" for="phone_call_from_phone">请输入您的手机号</label>
+      <div class="controls">
+        <input class="string tel optional" id="phone_call_from_phone" name="phone_call[from_phone]" type="tel" />
+        <input class="btn btn-primary btn-large" id="phone_call_commit" name="commit" type="submit" value="提交" />
+      </div>
+    </div>
+  </form>
 
 <!-- ######################################## -->
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script type="text/javascript">
   (function() {
     $(function() {
-      $("#myform1").submit(function() {
+      $("#pcall_form").submit(function() {
         var vdata = $(this).serialize(); //序列化表单数据
-        alert(vdata[from_phone]);
-        var num1 = document.getElementById('workno').value;
-        if (num1 !== "" && !num1.match(/^\(\d{2}\)\d{8}$/))
+        //检查手机号码正确性
+        var num1 = document.getElementById('phone_call_from_phone').value;
+        if (num1 !== "" && !num1.match(/^1[3|4|5|8][0-9]\d{4,8}$/))
         {
-          alert('That is not a correct telephone number format');
+          alert('请输入正确的手机号码');
           return false;
         }
+        //提交数据
         $.ajax({
           type: "POST",
-          url: "http://www.yufuwu.org:3000/common/pcall.js?callback=?",
+          url: "http://www.65960.com/page/pcall.js?callback=?",
           data: vdata,
           success: function(data) {
             alert(data.id);
@@ -62,41 +61,6 @@
     });
 
   }).call(this);
-
-  // $(document).ready(function() {
-  //   $("#myform2").submit(function(){
-  //     var data = $(this).serialize(); //序列化表单数据   
-  //     $.ajax({
-  //         url: "http://www.yufuwu.org:3000/common/pcall.js?callback=?",
-  //         type: "POST",
-  //         data: data,
-  //         success: alert("error"),
-  //         success: function(resp){ alert('good'); }
-       
-  //     });
-  //     return false;
-  //   });
-  // });
-
-  // $(function(){
-  //   $("#myform2").submit(function(){
-  //       var data = $(this).serialize(); //序列化表单数据   
-  //       $.getJSON("http://www.yufuwu.org:3000/common/pcall.js?callback=?",data,function(json){   
-  //           var msg = ''; 
-  //           alert(json);
-  //           if(json){   
-  //              //var  sex = json.sex==1? "男生":"女生";   
-  //              msg = "< id='result'><strong>提交成功！</strong><br/>姓名："   
-  //           }else{   
-  //              msg = "服务器忙，请稍候再试！";   
-  //           }
-  //           alert(msg);
-  //           $("#myform2").after(msg); //将返回信息插入页面对应的元素后   
-  //       });   
-  //       return false;   
-  //   });   
-  // });
-
 </script>
 </body>
 </html>

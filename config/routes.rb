@@ -1,7 +1,10 @@
 RainService::Application.routes.draw do
   
-  resources :phone_calls
+  #Use for client side
+  get "page/index"
+  post "page/pcall"
 
+  resources :phone_calls
   resources :user_accounts
 
   #for subdomain
@@ -26,10 +29,9 @@ RainService::Application.routes.draw do
 
   resources :faq_cates
 
+  #Use for server side.
   get "common/file_new"
   post "common/file_upload"
-  post "common/pcall"
-  get "common/pcall"
   
   resources :assets
 

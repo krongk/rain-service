@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131025064146) do
+ActiveRecord::Schema.define(version: 20131028034633) do
 
   create_table "assets", force: true do |t|
     t.integer  "user_id"
@@ -82,6 +82,18 @@ ActiveRecord::Schema.define(version: 20131025064146) do
   end
 
   add_index "mail_tmps", ["user_id"], name: "index_mail_tmps_on_user_id", using: :btree
+
+  create_table "phone_call_logs", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "phone_call_id"
+    t.string   "status",        null: false
+    t.string   "billing_count", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "phone_call_logs", ["phone_call_id"], name: "index_phone_call_logs_on_phone_call_id", using: :btree
+  add_index "phone_call_logs", ["user_id"], name: "index_phone_call_logs_on_user_id", using: :btree
 
   create_table "phone_calls", force: true do |t|
     t.integer  "user_id"
