@@ -48,7 +48,7 @@ class SController < ApplicationController
       end
 
       if !@site
-        redirect_to redirect_to "http://www." + Rails.application.domain
+        redirect_to redirect_to "http://www." + Rails.application.domain and return
       end
     end
     #comment anywhere
