@@ -5,7 +5,7 @@ class << Rails.application
     if Rails.env == 'development'
        "121.199.46.174"
     else
-      "65960.com"
+      "yufuwu.org"
     end
   end
 

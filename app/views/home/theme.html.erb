@@ -36,7 +36,7 @@
                   <div class='actions' style="background: #ccc; color: #fff;">
                       <div class='pull-left'>
                           <i class='icon-user'></i>
-                          <%= theme.name %>
+                          <%= theme.name.to_s.truncate(6) %>
                           &nbsp;&nbsp;
                           <%= link_to theme.templete_url, target: '_blank', class: 'btn btn-info' do %>
                             <i class='icon-share'></i>预览效果
@@ -44,7 +44,7 @@
                       </div>
                       <div class='pull-right'>
                         <% if UserTheme.has?(current_user.id, theme.id) %>
-                          <span class="btn btn-inverse">已标记</span>
+                          <%=link_to "已标记", "/like_theme?theme_id=#{theme.id}", id: "like_theme#{theme.id}", remote: true, class: 'btn btn-inverse' %>
                         <% else %>
                           <%=link_to "喜欢", "/like_theme?theme_id=#{theme.id}", id: "like_theme#{theme.id}", remote: true, class: 'btn btn-primary' %>
                         <% end %>

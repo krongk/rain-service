@@ -51,7 +51,7 @@
           <div class='actions' style="background: #ccc; color: #fff;">
               <div class='pull-left'>
                   <i class='icon-user'></i>
-                  <%= theme.name %>
+                  <%= theme.name.to_s.truncate(6) %>
                   &nbsp;&nbsp;
                   <%= link_to theme.templete_url, target: '_blank', class: 'btn btn-primary' do %>
                     <i class='icon-share'></i>预览效果

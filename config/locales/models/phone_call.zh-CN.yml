@@ -1,0 +1,18 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      phone_call: 来电通
+    attributes:
+      phone_call:
+        user: 所有者
+        domain: 来源域名
+        from_ip: 来源IP
+        from_url: 来源URL
+        from_phone: 电话号码
+        is_processed: 是否处理
+        note: 备注
+    errors:
+      phone_call: 
+  helpers:
+    phone_call: 

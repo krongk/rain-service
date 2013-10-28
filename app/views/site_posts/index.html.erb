@@ -5,6 +5,7 @@
   <thead>
     <tr>
       <th>编号</th>
+      <th>添加到搜索引擎收录</th>
       <th>操作</th>
     </tr>
   </thead>
@@ -13,7 +14,11 @@
     <% @site_posts.each do |item| %>
       <tr>
         <td><%= link_to item.title, get_short_url(@site, @site.site_pages.find_by(short_id: 'post'), item), target: '_blank' %></td>
-
+        <td>
+          <% get_seo_gateway_urls(get_short_url(@site, @site.site_pages.find_by(short_id: 'post'), item)).each do |url| %>
+            <span class="badge badge-<%=rand_flag%>"><%= url %></span>
+          <% end %>
+        </td>
         <td>
           <%= link_to '编辑', edit_site_site_post_path(@site, item), class: 'btn btn-info' %> 
           <%= link_to '删除', item, class: 'btn btn-inverse', method: :delete, data: { confirm: '确定要删除么?' } %>

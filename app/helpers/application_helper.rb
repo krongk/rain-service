@@ -1,7 +1,10 @@
 module ApplicationHelper
-
-  THEME_CATES = [['博客型超级换肤型', 'bootswatch'], ['企业超级定制型', 'bootsbiz']]
+  include CommonHelper
   
+  THEME_CATES = [['博客型超级换肤型', 'bootswatch'], ['企业超级定制型', 'bootsbiz']]
+  COLOR_NAMES = ["contrast", "orange", "blue", "purple", "green", "red", "muted", "fb", "dark", "pink", "grass-green", "sea-blue", "banana", "dark-orange", "brown"]
+  THEME_NAMES = ["red","orange", "blue", "purple", "green", "fb", "muted", "dark", "pink", "grass-green", "sea-blue", "banana", "dark-orange", "brown"]
+
   USER_ACCOUTNS =[
     #required
     ['网站域名', 'domain'],
@@ -40,12 +43,11 @@ module ApplicationHelper
   }
 
   BADGE_FLAG = {'success' => '成功', 'error' => '错误', 'warning' => '警告', 'important' => '严重', 'info' => '提示', 'inverse' => '失败'}
-
   def rand_flag
     BADGE_FLAG.keys[rand(5)]
   end
 
-   #[3,0][1,30] => [sms_tmp_id, send_status]
+  #[3,0][1,30] => [sms_tmp_id, send_status]
   def show_send_status(is_processed)
     if is_processed == 'n'
       return "<span class='badge badge-info' title='未发送'>未发送</span>".html_safe

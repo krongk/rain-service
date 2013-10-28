@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130921140212) do
+ActiveRecord::Schema.define(version: 20131028034633) do
 
   create_table "assets", force: true do |t|
     t.integer  "user_id"
@@ -83,6 +83,32 @@ ActiveRecord::Schema.define(version: 20130921140212) do
 
   add_index "mail_tmps", ["user_id"], name: "index_mail_tmps_on_user_id", using: :btree
 
+  create_table "phone_call_logs", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "phone_call_id"
+    t.string   "status",        null: false
+    t.string   "billing_count", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "phone_call_logs", ["phone_call_id"], name: "index_phone_call_logs_on_phone_call_id", using: :btree
+  add_index "phone_call_logs", ["user_id"], name: "index_phone_call_logs_on_user_id", using: :btree
+
+  create_table "phone_calls", force: true do |t|
+    t.integer  "user_id"
+    t.string   "domain"
+    t.string   "from_ip"
+    t.string   "from_url"
+    t.string   "from_phone"
+    t.boolean  "is_processed"
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "phone_calls", ["user_id"], name: "index_phone_calls_on_user_id", using: :btree
+
   create_table "phone_items", force: true do |t|
     t.integer  "user_id"
     t.string   "mobile_phone",               null: false
@@ -112,8 +138,8 @@ ActiveRecord::Schema.define(version: 20130921140212) do
   create_table "site_comments", force: true do |t|
     t.integer  "site_id",                      null: false
     t.string   "name"
-    t.string   "mobile_phone",                 null: false
-    t.string   "email",                        null: false
+    t.string   "mobile_phone"
+    t.string   "email"
     t.text     "content",                      null: false
     t.boolean  "is_processed", default: false
     t.datetime "created_at"
@@ -160,7 +186,16 @@ ActiveRecord::Schema.define(version: 20130921140212) do
     t.text     "header"
     t.text     "body"
     t.text     "footer"
-    t.boolean  "is_published", default: false
+    t.boolean  "is_published",             default: false
+    t.string   "contact_name"
+    t.string   "mobile_phone", limit: 16
+    t.string   "tel_phone",    limit: 16
+    t.string   "qq",           limit: 32
+    t.string   "email",        limit: 64
+    t.string   "website",      limit: 64
+    t.string   "address",      limit: 128
+    t.string   "company_name", limit: 128
+    t.string   "duoshuo",      limit: 128
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -193,17 +228,19 @@ ActiveRecord::Schema.define(version: 20130921140212) do
   add_index "sms_tmps", ["user_id"], name: "index_sms_tmps_on_user_id", using: :btree
 
   create_table "themes", force: true do |t|
-    t.string "name",                                                                                                                                                null: false
-    t.string "cate",                              default: "bootswatch",                                                                                            null: false
-    t.string "tags"
-    t.string "templete_image"
-    t.string "templete_url"
-    t.string "default_pages",                     default: "关于, about|服务项目, service|产品特色, features|项目展示, portfolio|博客, blog|联系方式, contact|在线帮助, comment|帮助说明, faq"
-    t.text   "css_url"
-    t.text   "js_url"
-    t.text   "header"
-    t.text   "body",           limit: 2147483647
-    t.text   "footer"
+    t.string   "name",                                                              null: false
+    t.string   "cate",                              default: "bootswatch",          null: false
+    t.string   "tags"
+    t.string   "templete_image"
+    t.string   "templete_url"
+    t.string   "default_pages",                     default: "关于我们|服务项目|成功案例|联系我们"
+    t.text     "css_url"
+    t.text     "js_url"
+    t.text     "header"
+    t.text     "body",           limit: 2147483647
+    t.text     "footer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_accounts", force: true do |t|

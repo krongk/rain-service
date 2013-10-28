@@ -1,8 +1,8 @@
 class CommonController < ApplicationController
+  
+  #file upload ===============================
   def file_new
-
   end
-
   def file_upload
   	#render :text => params and return
     #upload file
@@ -61,4 +61,6 @@ class CommonController < ApplicationController
       index +=  1
     end     
   end
+  #file upload end===============================
+
 end

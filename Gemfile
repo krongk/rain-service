@@ -19,9 +19,7 @@ gem 'rolify'
 gem 'simple_form', '>= 3.0.0.rc'
 
 # For linux
-# group :assets do
-#   gem 'therubyracer', :platform=>:ruby
-# end
+# gem 'therubyracer', :platform=>:ruby
 # gem 'puma'
 
 #Liquid templete html

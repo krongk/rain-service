@@ -1,35 +1,34 @@
 <%= page_header(t('sites.index.title'), {'浏览模板' => '/home/theme', '添加网站' => new_site_path(@site)}) %>
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>唯一标示</th>
-      <th>网站标题</th>
-      <th>域名</th>
-      <th>模版</th>
-      <th><div class="text-right">操作</div></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @sites.each do |site| %>
-      <tr>
-        <td><%= site.short_id %></td>
-        <td><%= site.title %></td>
-        <td><%= site.domain %></td>
-        <td><%= Theme.find_by(id: site.theme_id).try(:name) %></td>
-        <td>
-          <div class="text-right">
-            <%= link_to '预览', get_short_url(site), target: '_blank', class: 'btn btn-primary' %>
-            <%= link_to '管理', site_path(site), class: 'btn btn-warning' %>
-            <%= link_to '编辑', edit_site_path(site), class: 'btn btn-info' %>
-            <%= link_to '删除', site, method: :delete, data: { confirm: '确定要删除么?' }, class: 'btn btn-inverse' %>
+<% @sites.each do |site| %>
+  <div class='row-fluid'>
+    <div class='span12 box box-nomargin'>
+      <div class='box-header <%= ApplicationHelper::COLOR_NAMES[rand(ApplicationHelper::COLOR_NAMES.size)]%>-background'>
+          <div class='title'><%= link_to site.short_id, get_short_url(site), target: '_blank'%></div>
+          <div class='actions'>
+              <div class='btn-group'>
+                  <a class='btn btn-white dropdown-toggle' data-toggle='dropdown' style='margin-bottom:5px'>
+                      操作
+                      <span class='caret'></span>
+                  </a>
+                  <ul class='dropdown-menu pull-right'>
+                    <li><%= link_to '预览', get_short_url(site), target: '_blank', class: 'btn btn-primary' %></li>
+                    <li><%= link_to '资源', site_path(site), class: 'btn btn-warning' %></li>
+                    <li><%= link_to '设置', site_path(site), class: 'btn btn-info' %></li>
+                    <li><%= link_to '编辑', edit_site_path(site), class: 'btn btn-info' %></li>
+                    <li><%= link_to '删除', site, method: :delete, data: { confirm: '确定要删除么?' }, class: 'btn btn-importent' %></li>
+                  </ul>
+              </div>
           </div>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
+      </div>
+      <div class='box-content'>
+        &nbsp;<%= site.title %>
+        &nbsp;&nbsp;采用模版：[<%= Theme.find_by(id: site.theme_id).try(:name) %>]
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<hr class='hr-double'>
 <%= will_paginate @sites %>
 
