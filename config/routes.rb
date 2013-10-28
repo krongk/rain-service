@@ -3,6 +3,7 @@ RainService::Application.routes.draw do
   #Use for client side
   get "page/index"
   post "page/pcall"
+  post "/pcall" => "page#pcall", :via => :post
 
   resources :phone_calls
   resources :user_accounts

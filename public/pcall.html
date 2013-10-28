@@ -14,7 +14,7 @@
   <body>
     <h1>来电通测试</h1>
 
-  <form accept-charset="UTF-8" action="http://www.65960.com/page/pcall" id="pcall_form" method="post">
+  <form accept-charset="UTF-8" action="http://www.65960.com/pcall" id="pcall_form" method="post">
     <input class="hidden" id="phone_call_domain" name="phone_call[domain]" type="hidden" value="www.abc.com" />
     <input class="hidden" id="phone_call_user_id" name="phone_call[user_id]" type="hidden" value="29" />
     
@@ -29,13 +29,16 @@
 
 <!-- ######################################## -->
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="http://www.65960.com/common_js/jquery.json-2.4.min.js"></script>
+
 <script type="text/javascript">
   (function() {
     $(function() {
       $("#pcall_form").submit(function() {
-        var vdata = $(this).serialize(); //序列化表单数据
+        //var vdata = $(this).serialize(); //序列化表单数据
+        var vdata = $.toJSON($(this).serialize());
         //检查手机号码正确性
-        var num1 = document.getElementById('phone_call_from_phone').value;
+        var num1 = document.getElementById("phone_call_from_phone").value;
         if (num1 !== "" && !num1.match(/^1[3|4|5|8][0-9]\d{4,8}$/))
         {
           alert('请输入正确的手机号码');
@@ -44,7 +47,11 @@
         //提交数据
         $.ajax({
           type: "POST",
-          url: "http://www.65960.com/page/pcall.js?callback=?",
+          dataType: "json",
+          processData: false,
+          contentType: "application/json",
+          charset: "utf-8",
+          url: "http://www.65960.com/pcall.json?callback=?",
           data: vdata,
           success: function(data) {
             alert(data.id);
@@ -64,3 +71,4 @@
 </script>
 </body>
 </html>
+
