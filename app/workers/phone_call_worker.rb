@@ -12,7 +12,7 @@ class PhoneCallWorker
     end
     sms_content = "你有一个来自网站#{@phone_call.domain}的电话咨询请求： #{@phone_call.from_phone}, 请务必及时回复！"
     status_id = SmsBao.send(ENV['SMS_BAO_USER'], ENV['SMS_BAO_PASSWORD'], to_phone, sms_content)
-
+    puts status_id
     #write log
     sms_max_character_count = ENV['SMS_MAX_CHARACTER_COUNT']
     sms_max_character_count ||= 64

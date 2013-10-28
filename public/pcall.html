@@ -48,9 +48,8 @@
         $.ajax({
           type: "POST",
           dataType: "json",
-          processData: false,
-          contentType: "application/json",
-          charset: "utf-8",
+          crossDomain: true,
+          contentType: 'application/json; charset=utf-8',
           url: "http://www.65960.com/pcall.json?callback=?",
           data: vdata,
           success: function(data) {
@@ -58,6 +57,7 @@
             return false;
           },
           error: function(data) {
+            alert("error")
             return false;
           }
         });
