@@ -1,3 +1,4 @@
+#encoding: utf-8
 # 此代码用于来电通
 
 //= require jquery 
