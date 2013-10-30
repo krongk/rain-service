@@ -16,7 +16,7 @@
         type: "GET"
         dataType: "JSONP"
         contentType: "application/json; charset=utf-8"
-        url: "http://www.yufuwu.org:3000/pcall?callback=?"
+        url: "http://www.65960.com/pcall?callback=?"
         data: vdata
         success: (data) ->
           alert data.id + " 成功发送！"

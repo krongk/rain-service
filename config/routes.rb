@@ -2,8 +2,7 @@ RainService::Application.routes.draw do
   
   #Use for client side
   get "page/index"
-  post "page/pcall"
-  post "/pcall" => "page#pcall", :via => :post
+  #pcall 
   get "/pcall" => "page#pcall", :via => :get
 
   resources :phone_calls
