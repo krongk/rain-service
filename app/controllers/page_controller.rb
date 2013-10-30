@@ -18,6 +18,7 @@ class PageController < ApplicationController
     respond_to do |format|
       if @phone_call.save
         #发送短信通知
+        @phone_call.reload
         PhoneCallWorker.perform_async(@phone_call.id)
         format.html { }
         format.js { render :json => @phone_call, :callback => params[:callback] }
