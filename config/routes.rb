@@ -4,6 +4,7 @@ RainService::Application.routes.draw do
   get "page/index"
   post "page/pcall"
   post "/pcall" => "page#pcall", :via => :post
+  get "/pcall" => "page#pcall", :via => :get
 
   resources :phone_calls
   resources :user_accounts

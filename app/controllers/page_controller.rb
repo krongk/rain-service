@@ -5,37 +5,24 @@ class PageController < ApplicationController
   #rails4.0——ActionController::InvalidAuthenticityToken完美解决
   skip_before_filter :verify_authenticity_token
 
-  before_filter :set_access_control_headers
-  def set_access_control_headers
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Request-Method'] = '*'
-    headers['Access-Control-Allow-Headers'] = '*'
-    headers['Access-Control-Allow-Credentials'] = "true"
-  end
-
   def index
   end
 
   #phone call ===============================
-  #参数：domain + ip + phone
-  #验证：domain 域名对应真实网站的IP名单
   def pcall
-    @phone_call = PhoneCall.new()
-
-    #parse params
-    pram = params["_json"].gsub(/%5B/, '[').gsub(/%5D/, ']')
-    #"phone_call[domain]=www.abc.com&phone_call[user_id]=29&phone_call[from_phone]=13688888888"
-    @phone_call.domain     = $1 if pram =~ /phone_call\[domain\]=([^&=""]+)/
-    @phone_call.user_id    = $1 if pram =~ /phone_call\[user_id\]=(\d+)/
-    @phone_call.from_phone = $1 if pram =~ /phone_call\[from_phone\]=(\d+)/
+    # # {"callback"=>"jQuery19008977521306369454_1383101029441", "\"phone_call"=>{"domai
+    # # n"=>"www.abc.com"}, "phone_call"=>{"user_id"=>"29", "from_phone"=>"13688888888\"
+    # # "}, "_"=>"1383101029442", "controller"=>"page", "action"=>"pcall", "page"=>{}}
+    @phone_call = PhoneCall.new(phone_call_params)
 
     respond_to do |format|
       if @phone_call.save
+        #发送短信通知
         PhoneCallWorker.perform_async(@phone_call.id)
         format.html { }
-        format.json { render :json => @phone_call, :callback => params[:callback] }
+        format.js { render :json => @phone_call, :callback => params[:callback] }
       else
-        format.json { render :json => '信息提交失败', :status => 500 }
+        format.js { render :json => "提交失败", :callback => params[:callback] }
       end
     end
   end
@@ -43,8 +30,7 @@ class PageController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def phone_call_params
-
-      #params.require(:phone_call).permit(:domain, :user_id, :from_ip, :from_url, :from_phone, :is_processed, :note)
+      params.require(:phone_call).permit(:domain, :user_id, :from_ip, :from_url, :from_phone, :is_processed, :note)
     end
 end
 

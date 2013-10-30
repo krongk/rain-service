@@ -1,4 +1,5 @@
 class PhoneCallsController < ApplicationController
+  layout 'page'
   before_action :set_phone_call, only: [:show, :edit, :update, :destroy]
 
   # GET /phone_calls
@@ -28,7 +29,7 @@ class PhoneCallsController < ApplicationController
 
     respond_to do |format|
       if @phone_call.save
-        format.html { redirect_to @phone_call, notice: 'Phone call was successfully created.' }
+        format.html { redirect_to @phone_call, notice: '信息添加成功.' }
         format.json { render action: 'show', status: :created, location: @phone_call }
       else
         format.html { render action: 'new' }
@@ -41,8 +42,8 @@ class PhoneCallsController < ApplicationController
   # PATCH/PUT /phone_calls/1.json
   def update
     respond_to do |format|
-      if @phone_call.update(phone_call_params)
-        format.html { redirect_to @phone_call, notice: 'Phone call was successfully updated.' }
+      if false #@phone_call.update(phone_call_params)
+        format.html { redirect_to @phone_call, notice: '信息添加成功.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -54,7 +55,7 @@ class PhoneCallsController < ApplicationController
   # DELETE /phone_calls/1
   # DELETE /phone_calls/1.json
   def destroy
-    @phone_call.destroy
+    #@phone_call.destroy
     respond_to do |format|
       format.html { redirect_to phone_calls_url }
       format.json { head :no_content }

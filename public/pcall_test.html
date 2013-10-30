@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Content-Language" content="zh-CN" />
+  <meta name="robots" content="INDEX,FOLLOW" />
+  <meta name="author" content="master@inruby.com" />
+  <!-- this enables responsive features in browser -->
+  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+  <title>来电通</title>
+  <meta name="description" content="pcall">
+</head>
+<body>
+
+<h1>来电通测试</h1>
+
+<!-- ########将以下代码拷贝到需要提交手机号的网站################################ -->
+<form accept-charset="UTF-8" action="http://www.65960.com/pcall" id="pcall_form" method="post">
+  <input class="hidden" id="phone_call_domain" name="phone_call[domain]" type="hidden" value="www.abc.com" />
+  <input class="hidden" id="phone_call_user_id" name="phone_call[user_id]" type="hidden" value="29" />
+  <input class="string tel optional" id="phone_call_from_phone" name="phone_call[from_phone]" type="tel" placeholder="请输入您的手机号码" />
+  <input class="btn btn-primary btn-large" id="phone_call_commit" name="commit" type="submit" value="提交" />
+</form>
+<script src="http://www.65960.com/assets/phone_calls.js"></script>
+<!-- ########代码结束################################ -->
+
+</body>
+</html>
+

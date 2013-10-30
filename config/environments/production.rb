@@ -59,7 +59,7 @@ RainService::Application.configure do
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-   config.assets.precompile += %w(s.css jquery.js turbolinks.js jquery.turbolinks.js)
+   config.assets.precompile += %w(s.css jquery.js turbolinks.js jquery.turbolinks.js phone_calls.js)
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
