@@ -4,7 +4,7 @@ class PhoneCallWorker
   def perform(phone_call_id)
     puts "start send poone call"
     puts phone_call_id
-    @phone_call = PhoneCall.find_by(id: phone_call_id)
+    @phone_call = PhoneCall.find(phone_call_id)
     puts @phone_call.from_phone
     return if @phone_call.nil?
     to_phone = @phone_call.try(:user).try(:user_detail).try(:mobile_phone)
